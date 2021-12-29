@@ -1,0 +1,89 @@
+/* .header {
+    height: 150px;
+    background-color: #00284d;
+} */
+
+.header nav {
+    background-color: #00953b;
+    width: 1260px;
+    height: 160px;
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
+    color: whitesmoke;
+}
+
+ul {
+    list-style: none;
+}
+
+.active {
+    background-color: #60ec4c !important;
+}
+
+.nav-link {
+    position: absolute;
+    display: flex;
+    left: 10px;
+    top: 119px;
+}
+
+.nav-link li {
+    margin: 0 1px;
+    width: 120px;
+    background-size: auto;
+    height: 40px;
+    background-color: #F1F3F1;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 3;
+    color: #00284d;
+    align-items: flex-end;
+    text-align: center;
+}
+
+.nav-link li:hover {
+    cursor: pointer;
+}
+
+.sub-menu {
+    display: none;
+}
+
+.navbar ul li:hover .sub-menu {
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid;
+    box-shadow: 1px 1px 1px 1px #AAA;
+    margin-top: 0;
+    margin-left: 1px;
+}
+
+.navbar ul li:hover .sub-menu ul {
+    display: block;
+    margin: 10px;
+}
+
+.navbar ul li:hover .sub-menu ul li {
+    width: 150px;
+    padding: 10px;
+    background: transparent;
+    border-radius: 0;
+    text-align: left;
+}
+
+.navbar ul li:hover .sub-menu ul li:last-child {
+    border-bottom: none;
+}
+
+.navbar ul li:hover .sub-menu ul li a {
+    color: #046408;
+}
