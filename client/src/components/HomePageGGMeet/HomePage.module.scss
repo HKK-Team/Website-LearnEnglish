@@ -1,3 +1,14 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
 .green {
     background: #00796b !important;
     color: #fff !important;
@@ -7,7 +18,7 @@
     }
 }
 
-.home-page {
+.home {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -16,7 +27,7 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
-        .left-side {
+        .leftSide {
             max-width: 500px;
             .content {
                 h2 {
@@ -28,7 +39,7 @@
                     font-size: 18px;
                     font-weight: 300;
                 }
-                .action-btn {
+                .actionBtn {
                     margin-top: 60px;
                     display: flex;
                     align-items: center;
@@ -46,21 +57,21 @@
                         border-radius: 5px;
                         color: #00796b;
                         text-decoration: none;
-                        .icon-block {
+                        .iconBlock {
                             padding-right: 10px;
                         }
                         &:hover {
                             background: #f6faf9;
                         }
                     }
-                    .input-block {
+                    .inputBlock {
                         margin-left: 20px;
                         display: flex;
                         flex: 1;
-                        .input-section {
+                        .inputSection {
                             position: relative;
                             margin-right: 10px;
-                            .icon-block {
+                            .iconBlock {
                                 position: absolute;
                                 top: 50%;
                                 transform: translate(10px, -50%);
@@ -80,7 +91,7 @@
                     }
                 }
             }
-            .help-text {
+            .helpText {
                 margin-top: 30px;
                 padding-top: 25px;
                 border-top: 1px solid #ddd;
@@ -90,7 +101,7 @@
                 }
             }
         }
-        .right-side {
+        .rightSide {
             .content {
                 border: 1px solid #eee;
                 padding: 30px;

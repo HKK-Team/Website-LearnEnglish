@@ -4,7 +4,7 @@ import A from "../../components/UIGGMeet/HeaderHomeGGMeet/HeaderHomeGGMeet";
 
 export default function GGMeet() {
     return (
-            <A/> 
+            <HomePageGGMeet/>  
     )
 }
 

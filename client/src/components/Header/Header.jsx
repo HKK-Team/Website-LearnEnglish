@@ -1,18 +1,18 @@
 import React from "react";
-import "./Header.css";
+import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="header">
-      <nav className="navbar">
-        <h1 className="logo">LearnEnglish</h1>
-        <ul className="nav-link">
-          <li className="active">
+    <div className={styles.header}>
+      <nav className={styles.navbar}>
+        <h1 className={styles.logo}>LearnEnglish</h1>
+        <ul className={styles.navlink}>
+          <li className={styles.active}>
             <Link to={"/"}>Home</Link>
           </li>
           <li>
-            <a href="#"></a>Skills
+            <Link to={"#"}>Skills</Link>
             {/* <div className="sub-menu">
             <ul>
               <li>
@@ -31,7 +31,7 @@ const Header = () => {
             </div> */}
           </li>
           <li>
-            <a href="#"></a>Grammar
+            <Link to={"#"}>Grammar</Link>
             {/* <div className="sub-menu">
             <ul>
               <li>
@@ -47,7 +47,7 @@ const Header = () => {
             </div> */}
           </li>
           <li>
-            <a href="#"></a>Vocabulary
+            <Link to={"#"}>Vocabulary</Link>
             {/* <div className="sub-menu">
             <ul>
               <li>

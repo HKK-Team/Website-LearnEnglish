@@ -1,5 +1,5 @@
 import React from "react";
-import "./Footer.css"
+import styles from "./Footer.module.css"
 import { FaFacebook } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
@@ -7,10 +7,10 @@ import { FaTwitch } from "react-icons/fa";
 const Footer = () => {
   return (
     <div>
-      <footer class="footer">
-        <div class="container">
-          <div class="row">
-            <div class="footer-col">
+      <footer class={styles.footer}>
+        <div class={styles.container}>
+          <div class={styles.row}>
+          <div class={styles.footerCol}>
               <h4>Grammar</h4>
               <ul>
                 <li>
@@ -27,7 +27,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div class="footer-col">
+            <div class={styles.footerCol}>
               <h4>Skills</h4>
               <ul>
                 <li>
@@ -44,7 +44,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div class="footer-col">
+            <div class={styles.footerCol}>
               <h4>Vocabulary</h4>
               <ul>
               <li>
@@ -61,9 +61,9 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div class="footer-col">
+            <div class={styles.footerCol}>
               <h4>Follow Us</h4>
-              <div class="social-links">
+              <div class={styles.socialLinks}>
                 <a href="#">
                   <i class="fab fa-facebook-f"><FaFacebook /></i>
                 </a>

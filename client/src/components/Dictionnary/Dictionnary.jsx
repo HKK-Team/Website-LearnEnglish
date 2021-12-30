@@ -1,7 +1,7 @@
 import {React, Fragment,useContext} from 'react'
 import { Container, Switch, withStyles } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
-import "./Dictionnary.css";
+import styles from "./Dictionnary.module.css";
 import { useState } from "react";
 import HeaderDic from './DictionnaryHeader/HeaderDic'
 import { GlobalState } from '../../GlobalState';
@@ -22,12 +22,8 @@ const Dictionnary = () => {
         style={{
           display: "flex",
           flexDirection: "column",
-          // position:"absolute",
-          // top:"160px",
-          // left:"150px",
           height: "100vh",
           justifyContent: "space-evenly",
-          // background:"#00284d"
         }}
       >
       <HeaderDic
@@ -38,7 +34,7 @@ const Dictionnary = () => {
           setMeanings={setMeanings}
           LightTheme={LightTheme}
         />
-        <div className="meanings">
+        <div className={styles.meanings}>
           {/* audio---------------------------- */}
           {meanings[0] && word && category === "en" && (
             <audio
@@ -52,13 +48,13 @@ const Dictionnary = () => {
           {/* audio---------------------------- */}
     
           {word === "" ? (
-            <span className="subTitle">Start by typing a word in search</span>
+            <span className={styles.subTitle}>Start by typing a word in search</span>
           ) : (
             meanings.map((mean) =>
               mean.meanings.map((item) =>
                 item.definitions.map((def) => (
                   <div
-                    className="singleMean"
+                    className={styles.singleMean}
                     style={{
                       backgroundColor: LightTheme ? "#3b5360" : "white",
                       color: LightTheme ? "white" : "black",

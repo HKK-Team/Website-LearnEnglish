@@ -18,12 +18,12 @@ ul {
     padding: 70px 0;
 }
 
-.footer-col {
+.footerCol {
     width: 25%;
     padding: 0 15px;
 }
 
-.footer-col h4 {
+.footerCol h4 {
     font-size: 18px;
     color: #ffffff;
     text-transform: capitalize;
@@ -32,7 +32,7 @@ ul {
     position: relative;
 }
 
-.footer-col h4::before {
+.footerCol h4::before {
     content: '';
     position: absolute;
     left: 0;
@@ -43,11 +43,11 @@ ul {
     width: 50px;
 }
 
-.footer-col ul li:not(:last-child) {
+.footerCol ul li:not(:last-child) {
     margin-bottom: 10px;
 }
 
-.footer-col ul li a {
+.footerCol ul li a {
     font-size: 16px;
     text-transform: capitalize;
     color: #ffffff;
@@ -58,12 +58,12 @@ ul {
     transition: all 0.3s ease;
 }
 
-.footer-col ul li a:hover {
+.footerCol ul li a:hover {
     color: #ffffff;
     padding-left: 8px;
 }
 
-.footer-col .social-links a {
+.footerCol .socialLinks a {
     display: inline-block;
     height: 40px;
     width: 40px;
@@ -76,7 +76,7 @@ ul {
     transition: all 0.5s ease;
 }
 
-.footer-col .social-links a:hover {
+.footerCol .socialLinks a:hover {
     color: #24262b;
     background-color: #ffffff;
 }
@@ -85,14 +85,14 @@ ul {
 /*responsive*/
 
 @media(max-width: 767px) {
-    .footer-col {
+    .footerCol {
         width: 50%;
         margin-bottom: 30px;
     }
 }
 
 @media(max-width: 574px) {
-    .footer-col {
+    .footerCol {
         width: 100%;
     }
 }

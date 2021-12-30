@@ -1,6 +1,6 @@
 import React from 'react'
 import { createMuiTheme, TextField, ThemeProvider } from "@material-ui/core";
-import "./HeaderDic.css";
+import styles from "./HeaderDic.module.css";
 import MenuItem from "@material-ui/core/MenuItem";
 import countries from "../../Dictionnary/data/dataRegion";
 import { debounce } from "lodash";
@@ -33,12 +33,12 @@ const HeaderDic = ({
   }, 500);
 
   return (
-    <div className="header">
-      <span className="title">{word ? word : "Dictionnary"}</span>
-      <div className="inputs">
+    <div className={styles.header}>
+      <span className={styles.title}>{word ? word : "Dictionnary"}</span>
+      <div className={styles.inputs}>
         <ThemeProvider theme={darkTheme}>
           <TextField
-            className="search"
+            className={styles.search}
             id="filled-basic"
             // value={word}
             label="Search a Word"

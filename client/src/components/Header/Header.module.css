@@ -1,11 +1,11 @@
-/* .header {
-    height: 150px;
-    background-color: #00284d;
-} */
-
 .header nav {
     background-color: #00953b;
-    width: 1260px;
+    width: 100%;
+    height: 160px;
+}
+
+.header {
+    display: block;
     height: 160px;
 }
 
@@ -28,14 +28,14 @@ ul {
     background-color: #60ec4c !important;
 }
 
-.nav-link {
+.navlink {
     position: absolute;
     display: flex;
     left: 10px;
     top: 119px;
 }
 
-.nav-link li {
+.navlink li {
     margin: 0 1px;
     width: 120px;
     background-size: auto;
@@ -49,11 +49,11 @@ ul {
     text-align: center;
 }
 
-.nav-link li:hover {
+.navlink li:hover {
     cursor: pointer;
 }
 
-.sub-menu {
+.submenu {
     display: none;
 }
 
