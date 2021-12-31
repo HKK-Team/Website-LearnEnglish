@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./MeetingInfo.module.scss";
 
-const MeetingInfo = () => {
+const MeetingInfo = ({setMeetInfoPopup,url}) => {
   return (
     <div className={styles.MeetingInfoBlock}>
       <div className={styles.meetingHeader}>
@@ -15,6 +15,9 @@ const MeetingInfo = () => {
         <FontAwesomeIcon
           className={styles.icon}
           icon={faTimes}
+          onClick={() => {
+            setMeetInfoPopup(false);
+          }}
         />
       </div>
       <button className={styles.addPeopleBtn}>
@@ -25,11 +28,11 @@ const MeetingInfo = () => {
         Or share this meeting link with others you want in the meeting
       </p>
       <div className={styles.meetLink}>
-        <span>some</span>
+      <span>{url}</span>
         <FontAwesomeIcon
           className={styles.icon}
           icon={faCopy}
-          // onClick={() => navigator.clipboard.writeText(url)}
+          onClick={() => navigator.clipboard.writeText(url)}
         />
       </div>
       <div className={styles.permissionText}>
@@ -39,7 +42,7 @@ const MeetingInfo = () => {
           can join.
         </p>
       </div>
-      <p className={styles.smallText}>Joined as akshay@gmail.com</p>
+      <p className={styles.smallText}>Joined as khanhzu@gmail.com</p>
     </div>
   );
 };

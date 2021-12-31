@@ -8,9 +8,9 @@ import HeaderHomeGGMeet from "../UIGGMeet/HeaderHomeGGMeet/HeaderHomeGGMeet";
 const HomePage = () => {
   const navigate = useNavigate();
 
-  const startCall = (navigate) => {
+  const startCall = () => {
     const uid = shortid.generate();
-    navigate(`/${uid}#init`);
+    navigate(`/meeting/${uid}#init`);
   };
 
   return (

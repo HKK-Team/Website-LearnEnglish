@@ -7,26 +7,26 @@ import {
   faCommentAlt,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
-// import { formatDate } from "./../../../utils/helpers";
+import { formatDate } from "../../../utils/helpers";
 
-const Messenger = () => {
-  // const [msg, setMsg] = useState("");
+const Messenger = ({ setIsMessenger, sendMsg, messageList }) => {
+  const [msg, setMsg] = useState("");
 
-  // const handleChangeMsg = (e) => {
-  //   setMsg(e.target.value);
-  // };
+  const handleChangeMsg = (e) => {
+    setMsg(e.target.value);
+  };
 
-  // const handleKeyDown = (e) => {
-  //   if (e.key === "Enter") {
-  //     sendMsg(msg);
-  //     setMsg("");
-  //   }
-  // };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      sendMsg(msg);
+      setMsg("");
+    }
+  };
 
-  // const handleSendMsg = () => {
-  //   sendMsg(msg);
-  //   setMsg("");
-  // };
+  const handleSendMsg = () => {
+    sendMsg(msg);
+    setMsg("");
+  };
 
   return (
     <div className={styles.messengerContainer}>
@@ -35,9 +35,9 @@ const Messenger = () => {
         <FontAwesomeIcon
           className={styles.icon}
           icon={faTimes}
-          // onClick={() => {
-          //   setIsMessenger(false);
-          // }}
+          onClick={() => {
+            setIsMessenger(false);
+          }}
         />
       </div>
 
@@ -53,26 +53,27 @@ const Messenger = () => {
       </div>
 
       <div className={styles.chatSection}>
-        {/* {messageList.map((item) => ( */}
-          <div className={styles.chatBlock}>
+        {messageList.map((item) => (
+          <div key={item.time} className={styles.chatBlock}>
             <div className={styles.sender}>
-              you <small>10 PM</small>
+            {item.user} <small>{formatDate(item.time)}</small>
             </div>
-            <p className={styles.msg}>Here come .....</p>
+            <p className={styles.msg}>{item.msg}</p>
           </div>
+                ))}
       </div>
 
       <div className={styles.sendMsgSection}>
         <input
           placeholder="Send a message to everyone"
-          // value={msg}
-          // onChange={(e) => handleChangeMsg(e)}
-          // onKeyDown={(e) => handleKeyDown(e)}
+          value={msg}
+          onChange={(e) => handleChangeMsg(e)}
+          onKeyDown={(e) => handleKeyDown(e)}
         />
         <FontAwesomeIcon
           className={styles.icon}
           icon={faPaperPlane}
-          // onClick={handleSendMsg}
+          onClick={handleSendMsg}
         />
       </div>
     </div>

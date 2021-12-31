@@ -10,7 +10,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./CallPageFooter.module.scss";
 
-const CallPageFooter = () => {
+const CallPageFooter = ({
+  isPresenting,
+  stopScreenShare,
+  screenShare,
+  isAudio,
+  toggleAudio,
+  disconnectCall,
+}) => {
   return (
     <div className={styles.footerItem}>
       <div className={styles.leftItem}>
@@ -21,15 +28,15 @@ const CallPageFooter = () => {
       </div>
       <div className={styles.centerItem}>
         <div
-          className={styles.iconBlock}
-          // onClick={() => toggleAudio(!isAudio)}
+          className={`${styles.iconBlock} ${!isAudio ? `${styles.redBg}` : null}`}
+          onClick={() => toggleAudio(!isAudio)}
         >
           <FontAwesomeIcon
             className={styles.icon}
-            icon={faMicrophone}
+            icon={isAudio ? faMicrophone : faMicrophoneSlash}
           />
         </div>
-        <div className={styles.iconBlock}>
+        <div className={styles.iconBlock} onClick={disconnectCall}>
           <FontAwesomeIcon className={`${styles.icon} ${styles.redBg}`} icon={faPhone} />
         </div>
         <div className={styles.iconBlock}>
@@ -43,17 +50,17 @@ const CallPageFooter = () => {
           <p className={styles.title}>Turn on captions</p>
         </div>
 
-          <div className={styles.iconBlock} >
+        {isPresenting ? (
+          <div className={styles.iconBlock} onClick={stopScreenShare}>
             <FontAwesomeIcon className={`${styles.icon} ${styles.redBg}`} icon={faDesktop} />
             <p className={styles.title}>Stop presenting</p>
           </div>
-        {/* {isPresenting ? (
         ) : (
-          <div className={styles.iconBlock} >
+          <div className={styles.iconBlock} onClick={screenShare}>
             <FontAwesomeIcon className={`${styles.icon} ${styles.redBg}`} icon={faDesktop} />
             <p className={styles.title}>Present now</p>
           </div>
-        )} */}
+        )}
       </div>
     </div>
   );
