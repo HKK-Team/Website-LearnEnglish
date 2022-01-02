@@ -31,7 +31,7 @@ const Messenger = ({ setIsMessenger, sendMsg, messageList }) => {
   return (
     <div className={styles.messengerContainer}>
       <div className={styles.messengerHeader}>
-        <h3>Meeting details</h3>
+        <h3>Meeting chat</h3>
         <FontAwesomeIcon
           className={styles.icon}
           icon={faTimes}

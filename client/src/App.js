@@ -1,7 +1,5 @@
 import {
   BrowserRouter,
-  Routes,
-  Route
 } from "react-router-dom";
 import Page from "./pages/pages";
 import { DataProvider } from "./GlobalState";

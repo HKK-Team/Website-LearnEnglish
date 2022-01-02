@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faVideo,
+  faVideoSlash,
   faMicrophone,
   faPhone,
   faAngleUp,
@@ -16,6 +17,8 @@ const CallPageFooter = ({
   screenShare,
   isAudio,
   toggleAudio,
+  isCame,
+  toggleCame,
   disconnectCall,
 }) => {
   return (
@@ -39,8 +42,10 @@ const CallPageFooter = ({
         <div className={styles.iconBlock} onClick={disconnectCall}>
           <FontAwesomeIcon className={`${styles.icon} ${styles.redBg}`} icon={faPhone} />
         </div>
-        <div className={styles.iconBlock}>
-          <FontAwesomeIcon className={styles.icon} icon={faVideo} />
+        <div className={`${styles.iconBlock} ${!isCame ? `${styles.redBg}` : null}`}
+        onClick={() => toggleCame(!isCame)}>
+          <FontAwesomeIcon className={styles.icon}
+          icon={isCame ? faVideo : faVideoSlash} />
         </div>
       </div>
       

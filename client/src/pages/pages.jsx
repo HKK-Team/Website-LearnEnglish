@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {Routes, Route } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Dictionnary from "../pages/Dictionnary/Dictionnary";
 import HomeGGMeet from "../pages/HomeGGMeet/GGMeet";
-import CallPage from "../components/CallPage/CallPage";
+import CallPage from "../pages/CallPage/CallPageGGMeet"
 
 import React from "react";
 

@@ -1,23 +1,7 @@
-const redisClient = require("../config/redis");
+const mongoose = require("mongoose");
 
-exports.saveCallId = (key, value) => {
-  return new Promise((resolve, reject) => {
-    redisClient.SET(key, JSON.stringify(value), "EX", 86400, (err, res) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(res);
-    });
-  });
-};
+const meetingSchema = new mongoose.Schema({
+  payload:Object
+});
 
-exports.getCallId = (key) => {
-  return new Promise((resolve, reject) => {
-    redisClient.GET(key, (err, res) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(JSON.parse(res));
-    });
-  });
-};
+module.exports = mongoose.model("Meetings", meetingSchema);

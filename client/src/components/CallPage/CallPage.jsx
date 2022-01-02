@@ -8,21 +8,16 @@ import io from "socket.io-client";
 import Peer from "simple-peer";
 import styles from "./CallPage.module.scss";
 import MessageListReducer from "../../reducers/MessageListReducer";
-import { getRequest, postRequest } from "../../utils/apiRequests";
-import {
-  BASE_URL,
-  GET_CALL_ID,
-  SAVE_CALL_ID,
-} from "../../utils/apiEndpoints";
 import Alert from "../UIGGMeet/Alert/Alert";
+import axios from "axios";
 
 let peer = null;
 const socket = io.connect(process.env.REACT_APP_BASE_URL);
 const initialState = [];
 
 const CallPage = () => {
-  let { id } = useParams();
   const navigate = useNavigate();
+  let { id } = useParams();
   const isAdmin = window.location.hash === "#init" ? true : false;
   const url = `${window.location.origin}${window.location.pathname}`;
   let alertTimeout = null;
@@ -31,7 +26,6 @@ const CallPage = () => {
     MessageListReducer,
     initialState
   );
-  
 
   const [streamObj, setStreamObj] = useState();
   const [screenCastStream, setScreenCastStream] = useState();
@@ -40,6 +34,7 @@ const CallPage = () => {
   const [isMessenger, setIsMessenger] = useState(false);
   const [messageAlert, setMessageAlert] = useState({});
   const [isAudio, setIsAudio] = useState(true);
+  const [isCame, setIsCame] = useState(true);
 
   useEffect(() => {
     if (isAdmin) {
@@ -53,11 +48,16 @@ const CallPage = () => {
     });
   }, []);
 
-  const getRecieverCode = async () => {
-    const response = await getRequest(`${BASE_URL}${GET_CALL_ID}/${id}`);
-    if (response.code) {
-      peer.signal(response.code);
-    }
+  const getRecieverCode = () => {
+    axios({
+      method: 'get',
+      url: `${process.env.REACT_APP_BASE_URL}/api/getmeeting?payload.id=${id}`,
+    })
+      .then(function (response) {
+        if (response.data[0].payload.signalData) {
+          peer.signal(response.data[0].payload.signalData);
+        }
+      });
   };
 
   const initWebRTC = () => {
@@ -79,13 +79,19 @@ const CallPage = () => {
           getRecieverCode();
         }
 
-        peer.on("signal", async (data) => {
+        peer.on("signal", (data) => {
           if (isAdmin) {
             let payload = {
               id,
               signalData: data,
             };
-            await postRequest(`${BASE_URL}${SAVE_CALL_ID}`, payload);
+            axios({
+              method: "post",
+              url: `${process.env.REACT_APP_BASE_URL}/api/savemeeting`,
+              data: {
+                payload
+              },
+            });
           } else {
             socket.emit("code", { code: data, url }, (cbData) => {
               console.log("code sent");
@@ -93,27 +99,39 @@ const CallPage = () => {
 
           }
         });
-
         peer.on("connect", () => {
-          // wait for 'connect' event before using the data channel
+          // console.log("connected to peer")
         });
 
-        peer.on("data", (data) => {
+        peer.on('stream', stream => {
+          var video = document.querySelector('video')
+      
+          if ('srcObject' in video) {
+            video.srcObject = stream
+          } else {
+            video.src = window.URL.createObjectURL(stream)
+          }
+      
+          video.play();
+        })
+
+        peer.on('data', data => {
           clearTimeout(alertTimeout);
           messageListReducer({
             type: "addMessage",
             payload: {
-              user: "other",
+              user: "Other",
               msg: data.toString(),
               time: Date.now(),
             },
           });
+          console.log(data)
 
           setMessageAlert({
             alert: true,
             isPopup: true,
             payload: {
-              user: "other",
+              user: "Other",
               msg: data.toString(),
             },
           });
@@ -125,18 +143,7 @@ const CallPage = () => {
               payload: {},
             });
           }, 10000);
-        });
 
-        peer.on("stream", (stream) => {
-          let video = document.querySelector('video');
-
-          if ('srcObject' in video) {
-            video.srcObject = stream;
-          } else {
-            video.src = window.URL.createObjectURL(stream);
-          }
-
-          video.play();
         });
 
       })
@@ -148,7 +155,7 @@ const CallPage = () => {
     messageListReducer({
       type: "addMessage",
       payload: {
-        user: "you",
+        user: "You",
         msg: msg,
         time: Date.now(),
       },
@@ -193,6 +200,11 @@ const CallPage = () => {
     setIsAudio(value);
   };
 
+  const toggleCame = (value) => {
+    streamObj.getVideoTracks()[0].enabled = value;
+    setIsCame(value);
+  };
+
   const disconnectCall = () => {
     peer.destroy();
     navigate("/meeting");
@@ -215,6 +227,8 @@ const CallPage = () => {
         screenShare={screenShare}
         isAudio={isAudio}
         toggleAudio={toggleAudio}
+        isCame = {isCame}
+        toggleCame = {toggleCame}
         disconnectCall={disconnectCall}
       />
       {isAdmin && meetInfoPopup && (
