@@ -1,6 +1,6 @@
 import {React, Fragment,useContext} from 'react'
-import { Container, Switch, withStyles } from "@material-ui/core";
-import { grey } from "@material-ui/core/colors";
+import { Container } from "@material-ui/core";
+// import { grey } from "@material-ui/core/colors";
 import styles from "./Dictionnary.module.css";
 import { useState } from "react";
 import HeaderDic from './DictionnaryHeader/HeaderDic'
