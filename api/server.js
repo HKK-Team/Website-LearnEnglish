@@ -28,8 +28,8 @@ app.use("/api", require("./src/users/routers/listeningRouters"));
 app.use("/api", require("./src/users/routers/readingRouters"));
 app.use("/api", require("./src/users/routers/ggMeetRouters"));
 
-//socket.io for ggmeeting
-const io = (module.exports.io = require('socket.io')(server, {
+//socket.io
+const io = (module.exports.io = require("socket.io")(server, {
   cors: {
       origin: '*',
   }

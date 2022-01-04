@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from "react";
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import CallPageFooter from "../UIGGMeet/CallPageFooter/CallPageFooter";
 import CallPageHeader from "../UIGGMeet/CallPageHeader/CallPageHeader";
 import MeetingInfo from "../UIGGMeet/MeetingInfo/MeetingInfo";
@@ -10,6 +10,7 @@ import styles from "./CallPage.module.scss";
 import MessageListReducer from "../../reducers/MessageListReducer";
 import Alert from "../UIGGMeet/Alert/Alert";
 import axios from "axios";
+import { BASE_URL, GET_CALL_ID, SAVE_CALL_ID } from "../../utils/apiEndpoints";
 
 let peer = null;
 const socket = io.connect(process.env.REACT_APP_BASE_URL);
@@ -50,14 +51,13 @@ const CallPage = () => {
 
   const getRecieverCode = () => {
     axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_BASE_URL}/api/getmeeting?payload.id=${id}`,
-    })
-      .then(function (response) {
-        if (response.data[0].payload.signalData) {
-          peer.signal(response.data[0].payload.signalData);
-        }
-      });
+      method: "get",
+      url: `${BASE_URL}${GET_CALL_ID}${id}`,
+    }).then(function (response) {
+      if (response.data[0].payload.signalData) {
+        peer.signal(response.data[0].payload.signalData);
+      }
+    });
   };
 
   const initWebRTC = () => {
@@ -87,35 +87,34 @@ const CallPage = () => {
             };
             axios({
               method: "post",
-              url: `${process.env.REACT_APP_BASE_URL}/api/savemeeting`,
+              url: `${BASE_URL}${SAVE_CALL_ID}`,
               data: {
-                payload
+                payload,
               },
             });
           } else {
             socket.emit("code", { code: data, url }, (cbData) => {
               console.log("code sent");
             });
-
           }
         });
         peer.on("connect", () => {
           // console.log("connected to peer")
         });
 
-        peer.on('stream', stream => {
-          var video = document.querySelector('video')
-      
-          if ('srcObject' in video) {
-            video.srcObject = stream
-          } else {
-            video.src = window.URL.createObjectURL(stream)
-          }
-      
-          video.play();
-        })
+        peer.on("stream", (stream) => {
+          var video = document.querySelector("video");
 
-        peer.on('data', data => {
+          if ("srcObject" in video) {
+            video.srcObject = stream;
+          } else {
+            video.src = window.URL.createObjectURL(stream);
+          }
+
+          video.play();
+        });
+
+        peer.on("data", (data) => {
           clearTimeout(alertTimeout);
           messageListReducer({
             type: "addMessage",
@@ -125,7 +124,6 @@ const CallPage = () => {
               time: Date.now(),
             },
           });
-          console.log(data)
 
           setMessageAlert({
             alert: true,
@@ -143,13 +141,12 @@ const CallPage = () => {
               payload: {},
             });
           }, 10000);
-
         });
-
       })
-      .catch(() => { });
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
   const sendMsg = (msg) => {
     peer.send(msg);
     messageListReducer({
@@ -211,7 +208,6 @@ const CallPage = () => {
     window.location.reload();
   };
 
-
   return (
     <div className={styles.callpageContainer}>
       <video className={styles.videoContainer} src="" controls></video>
@@ -227,8 +223,8 @@ const CallPage = () => {
         screenShare={screenShare}
         isAudio={isAudio}
         toggleAudio={toggleAudio}
-        isCame = {isCame}
-        toggleCame = {toggleCame}
+        isCame={isCame}
+        toggleCame={toggleCame}
         disconnectCall={disconnectCall}
       />
       {isAdmin && meetInfoPopup && (

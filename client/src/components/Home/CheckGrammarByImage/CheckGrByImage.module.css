@@ -1,0 +1,38 @@
+.mainPage {
+    width: 100%;
+    height: 700px;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.filePond {
+    width: 500px;
+    margin-left: 400px;
+}
+
+.statusText {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 1%;
+    font-size: 1.4em;
+}
+
+.resultText {
+    font-size: 1.0em;
+    text-align: left;
+    font-weight: bold;
+    margin-left: 1%;
+}
+
+.checkResult {
+    font-size: 1.4em;
+    text-align: left;
+    font-weight: bold;
+    margin-left: 1%;
+}
+
+.checkResult:hover {
+    cursor: pointer;
+}

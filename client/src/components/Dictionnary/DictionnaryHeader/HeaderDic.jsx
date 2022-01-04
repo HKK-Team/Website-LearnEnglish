@@ -49,7 +49,7 @@ const HeaderDic = ({
             label="Language"
             value={category}
             onChange={(e) => handleChange(e)}
-            className="select"
+            className={styles.select}
           >
             {countries.map((option) => (
               <MenuItem key={option.label} value={option.label}>

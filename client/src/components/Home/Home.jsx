@@ -1,6 +1,6 @@
 import { Fragment } from "react";
-import CheckGrByText from "../CheckGrammarByText/CheckGrByText";
-import CheckGrByImage from "../CheckGrammarByImage/CheckGrByImage";
+import CheckGrByText from "./CheckGrammarByText/CheckGrByText";
+import CheckGrByImage from "./CheckGrammarByImage/CheckGrByImage";
 
 const Home = () => {
   return (

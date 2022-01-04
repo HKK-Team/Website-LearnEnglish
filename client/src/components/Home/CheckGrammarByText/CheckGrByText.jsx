@@ -30,6 +30,7 @@ const CheckGrByText = () => {
           <input
             className={styles.inputContent}
             placeholder="Hãy nhập vào text...!"
+            spellcheck="value"
             onChange={(e) => eventGetData(e)}
           />
           <button className={styles.btn} onClick={eventSubmit} type="submit">

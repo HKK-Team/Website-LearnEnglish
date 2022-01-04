@@ -13,6 +13,20 @@
     font-family: "Montserrat", sans-serif;
 }
 
+.inputs {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.search {
+    width: 30%;
+}
+
+.select {
+    width: 30%;
+}
+
 @media (max-width: 900px) {
     .header {
         justify-content: space-evenly;
@@ -21,18 +35,4 @@
     .title {
         font-size: 11vw;
     }
-}
-
-.inputs {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
-
-.search {
-    width: 43%;
-}
-
-.select {
-    width: 43%;
 }
