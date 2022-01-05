@@ -4,6 +4,8 @@ import { Container } from "@material-ui/core";
 import styles from "./Dictionnary.module.css";
 import { useState } from "react";
 import HeaderDic from './DictionnaryHeader/HeaderDic'
+import Header from '../Headers/Header'
+import Footer from '../Footer/Footer'
 import { GlobalState } from '../../GlobalState';
 
 const Dictionnary = () => {
@@ -17,6 +19,7 @@ const Dictionnary = () => {
 
     return (
       <Fragment>
+        <Header/>
         <Container
         maxWidth="md"
         style={{
@@ -79,6 +82,7 @@ const Dictionnary = () => {
           )}
         </div>
       </Container>
+      <Footer/>
         </Fragment>
       );
 }

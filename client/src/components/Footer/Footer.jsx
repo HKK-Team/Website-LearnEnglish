@@ -1,29 +1,38 @@
 import React from "react";
-import styles from "./Footer.module.css"
+import styles from "./Footer.module.css";
 import { FaFacebook } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaTwitch } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div>
       <footer class={styles.footer}>
         <div class={styles.container}>
           <div class={styles.row}>
-          <div class={styles.footerCol}>
+            <div class={styles.footerCol}>
               <h4>Grammar</h4>
               <ul>
                 <li>
-                  <a href="#">Beginner to pre-intermediate</a>
+                  <Link className={styles.linkFooter} to={""}>
+                    Beginner to pre-intermediate
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">Intermediate to upper intermediate</a>
+                  <Link className={styles.linkFooter} to={""}>
+                    Intermediate to upper intermediate
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">English grammar reference</a>
+                  <Link className={styles.linkFooter} to={""}>
+                    English grammar reference
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">Personal online tutoring</a>
+                  <Link className={styles.linkFooter} to={""}>
+                    Personal online tutoring
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -31,51 +40,67 @@ const Footer = () => {
               <h4>Skills</h4>
               <ul>
                 <li>
-                  <a href="#">Reading With Topic</a>
+                  <Link className={styles.linkFooter} to={""}>
+                    Reading With Topic
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">Writing With Topic</a>
+                  <Link className={styles.linkFooter} to={""}>
+                    Writing With Topic
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">Listening With Video</a>
+                  <Link className={styles.linkFooter} to={""}>
+                    Listening With Video
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">Speaking With Video</a>
+                  <Link className={styles.linkFooter} to={""}>
+                    Speaking With Video
+                  </Link>
                 </li>
               </ul>
             </div>
             <div class={styles.footerCol}>
               <h4>Vocabulary</h4>
               <ul>
-              <li>
-                  <a href="#">Beginner to pre-intermediate</a>
+                <li>
+                  <Link className={styles.linkFooter} to={""}>
+                    Beginner to pre-intermediate
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">Intermediate to upper intermediate</a>
+                  <Link className={styles.linkFooter} to={""}>
+                    Intermediate to upper intermediate
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">English grammar reference</a>
+                  <Link className={styles.linkFooter} to={""}>
+                    English grammar reference
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">Personal online tutoring</a>
+                  <Link className={styles.linkFooter} to={""}>
+                    Personal online tutoring
+                  </Link>
                 </li>
               </ul>
             </div>
-            <div class={styles.footerCol}>
+            <div className={styles.footerCol}>
               <h4>Follow Us</h4>
               <div class={styles.socialLinks}>
-                <a href="#">
-                  <i class="fab fa-facebook-f"><FaFacebook /></i>
-                </a>
-                <a href="#">
-                  <i class="fab fa-twitter"><FaYoutube/></i>
-                </a>
-                <a href="#">
-                  <i class="fab fa-instagram"><FaTwitch/></i>
-                </a>
-                <a href="#">
-                  <i class="fab fa-linkedin-in"><FaTwitter/></i>
-                </a>
+                <Link className={styles.linkFooter} to={""}>
+                  <FaFacebook />
+                </Link>
+                <Link className={styles.linkFooter} to={""}>
+                  <FaYoutube />
+                </Link>
+                <Link className={styles.linkFooter} to={""}>
+                  <FaTwitter />
+                </Link>
+                <Link className={styles.linkFooter} to={""}>
+                  <FaTwitch />
+                </Link>
               </div>
             </div>
           </div>

@@ -1,12 +1,16 @@
 import { Fragment } from "react";
 import CheckGrByText from "./CheckGrammarByText/CheckGrByText";
 import CheckGrByImage from "./CheckGrammarByImage/CheckGrByImage";
+import Header from "../../components/Headers/Header";
+import Footer from "../../components/Footer/Footer"
 
 const Home = () => {
   return (
     <Fragment>
-      <CheckGrByText/>
-      <CheckGrByImage/>
+      <Header/>
+      <Footer/>
+      {/* <CheckGrByText/>
+      <CheckGrByImage/> */}
     </Fragment>
   );
 };

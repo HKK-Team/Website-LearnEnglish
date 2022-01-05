@@ -47,7 +47,7 @@ ul {
     margin-bottom: 10px;
 }
 
-.footerCol ul li a {
+.footerCol ul li .linkFooter {
     font-size: 16px;
     text-transform: capitalize;
     color: #ffffff;
@@ -58,12 +58,12 @@ ul {
     transition: all 0.3s ease;
 }
 
-.footerCol ul li a:hover {
+.footerCol ul li .linkFooter:hover {
     color: #ffffff;
     padding-left: 8px;
 }
 
-.footerCol .socialLinks a {
+.footerCol .socialLinks .linkFooter {
     display: inline-block;
     height: 40px;
     width: 40px;
@@ -76,7 +76,7 @@ ul {
     transition: all 0.5s ease;
 }
 
-.footerCol .socialLinks a:hover {
+.footerCol .socialLinks .linkFooter:hover {
     color: #24262b;
     background-color: #ffffff;
 }
