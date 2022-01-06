@@ -38,12 +38,12 @@
     background-color: #eeeeee;
     color: #cccccc;
     border: 1px solid #dddddd;
-    display: table-cell;
     font-family: Open Sans;
     font-size: 14px;
     line-height: 14px;
     padding: 6px 12px;
     text-align: center;
+    display: inline-block;
 }
 
 .text {
