@@ -3,24 +3,38 @@ import { Link } from "react-router-dom";
 import styles from "./MenuLoginRegis.module.css";
 import { GlobalState } from "../../../GlobalState";
 import { GoogleLogout } from "react-google-login";
+import axios from "axios";
 
 const MenuLoginRegis = () => {
   const state = useContext(GlobalState);
   const [dataLoginMedia, setdataLoginMedia] = state.userApi.dataLoginMedia;
-  const depen = JSON.parse(sessionStorage.getItem("isLoginMedia"));
+  const [isLogged, setIsLogged] = state.userApi.isLogged;
+  const [user, setuser] = state.userApi.user;
 
+  // login using google api
   useEffect(() => {
-    setdataLoginMedia(depen);
-  }, [depen]);
+    if (sessionStorage.getItem("isLoginMedia") === null) {
+      setdataLoginMedia({ isLogin: false });
+    } else
+      setdataLoginMedia(JSON.parse(sessionStorage.getItem("isLoginMedia")));
+  }, []);
+  useEffect(() => {
+    sessionStorage.setItem("isLoginMedia", JSON.stringify(dataLoginMedia));
+  }, [dataLoginMedia]);
 
+  //event logout by google facebook
   const eventLogoutGG = () => {
-    sessionStorage.setItem(
-      "isLoginMedia",
-      JSON.stringify({
-        isLogin: false,
-        objectLogin: "",
-      })
-    );
+    setdataLoginMedia({
+      isLogin: false,
+    });
+  };
+  //event logout by system
+  const eventLogOutStm = async () => {
+    await axios.get("/user/logout");
+
+    localStorage.removeItem("firstLogin");
+
+    window.location.href = "/";
   };
 
   const eventMove = () => {
@@ -38,8 +52,12 @@ const MenuLoginRegis = () => {
             <Link className={styles.twoItems} to={""}>
               Hi {dataLoginMedia.objectLogin.givenName}!
             </Link>
+          ) : isLogged ? (
+            <Link className={styles.twoItems} to={""}>
+              Hi {user.lastname}!
+            </Link>
           ) : (
-            <Link className={styles.twoItems} to={"Login"} onClick={eventMove}>
+            <Link className={styles.twoItems} to={"/Login"} onClick={eventMove}>
               Login
             </Link>
           )}
@@ -59,8 +77,16 @@ const MenuLoginRegis = () => {
                 </p>
               )}
             ></GoogleLogout>
+          ) : isLogged ? (
+            <Link className={styles.twoItems} to={""} onClick={eventLogOutStm}>
+              Log Out
+            </Link>
           ) : (
-            <Link className={styles.twoItems} to={"/Register"}>
+            <Link
+              className={styles.twoItems}
+              to={"/Register"}
+              onClick={eventMove}
+            >
               Register
             </Link>
           )}

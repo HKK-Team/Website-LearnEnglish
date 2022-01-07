@@ -34,6 +34,7 @@
     display: table;
     width: 100%;
     margin-bottom: 15px;
+    margin: 20px;
 }
 
 .iconField {
@@ -64,12 +65,13 @@
     background: #00953b;
     display: inline-block;
     text-decoration: none;
-    width: 100%;
+    width: 89%;
     height: 35px;
     text-align: center;
     border: none;
     border-radius: 0;
     margin-bottom: 15px;
+    margin-left: 20px;
     cursor: pointer;
 }
 
@@ -186,6 +188,7 @@
 }
 
 .btnLogFb {
+    margin-left: 55px;
     width: 260px;
     font-size: 16px;
     font-weight: 500;
@@ -236,6 +239,7 @@
 }
 
 .btnLogGG {
+    margin-left: 55px;
     width: 260px;
     font-size: 16px;
     font-weight: 500;

@@ -11,13 +11,14 @@ import IntroBySkill from "./IntroBySkills/IntroBySkills";
 import { GlobalState } from "../../GlobalState";
 
 const Header = () => {
-  const urlHome = `${window.location.origin}${window.location.pathname}`;
   const url = `${window.location.pathname}`;
-  const isHome = urlHome === "http://localhost:3000/" ? true : false;
+  const isHome = url === "/" ? true : false;
   const isSkill = url === "/skill" ? true : false;
   const isGrammar = url === "/grammar" ? true : false;
   const isVoccabulary = url === "/voccabulary" ? true : false;
   const isDictionnary = url === "/dictionnary" ? true : false;
+  const isLogin = url === "/Login" ? true : false;
+  const isRegister = url === "/Register" ? true : false;
 
 
 
@@ -27,7 +28,7 @@ const Header = () => {
         <Navbar />
         <div className={styles.content}>
           {isHome ? <TwoItems /> : ""}
-          {isHome ? <IntroByHome /> : ""}
+          {isHome || isLogin || isRegister ? <IntroByHome /> : ""}
           {isSkill ? <IntroBySkill /> : ""}
           {isGrammar ? <IntroByGrammar /> : ""}
           {isVoccabulary ? <IntroByVoc /> : ""}

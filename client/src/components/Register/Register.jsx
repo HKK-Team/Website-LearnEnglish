@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Register = () => {
   // create error message
-  // const errMessage = document.getElementById("message-error");
+  const errMessage = document.getElementById("messErr");
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -21,14 +21,25 @@ const Register = () => {
     setUser({ ...user, [name]: value });
   };
   const registerSubmit = async (e) => {
+    const errorMessage = document.getElementById("Register_messErr__FlEYT");
     e.preventDefault();
-    try {
-      await axios.post("http://localhost:5000/user/register", { ...user });
-      localStorage.setItem("firstLogin", true);
-      alert("Created User Succesfully!");
-      window.location.href = "/Login";
-    } catch (err) {
-      alert(err.response.data.msg);
+    let regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    if (!regex.test(user.password))
+      return (errorMessage.innerText = `Mật khẩu phải chứa ít nhất một chữ số [0-9].
+        Mật khẩu phải chứa ít nhất một ký tự Latinh viết thường [a-z].
+        Mật khẩu phải chứa ít nhất một ký tự Latinh viết hoa [A-Z].
+        Mật khẩu phải có độ dài ít nhất 6 ký tự và tối đa 20 ký tự.`);
+    else if (user.password !== user.confirm_password) {
+      return (errorMessage.innerText = `Xác nhận mật khẩu không chính xác. Vui lòng kiểm tra lại`);
+    } else {
+      try {
+        await axios.post("/user/register", { ...user });
+        localStorage.setItem("firstLogin", true);
+        alert("Created User Succesfully!");
+        window.location.href = "/Login";
+      } catch (err) {
+        alert(err.response.data.msg);
+      }
     }
   };
   return (
@@ -38,15 +49,15 @@ const Register = () => {
           <div className={styles.row}>
             <div className={styles.registerWrapper}>
               <div id="login" className={styles.userBox}>
-                <h1 className={styles.accountTitle}>Đăng ký</h1>
-                {/* <span id={styles.messErr}></span> */}
+                <h1 className={styles.accountTitle}>Register</h1>
+                <span id={styles.messErr}></span>
                 <form
                   action="/Register"
                   id={styles.customerRegister}
                   name="form-Register"
                   onSubmit={registerSubmit}
                 >
-                  <div className={`${styles.lastName}${styles.input}`}>
+                  <div className={`${styles.input}`}>
                     <label htmlFor="" className={styles.iconField}>
                       <MdDriveFileRenameOutline />
                     </label>
@@ -55,14 +66,14 @@ const Register = () => {
                       type="text"
                       id="last_name"
                       name="firstname"
-                      placeholder="Họ"
+                      placeholder="First Name..."
                       size="32"
                       required
                       value={user.firstname}
                       onChange={onChangeInput}
                     />
                   </div>
-                  <div className={`${styles.firstName}${styles.input}`}>
+                  <div className={`${styles.input}`}>
                     <label htmlFor="" className={styles.iconField}>
                       <MdDriveFileRenameOutline />
                     </label>
@@ -71,14 +82,14 @@ const Register = () => {
                       type="text"
                       id="fisrt_name"
                       name="lastname"
-                      placeholder="Tên"
+                      placeholder="Last Name..."
                       size="32"
                       required
                       value={user.lastname}
                       onChange={onChangeInput}
                     />
                   </div>
-                  <div className={`${styles.email}${styles.input}`}>
+                  <div className={`${styles.input}`}>
                     <label htmlFor="" className={styles.iconField}>
                       <MdDriveFileRenameOutline />
                     </label>
@@ -87,7 +98,7 @@ const Register = () => {
                       id="email-user"
                       className={styles.text}
                       name="email"
-                      placeholder="Email"
+                      placeholder="Email..."
                       size="32"
                       required
                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
@@ -95,7 +106,7 @@ const Register = () => {
                       onChange={onChangeInput}
                     />
                   </div>
-                  <div className={`${styles.password}${styles.input}`}>
+                  <div className={`${styles.input}`}>
                     <label htmlFor="" className={styles.iconField}>
                       <MdDriveFileRenameOutline />
                     </label>
@@ -104,7 +115,7 @@ const Register = () => {
                       type="password"
                       id="password-user"
                       name="password"
-                      placeholder="Mật khẩu"
+                      placeholder="PassWord..."
                       size="32"
                       required
                       autoComplete="on"
@@ -112,7 +123,7 @@ const Register = () => {
                       onChange={onChangeInput}
                     />
                   </div>
-                  <div className={`${styles.password}${styles.input}`}>
+                  <div className={`${styles.input}`}>
                     <label htmlFor="" className={styles.iconField}>
                       <MdDriveFileRenameOutline />
                     </label>
@@ -121,7 +132,7 @@ const Register = () => {
                       type="password"
                       id="password-user"
                       name="confirm_password"
-                      placeholder="Nhập lại mật khẩu"
+                      placeholder="Confirm PassWord ..."
                       size="32"
                       required
                       pattern="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]){6,20})"
@@ -137,7 +148,7 @@ const Register = () => {
                   </div>
                   <input
                     type="submit"
-                    value="Đăng ký"
+                    value="Register"
                     className={styles.btnSignin}
                   />
                 </form>

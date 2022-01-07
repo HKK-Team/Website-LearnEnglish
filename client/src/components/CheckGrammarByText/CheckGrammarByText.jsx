@@ -16,7 +16,7 @@ const CheckGrammarByText = () => {
     setvalueInput(e.target.value);
   };
   const eventSubmit = async () => {
-    const response = await fetch("http://localhost:8000/gramformer", {
+    const response = await fetch("/api1/gramformer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +24,7 @@ const CheckGrammarByText = () => {
       body: JSON.stringify(valueInput),
     });
 
-    fetch("http://localhost:8000/gramformer")
+    fetch("/api1/gramformer")
       .then((res) => res.json())
       .then((data) => {
         setData(data);

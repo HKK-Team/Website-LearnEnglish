@@ -56,6 +56,7 @@ ul {
     color: #bbbbbb;
     display: block;
     transition: all 0.3s ease;
+    margin-left: -40px;
 }
 
 .footerCol ul li .linkFooter:hover {

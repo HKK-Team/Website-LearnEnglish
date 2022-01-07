@@ -12,8 +12,7 @@ export const DataProvider = ({children}) =>{
         const firstLogin = localStorage.getItem('firstLogin')
         if(firstLogin){
             const refreshToken = async () =>{
-                const res = await axios.get('http://localhost:5000/user/refresh_token')
-                console.log(res)
+                const res = await axios.get('/user/refresh_token')
                 setToken(res.data.accesstoken)
                 setTimeout(() => {
                     refreshToken()

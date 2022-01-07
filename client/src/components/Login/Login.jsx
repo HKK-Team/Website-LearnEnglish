@@ -23,17 +23,31 @@ const Login = () => {
       })
     );
     setdataLoginMedia(JSON.parse(sessionStorage.getItem("isLoginMedia")));
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 2000);
   };
 
   //login with facebook
-  // const responseFacebook = (response) => {
-  //   if (!isLoginMedia.isLogin) {
-  //     setisLoginMedia({
-  //       isLogin: true,
-  //       objectLogin: response,
-  //     });
-  //   }
-  // };
+  const responseFacebook = (response) => {
+    const setting = {
+        id: response.id,
+        email: response.email,
+        givenName: response.name,
+        image: response.picture.data.url,
+    };
+    sessionStorage.setItem(
+      "isLoginMedia",
+      JSON.stringify({
+        isLogin: true,
+        objectLogin: setting,
+      })
+    );
+    setdataLoginMedia(JSON.parse(sessionStorage.getItem("isLoginMedia")));
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 2000);
+  };
 
   const [user, setUser] = useState({
     email: "",
@@ -45,16 +59,16 @@ const Login = () => {
   };
   const loginSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   await axios.post("http://localhost:5000/user/login", { ...user });
-    //   localStorage.setItem("firstLogin", true);
-    //   alert("Login Successfully!");
-    //   setTimeout(() => {
-    //     window.location.href = "/";
-    //   }, 2000);
-    // } catch (err) {
-    //   alert(err.response.data.msg);
-    // }
+    try {
+      await axios.post("/user/login", { ...user });
+      localStorage.setItem("firstLogin", true);
+      alert("Login Successfully!");
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
   };
 
   return (
@@ -70,7 +84,7 @@ const Login = () => {
                   id={styles.customerRegister}
                   onSubmit={loginSubmit}
                 >
-                  <div className={`${styles.email}${styles.input}`}>
+                  <div className={`${styles.input}`}>
                     <label htmlFor="" className={styles.iconField}>
                       <MdMarkEmailUnread />
                     </label>
@@ -88,7 +102,7 @@ const Login = () => {
                       onChange={onChangeInput}
                     />
                   </div>
-                  <div className={`${styles.password}${styles.input}`}>
+                  <div className={`${styles.input}`}>
                     <label htmlFor="" className={styles.iconField}>
                       <MdPassword />
                     </label>
@@ -123,11 +137,10 @@ const Login = () => {
                     <a href="#">Forgot PassWord</a>
                   </div>
                 </form>
-                {/* <div className={styles.blockButtonFace}>
+                <div className={styles.blockButtonFace}>
                   <div className={styles.buttonFaceLogin}>
                     <FacebookLogin
                       appId="443208307507410"
-                      autoLoad
                       fields="name,email,picture"
                       callback={responseFacebook}
                       render={(renderProps) => (
@@ -140,7 +153,7 @@ const Login = () => {
                       )}
                     />
                   </div>
-                  <div className={styles.buttonLogoutFace}>
+                  {/* <div className={styles.buttonLogoutFace}>
                     <button
                       className={styles.btnOutFb}
                       onClick={(e) => {
@@ -150,8 +163,8 @@ const Login = () => {
                     >
                       Logout
                     </button>
-                  </div>
-                </div> */}
+                  </div> */}
+                </div>
 
                 <div className={styles.blockBtngg}>
                   <div className={styles.btnLoginGoogle}>
