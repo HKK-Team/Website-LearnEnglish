@@ -1,6 +1,7 @@
 .containLogin {
     width: 100%;
-    height: 470px;
+    height: 550px;
+    margin-top: 100px;
 }
 
 .registerWrapper {
@@ -15,6 +16,7 @@
     box-shadow: #000000 0px 2px 4px 0px;
     margin: 20px 407.5px 0px;
     padding: 15px;
+    width: 31%;
 }
 
 .accountTitle {
@@ -38,12 +40,12 @@
     background-color: #eeeeee;
     color: #cccccc;
     border: 1px solid #dddddd;
+    display: table-cell;
     font-family: Open Sans;
     font-size: 14px;
     line-height: 14px;
     padding: 6px 12px;
     text-align: center;
-    display: inline-block;
 }
 
 .text {
@@ -59,7 +61,7 @@
     font-size: 14px;
     font-weight: 500;
     color: #fff;
-    background: #034ea1;
+    background: #00953b;
     display: inline-block;
     text-decoration: none;
     width: 100%;
@@ -89,7 +91,22 @@
     color: red;
 }
 
-#btnFacebookLogin:hover span {
+.reqPass button {
+    border-radius: 5px;
+    border: none;
+    background-color: transparent;
+    color: blue;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.reqPass button:hover {
+    color: red;
+}
+
+
+/* #btnFacebookLogin:hover span {
     transform: translateX(25px);
 }
 
@@ -110,7 +127,7 @@
     width: 100%;
 }
 
-#btnGoogleLogin img {
+#btnFacebookLogin img {
     display: inline-block;
     width: 40px;
 }
@@ -135,6 +152,7 @@
     cursor: pointer;
     margin-top: 20px;
     width: 100%;
+    cursor: pointer;
 }
 
 #btnGoogleLogin img {
@@ -149,4 +167,96 @@
     line-height: 18.5714px;
     text-align: left;
     transition: all 1s ease;
+} */
+
+.blockButtonFace {
+    width: auto;
+    height: 50px;
+    display: flex;
+    align-items: stretch;
+    margin-top: 10px;
+}
+
+.blockButtonFace div {
+    margin: 1px;
+}
+
+.buttonFaceLogin {
+    flex-grow: 1;
+}
+
+.btnLogFb {
+    width: 260px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    height: 45px;
+    text-align: center;
+    border: none;
+    border-radius: 50px;
+    background-color: #3B5998;
+}
+
+.buttonLogoutFace {
+    flex-grow: 1;
+}
+
+.btnOutFb {
+    width: 90px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    height: 45px;
+    text-align: center;
+    border: none;
+    border-radius: 50px;
+    background-color: #4b6ea9;
+}
+
+.blockBtngg {
+    width: auto;
+    height: 50px;
+    margin-top: 2px;
+    display: flex;
+    align-items: stretch;
+}
+
+.blockBtngg div {
+    margin: 1px;
+}
+
+.btnLoginGoogle {
+    flex-grow: 1;
+}
+
+.btnLogoutGoogle {
+    flex-grow: 1;
+}
+
+.btnLogGG {
+    width: 260px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    height: 45px;
+    text-align: center;
+    border: none;
+    border-radius: 50px;
+    background-color: #dd4b39;
+}
+
+.btnOutGG {
+    width: 90px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    height: 45px;
+    text-align: center;
+    border: none;
+    border-radius: 50px;
+    background-color: #dd4b39;
 }

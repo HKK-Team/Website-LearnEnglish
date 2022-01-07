@@ -27,6 +27,7 @@ app.use([
 app.use("/api", require("./src/users/routers/listeningRouters"));
 app.use("/api", require("./src/users/routers/readingRouters"));
 app.use("/api", require("./src/users/routers/ggMeetRouters"));
+app.use("/user", require("./src/users/routers/userRouter"));
 
 //socket.io
 const io = (module.exports.io = require("socket.io")(server, {

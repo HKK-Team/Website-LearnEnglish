@@ -9,8 +9,8 @@ const CheckGrammarByText = () => {
   const [valueInput, setvalueInput] = useState("");
   const [data, setData] = useState("");
   const checkData = data.data !== undefined ? true : false;
-  console.log(data.data);
-  console.log(checkData);
+  // console.log(data.data);
+  // console.log(checkData);
 
   const eventGetData = (e) => {
     setvalueInput(e.target.value);

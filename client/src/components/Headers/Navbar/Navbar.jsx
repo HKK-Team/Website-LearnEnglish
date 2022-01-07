@@ -22,7 +22,7 @@ const Navbar = () => {
               <Link className={styles.linkPage} to={"/"}>Home</Link>
           </li>
           <li className={styles.items}>
-              <Link className={styles.linkPage} to={"#"}>Skills</Link>
+              <Link className={styles.linkPage} to={"/skill"}>Skills</Link>
             {/* <div className="sub-menu">
             <ul>
               <li>
@@ -41,7 +41,7 @@ const Navbar = () => {
             </div> */}
           </li>
           <li className={styles.items}>
-              <Link className={styles.linkPage} to={"#"}>Grammar</Link>
+              <Link className={styles.linkPage} to={"/grammar"}>Grammar</Link>
             {/* <div className="sub-menu">
             <ul>
               <li>
@@ -57,7 +57,7 @@ const Navbar = () => {
             </div> */}
           </li>
           <li className={styles.items}>
-              <Link className={styles.linkPage} to={"#"}>Vocabulary</Link>
+              <Link className={styles.linkPage} to={"/voccabulary"}>Vocabulary</Link>
             {/* <div className="sub-menu">
             <ul>
               <li>
