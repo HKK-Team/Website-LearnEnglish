@@ -60,7 +60,7 @@ const Login = () => {
   const loginSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/user/login", { ...user });
+      await axios.post("http://localhost:5000/user/login", { ...user });
       localStorage.setItem("firstLogin", true);
       alert("Login Successfully!");
       setTimeout(() => {

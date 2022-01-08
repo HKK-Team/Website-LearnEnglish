@@ -30,7 +30,7 @@ const MenuLoginRegis = () => {
   };
   //event logout by system
   const eventLogOutStm = async () => {
-    await axios.get("/user/logout");
+    await axios.get("http://localhost:5000/user/logout");
 
     localStorage.removeItem("firstLogin");
 

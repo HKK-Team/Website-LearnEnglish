@@ -13,9 +13,10 @@ function UserAPI(token) {
     if (token) {
       const getUser = async () => {
         try {
-          const res = await axios.get("/user/infor", {
+          const res = await axios.get("http://localhost:5000/user/infor", {
             headers: { Authorization: token },
           });
+          console.log(res)
           setuser(res.data);
           setIsLogged(true);
           setiduser(res.data._id);
