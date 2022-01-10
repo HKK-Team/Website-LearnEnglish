@@ -8,9 +8,16 @@ import Image4 from "../../images/spelling_check.jpg";
 const CheckGrammarByText = () => {
   const [valueInput, setvalueInput] = useState("");
   const [data, setData] = useState("");
+  const [errordata, seterrordata] = useState([]);
+  const [correct, setcorrect] = useState([]);
   const checkData = data.data !== undefined ? true : false;
-  // console.log(data.data);
-  // console.log(checkData);
+
+  //assistant grammar
+  if(checkData){
+    
+  }
+  console.log(valueInput);
+  console.log(data.data);
 
   const eventGetData = (e) => {
     setvalueInput(e.target.value);

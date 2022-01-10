@@ -1,16 +1,16 @@
 import { React, Fragment } from "react";
 import Header from "../../components/Headers/Header";
 import Footer from "../../components/Footer/Footer";
-import Skill from "../../components/Skills/Skill";
+import Listenings from "../../components/Skills/Listening/Listening";
 
-const skill = () => {
+const Listening = () => {
   return (
     <Fragment>
       <Header />
-      <Skill />
+      <Listenings />
       <Footer />
     </Fragment>
   );
 };
 
-export default skill;
+export default Listening;

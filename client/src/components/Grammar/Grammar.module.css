@@ -1,0 +1,28 @@
+.containMain {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.content {
+    display: flex;
+    align-items: stretch;
+}
+
+.content .contentLeft {
+    width: 960px;
+}
+
+.contentLeft p {
+    margin-left: 30px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 1.42857;
+    color: #000;
+}
+
+.content .contentRight {
+    width: 290px;
+    height: auto;
+    margin-top: 20px;
+}

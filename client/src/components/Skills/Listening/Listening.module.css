@@ -1,0 +1,79 @@
+.conatiner {
+    width: 970px;
+    height: auto;
+    margin-top: 50px;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: #23085A;
+    margin-left: 15px;
+}
+
+.imageFiled img {
+    margin-left: 19px;
+    width: 910px;
+    height: 582px;
+    border-bottom-right-radius: 35px;
+}
+
+.blockMeeting {
+    width: 910px;
+    height: 350px;
+}
+
+.colorMain {
+    margin-top: 30px;
+    margin-left: 19px;
+    background-color: #60ec4c;
+    width: 910px;
+    height: 250px;
+    border-top-left-radius: 55px;
+    border-bottom-right-radius: 55px;
+    display: flex;
+    align-items: stretch;
+}
+
+.blockColor1 {
+    width: 100px;
+    margin-left: 19px;
+    height: 220px;
+    margin-top: -170px;
+    background-color: #280c5c;
+    transform: skew( 0deg, -45deg);
+}
+
+.blockColor2 {
+    width: 700px;
+    height: 220px;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+    top: -270px;
+    left: 120px;
+    border-top-right-radius: 55px;
+}
+
+.blockColor3 {
+    background-color: #08943c;
+    width: 300px;
+    height: 250px;
+    margin-left: 628px;
+    margin-top: -520px;
+    border-top-left-radius: 55px;
+    border-bottom-right-radius: 55px;
+}
+
+.blockColor4 {
+    background-color: #fff;
+    width: 100px;
+    height: 100px;
+    margin-left: 19px;
+    position: relative;
+}
+
+.textIntro {
+    margin-top: 20px;
+}

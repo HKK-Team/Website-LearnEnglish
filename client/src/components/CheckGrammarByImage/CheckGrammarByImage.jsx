@@ -56,7 +56,7 @@ const CheckGrammarByImage = () => {
   const eventLoad = async() => {
     if(text.ocrText === ""){
       setData({
-        data:"Trống!!!"
+        data:"Empty!!!"
       })
     }
     const response = await fetch("/api1/gramformer", {
