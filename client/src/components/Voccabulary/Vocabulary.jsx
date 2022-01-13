@@ -36,7 +36,6 @@ const Vocabulary = () => {
               level1={"Beginner to pre-intermediate"}
               level2={"Intermediate to upper intermediate"}
               level3={"English grammar reference"}
-              level4={"Business magazine"}
             />
             <RightItem />
           </div>

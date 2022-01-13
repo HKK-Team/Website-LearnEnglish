@@ -1,31 +1,19 @@
-import { React, Fragment, useContext, useState, useEffect } from "react";
+import { React, Fragment, useState, useEffect } from "react";
 import styles from "./DetailSkills.module.css";
 import { Link } from "react-router-dom";
 import SkillItem from "../../RightItem/SkillItem/SkillItem";
 import RightItem from "../../RightItem/RightItem";
-import { GlobalState } from "../../../GlobalState";
-import { useParams } from "react-router-dom";
 
-const Listening = () => {
-  const params = useParams();
-  const state = useContext(GlobalState);
-  const [dataListening] = state.listeningApi.dataListening;
-  const [dataSpeaking] = state.speakingApi.dataSpeaking;
-  const [dataReading] = state.readingApi.dataReading;
-  const [dataWriting] = state.writingApi.dataWriting;
-  var dataSkill = [];
+const DetailSkills = (props) => {
+  const [data, setdata] = useState(props.data);
 
-    if (params.id === "listening") {
-      dataSkill = dataListening;
-    } else if (params.id === "speaking") {
-      dataSkill = dataSpeaking;
-    } else if (params.id === "reading") {
-      dataSkill = dataReading;
-    } else {
-      dataSkill = dataWriting;
-    }
+  useEffect(() => {
+    setdata(props.data);
+  }, [props.data]);
 
-  console.log(dataSkill[0]._id);
+  if (!data[0].length) {
+    return <div>loading</div>;
+  }
 
   return (
     <Fragment>
@@ -33,25 +21,30 @@ const Listening = () => {
         <div className={styles.main}>
           <div className={styles.contentLeft}>
             <div className={styles.title}>
-              <h2>abc</h2>
+              <h2>{data[0][0]?.type}</h2>
             </div>
             <div className={styles.imageFiled}>
-              <img src={""} alt="" />
+              <img src={data[0][0]?.imageType} alt="" />
             </div>
-            <div className={styles.blockMeeting}>
-              <div className={styles.colorMain}></div>
+            <div className={styles.colorMain}>
               <div className={styles.blockColor1}></div>
-              <div className={styles.blockColor2}></div>
+              <div className={styles.blockColor2}>
+                <p>
+                  Discover your current English level by taking our free online
+                  test
+                </p>
+                <button>Meeting</button>
+              </div>
               <div className={styles.blockColor3}></div>
-              <div className={styles.blockColor4}></div>
             </div>
+
             <div className={styles.textIntro}>
-              <p className={styles.text}>listen</p>
+              <p className={styles.text}>{data[0][0]?.contentType}</p>
               <h2>Choose your level to practise your listening</h2>
             </div>
 
             <div className={styles.contain}>
-              {/* {detail.map((item) => (
+              {data[0].map((item) => (
                 <div className={styles.viewRow} key={item._id}>
                   <div className={styles.imageFile}>
                     <img src={item.level.images} alt="" />
@@ -68,7 +61,7 @@ const Listening = () => {
                     </p>
                   </div>
                 </div>
-              ))} */}
+              ))}
             </div>
           </div>
           <div className={styles.contentRight}>
@@ -81,4 +74,4 @@ const Listening = () => {
   );
 };
 
-export default Listening;
+export default DetailSkills;

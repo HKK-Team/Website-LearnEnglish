@@ -1,16 +1,18 @@
-import {React, Fragment} from 'react'
-import Header from '../../components/Headers/Header'
-import Footer from '../../components/Footer/Footer'
-import Grammar from '../../components/Grammar/Grammar'
+import { React, Fragment, useContext } from "react";
+import Header from "../../components/Headers/Header";
+import Footer from "../../components/Footer/Footer";
+import Grammar from "../../components/Grammar/Grammar";
+import { GlobalState } from "../../GlobalState";
 
 const Grammars = () => {
-    return (
-        <Fragment>
-            <Header/>
-            <Grammar/>
-            <Footer/>
-        </Fragment>
-    )
-}
+  const state = useContext(GlobalState);
+  return (
+    <Fragment>
+      <Header />
+      <Grammar data={state.grammarApi.dataGrammar} />
+      <Footer />
+    </Fragment>
+  );
+};
 
-export default Grammars
+export default Grammars;

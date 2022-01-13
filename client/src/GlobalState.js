@@ -1,11 +1,12 @@
 import React, {createContext,useState,useEffect} from 'react';
 import DictionnaryAPI from './apiUsers/dictionnaryApi';
 import UserAPI from './apiUsers/userApi';
-import ListeningApi from './apiUsers/listeningApi';
-import ReadingApi from './apiUsers/readingApi';
-import SpeakingApi from './apiUsers/speakingApi';
-import WritingApi from './apiUsers/writingApi';
+// import ListeningApi from './apiUsers/listeningApi';
+// import ReadingApi from './apiUsers/readingApi';
+// import SpeakingApi from './apiUsers/speakingApi';
+// import WritingApi from './apiUsers/writingApi';
 import SkillApi from './apiUsers/skillsApi';
+import GrammarApi from './apiUsers/grammarApi';
 import axios from 'axios';
 
 export const GlobalState = createContext()
@@ -32,11 +33,12 @@ export const DataProvider = ({children}) =>{
         token:[token, setToken],
         userApi:UserAPI(token),
         dictionnaryApi:DictionnaryAPI(),
-        listeningApi:ListeningApi(),
-        readingApi:ReadingApi(),
-        speakingApi:SpeakingApi(),
-        writingApi:WritingApi(),
-        skillApi:SkillApi()
+        // listeningApi:ListeningApi(),
+        // readingApi:ReadingApi(),
+        // speakingApi:SpeakingApi(),
+        // writingApi:WritingApi(),
+        skillApi:SkillApi(),
+        grammarApi:GrammarApi()
     }
     return (
         <GlobalState.Provider value={state}>
