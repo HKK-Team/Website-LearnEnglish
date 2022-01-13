@@ -30,7 +30,7 @@
 .contentLeftOne {
     text-align: left;
     margin-left: 31px;
-    color: #60657b;
+    color: #000;
     font: normal 400 18px/32px AkkuratPro, sans-serif;
     letter-spacing: 0;
 }
@@ -38,7 +38,7 @@
 .contentLeftTwo {
     text-align: left;
     margin-left: 31px;
-    color: #60657b;
+    color: #000;
     font: normal 400 18px/32px AkkuratPro, sans-serif;
     letter-spacing: 0;
 }
@@ -96,7 +96,7 @@
 .contentRightSecond {
     text-align: left;
     margin-left: 140px;
-    color: #60657b;
+    color: #000;
     font: normal 400 18px/32px AkkuratPro, sans-serif;
     letter-spacing: 0;
     width: 700px;

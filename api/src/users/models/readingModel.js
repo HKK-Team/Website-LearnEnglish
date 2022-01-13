@@ -1,26 +1,27 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const readingSchema = new mongoose.Schema({
-    thumnailMain: {                                         
-        thumnailMain_1: String,                                                                                                                                                                                             
-        thumnailMain_2: String,                                                                                                                         
-    },                                                                                                                                                                                                                                                                                                                                                                              
-    key: String,
-    content: String,
-    dateCreate: { type: Date, default: Date.now },
-    intro: String,
-    topicName: String,                          
-    task:{
+  _id: mongoose.ObjectId,
+  imageType: String,
+  dateCreate: { type: Date, default: Date.now },
+  contentType: String,
+  type: String,
+  slug: String,
+  level: {
+    nameLevel: String,
+    images: String,
+    contentLevel: String,
+    topic: {
+      topicCode: String,
+      nameTopic: String,
+      imageTopic: String,
+      contentTopic: String,
+      task: {
         type: Array,
-        default: []
+        default: [],
+      },
     },
-    level: String,
-    thumnail: {
-        thumnail_1: String,
-        thumnail_2: String,
-    },
-    introTopic: String,
-    tranScripts: String,
-})
+  },
+});
 
-module.exports = mongoose.model('Readings', readingSchema)
+module.exports = mongoose.model("Readings", readingSchema);

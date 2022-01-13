@@ -1,13 +1,13 @@
 import { React, Fragment } from "react";
 import Header from "../../components/Headers/Header";
 import Footer from "../../components/Footer/Footer";
-import Listenings from "../../components/Skills/Listening/Listening";
+import DetailSkills from "../../components/Skills/DetailSkills/DetailSkills";
 
 const Listening = () => {
   return (
     <Fragment>
       <Header />
-      <Listenings />
+      <DetailSkills />
       <Footer />
     </Fragment>
   );

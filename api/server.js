@@ -24,8 +24,7 @@ app.use([
   bodyParser.urlencoded({ extended: false })
 ]);
 // Routes
-app.use("/api", require("./src/users/routers/listeningRouters"));
-app.use("/api", require("./src/users/routers/readingRouters"));
+app.use("/api", require("./src/users/routers/skillRouter"));
 app.use("/api", require("./src/users/routers/ggMeetRouters"));
 app.use("/user", require("./src/users/routers/userRouter"));
 

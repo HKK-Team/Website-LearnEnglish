@@ -8,25 +8,6 @@ import { Link } from "react-router-dom";
 const RightItem = () => {
   return (
     <div>
-      <div className={styles.containList}>
-        <ul className={styles.items}>
-          <li>
-            <Link to={""} className={styles.textLink}>
-              Beginner to pre-intermediate
-            </Link>
-          </li>
-          <li>
-            <Link to={""} className={styles.textLink}>
-              Intermediate to upper intermediate
-            </Link>
-          </li>
-          <li>
-            <Link to={""} className={styles.textLink}>
-              English grammar reference
-            </Link>
-          </li>
-        </ul>
-      </div>
       <div className={styles.containImage}>
         <img src={Image3} alt="" />
         <Link to={""} className={styles.text}>

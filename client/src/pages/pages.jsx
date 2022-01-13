@@ -9,7 +9,7 @@ import NotFound from '../utils/not_found/NotFound'
 import Grammars from "./Grammar/Grammars";
 import Skill from './Skills/skill'
 import Voccabulary from './Voccabulary/voc'
-import Listening from "../pages/Skills/Listening"
+import DetailSkills from "./Skills/DetailSkills"
  
 import React from "react";
 
@@ -20,7 +20,7 @@ const pages = () => {
       <Route path="/dictionnary" element={<Dictionnary />} />
       <Route path="/grammar" element={<Grammars/>}/>
       <Route path="/skill" element={<Skill/>}/>
-      <Route path="/listening" element={<Listening/>}/>
+      <Route path="/skill/:id" element={<DetailSkills/>}/>
       <Route path="/voccabulary" element={<Voccabulary/>}/>
       <Route path="/meeting/:id" element={<CallPage />} />
       <Route path="/meeting" element={<HomeGGMeet />} />

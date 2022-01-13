@@ -12,15 +12,9 @@ const CheckGrammarByText = () => {
   const [correct, setcorrect] = useState([]);
   const checkData = data.data !== undefined ? true : false;
 
-  //assistant grammar
-  if(checkData){
-    
-  }
-  console.log(valueInput);
-  console.log(data.data);
-
   const eventGetData = (e) => {
     setvalueInput(e.target.value);
+    setData(e.target.value)
   };
   const eventSubmit = async () => {
     const response = await fetch("/api1/gramformer", {

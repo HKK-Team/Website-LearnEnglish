@@ -1,9 +1,12 @@
-import React from "react";
+import {React,Fragment} from 'react'
 import styles from "./Grammar.module.css";
 import RightItem from "../RightItem/RightItem";
+import LevelRightItem from '../RightItem/LevelRightItem/LevelRightItem'
+import ListItem from '../ListItem/ListItem'
 
 const Grammar = () => {
   return (
+    <Fragment>
     <div className={styles.containMain}>
       <div className={styles.content}>
         <div className={styles.contentLeft}>
@@ -30,13 +33,21 @@ const Grammar = () => {
             so come back tomorrow to choose another grammar point to work on.
             Good luck!
           </p>
+          <ListItem/>
         </div>
 
         <div className={styles.contentRight}>
+          <LevelRightItem
+          level1 = {"Beginner to pre-intermediate"}
+          level2 = {"Intermediate to upper intermediate"}
+          level3 = {"English grammar reference"}
+          level4 = {"Business magazine"}
+          />
           <RightItem />
         </div>
       </div>
     </div>
+    </Fragment>
   );
 };
 

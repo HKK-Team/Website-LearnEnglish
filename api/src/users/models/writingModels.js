@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const listeningSchema = new mongoose.Schema({
+const writingSchema = new mongoose.Schema({
   _id: mongoose.ObjectId,
   imageType: String,
   dateCreate: { type: Date, default: Date.now },
@@ -9,17 +9,13 @@ const listeningSchema = new mongoose.Schema({
   slug: String,
   level: {
     nameLevel: String,
-    slugLevel:String,
     images: String,
     contentLevel: String,
     topic: {
       topicCode: String,
       nameTopic: String,
-      slugTopic:String,
       imageTopic: String,
       contentTopic: String,
-      radio: String,
-      tranScript: String,
       task: {
         type: Array,
         default: [],
@@ -28,4 +24,4 @@ const listeningSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Listenings", listeningSchema);
+module.exports = mongoose.model("Writings", writingSchema);

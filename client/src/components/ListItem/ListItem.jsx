@@ -8,10 +8,6 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const ListItem = () => {
-  // const navigate = useNavigate()
-  // const eventLink = (e) => {
-  //   navigate(e)
-  // };
   return (
     <div className={styles.contain}>
       <div className={styles.viewRow}>
@@ -19,7 +15,7 @@ const ListItem = () => {
           <img src={Image1} alt="" />
         </div>
         <div className={styles.textView}>
-          <Link to={""}>
+          <Link to={"listening"}>
             <h2>Listening</h2>
           </Link>
           <p>
@@ -35,8 +31,24 @@ const ListItem = () => {
           <img src={Image2} alt="" />
         </div>
         <div className={styles.textView}>
-          <Link to={""}>
+          <Link to={"reading"}>
             <h2>Reading</h2>
+          </Link>
+          <p>
+            Here you can find activities to practise your reading skills.
+            Reading will help you to improve your understanding of the language
+            and build your vocabulary.
+          </p>
+        </div>
+      </div>
+
+      <div className={styles.viewRow}>
+        <div className={styles.imageFile}>
+          <img src={Image3} alt="" />
+        </div>
+        <div className={styles.textView}>
+          <Link to={"writing"}>
+            <h2>Writing</h2>
           </Link>
           <p>
             Here you can find activities to practise your writing skills. You
@@ -48,26 +60,10 @@ const ListItem = () => {
 
       <div className={styles.viewRow}>
         <div className={styles.imageFile}>
-          <img src={Image3} alt="" />
-        </div>
-        <div className={styles.textView}>
-          <Link to={""}>
-            <h2>Writing</h2>
-          </Link>
-          <p>
-            Here you can find activities to practise your listening skills.
-            Listening will help you to improve your understanding of the
-            language and your pronunciation.
-          </p>
-        </div>
-      </div>
-
-      <div className={styles.viewRow}>
-        <div className={styles.imageFile}>
           <img src={Image4} alt="" />
         </div>
         <div className={styles.textView}>
-          <Link to={""}>
+          <Link to={"speaking"}>
             <h2>Speaking</h2>
           </Link>
           <p>

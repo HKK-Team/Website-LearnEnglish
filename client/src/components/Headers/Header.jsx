@@ -1,4 +1,5 @@
 import { Fragment, React, useState, useEffect,useContext } from "react";
+import { useParams} from "react-router-dom";
 import styles from "./Header.module.css";
 import Navbar from "./Navbar/Navbar";
 import { Link } from "react-router-dom";
@@ -12,13 +13,18 @@ import { GlobalState } from "../../GlobalState";
 
 const Header = () => {
   const url = `${window.location.pathname}`;
-  const isHome = url === "/" ? true : false;
-  const isSkill = url === "/skill" ? true : false;
-  const isGrammar = url === "/grammar" ? true : false;
-  const isVoccabulary = url === "/voccabulary" ? true : false;
-  const isDictionnary = url === "/dictionnary" ? true : false;
-  const isLogin = url === "/Login" ? true : false;
-  const isRegister = url === "/Register" ? true : false;
+  var str = '/';
+  for(let i = 1;i < url.length;i++){
+    if(url[i] === '/')break;
+    str += url[i]
+  }
+  const isHome = str === "/" ? true : false;
+  const isSkill = str === "/skill" ? true : false;
+  const isGrammar = str === "/grammar" ? true : false;
+  const isVoccabulary = str === "/voccabulary" ? true : false;
+  const isDictionnary = str === "/dictionnary" ? true : false;
+  const isLogin = str === "/Login" ? true : false;
+  const isRegister = str === "/Register" ? true : false;
 
 
 

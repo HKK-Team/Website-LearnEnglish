@@ -1,6 +1,11 @@
 import React, {createContext,useState,useEffect} from 'react';
 import DictionnaryAPI from './apiUsers/dictionnaryApi';
 import UserAPI from './apiUsers/userApi';
+import ListeningApi from './apiUsers/listeningApi';
+import ReadingApi from './apiUsers/readingApi';
+import SpeakingApi from './apiUsers/speakingApi';
+import WritingApi from './apiUsers/writingApi';
+import SkillApi from './apiUsers/skillsApi';
 import axios from 'axios';
 
 export const GlobalState = createContext()
@@ -12,7 +17,7 @@ export const DataProvider = ({children}) =>{
         const firstLogin = localStorage.getItem('firstLogin')
         if(firstLogin){
             const refreshToken = async () =>{
-                const res = await axios.get('http://localhost:5000/user/refresh_token')
+                const res = await axios.get('/user/refresh_token')
                 setToken(res.data.accesstoken)
                 setTimeout(() => {
                     refreshToken()
@@ -27,6 +32,11 @@ export const DataProvider = ({children}) =>{
         token:[token, setToken],
         userApi:UserAPI(token),
         dictionnaryApi:DictionnaryAPI(),
+        listeningApi:ListeningApi(),
+        readingApi:ReadingApi(),
+        speakingApi:SpeakingApi(),
+        writingApi:WritingApi(),
+        skillApi:SkillApi()
     }
     return (
         <GlobalState.Provider value={state}>

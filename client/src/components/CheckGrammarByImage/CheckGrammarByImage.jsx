@@ -1,4 +1,4 @@
-import { React, useState, useRef } from "react";
+import { React, useState, useRef, useEffect } from "react";
 import styles from "./CheckGrammarByImage.module.css";
 import { createWorker } from "tesseract.js";
 import { FilePond, File, registerPlugin } from "react-filepond";
@@ -14,8 +14,13 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 const CheckGrammarByImage = () => {
   const [files, setFiles] = useState([]);
   const [text, setText] = useState({ ocrText: "", pctg: "0.00" });
-  const [data, setData] = useState('')
+  const [data, setData] = useState("");
   const pond = useRef();
+
+  const eventChangeData = () =>{
+    setData("");
+  }
+
   const worker = createWorker({
     logger: (m) => updateProgressAndLog(m),
   });
@@ -49,15 +54,15 @@ const CheckGrammarByImage = () => {
     } = await worker.recognize(file.file);
     setText({
       ocrText: text,
-      pctg:100.00
+      pctg: 100.0,
     });
   };
 
-  const eventLoad = async() => {
-    if(text.ocrText === ""){
+  const eventLoad = async () => {
+    if (text.ocrText === "") {
       setData({
-        data:"Empty!!!"
-      })
+        data: "Empty!!!",
+      });
     }
     const response = await fetch("/api1/gramformer", {
       method: "POST",
@@ -100,15 +105,20 @@ const CheckGrammarByImage = () => {
             onaddfile={(err, file) => {
               doOCR(file);
             }}
-            onremovefile={(err, fiile) => {
+            onremovefile={(err, file) => {
+              setFiles([])
               setText({
                 ocrText: "",
+                pctg: "0.00" 
+              });
+              setData({
+                data: "Empty!!!",
               });
             }}
             labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
           />
           <div className={styles.async}>
-            <div >
+            <div>
               <FaSyncAlt className={styles.iconSync} />
             </div>
             <div className={styles.percent}>
@@ -126,6 +136,7 @@ const CheckGrammarByImage = () => {
               spellCheck="false"
               placeholder="Result of image !!!"
               value={data.data}
+              onChange={eventChangeData}
             />
           </div>
         </div>
