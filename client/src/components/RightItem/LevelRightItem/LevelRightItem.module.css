@@ -1,52 +1,50 @@
 .containList {
-    background-color: #fff;
-    border: 10px solid #f0ecf4;
-    height: 220px;
-    border-bottom-left-radius: 25px;
-    border-top-right-radius: 25px;
+  margin-bottom: 10px;
+  padding: 30px 20px;
+  background-color: #fff;
+  border: 10px solid #ebeff0;
+  border-radius: 0 30px;
 }
 
 .items {
-    margin-top: 30px;
-    padding-left: 1px;
-    width: 240px;
-    height: 100%;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box; */
+  margin: 0;
+  padding: 0;
 }
 
 .items li {
-    position: relative;
-    list-style-type: none;
-    padding-left: 3rem;
-    margin-bottom: 0.5rem;
+  position: relative;
+  list-style-type: none;
+  padding: 0 0 0 26px;
+  margin-bottom: 18px;
+}
+.items li:last-of-type {
+  margin-bottom: 0;
 }
 
 .items li:before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 10px;
-    top: -2px;
-    width: 5px;
-    height: 11px;
-    border-width: 0 2px 2px 0;
-    border-style: solid;
-    border-color: #23085A;
-    transform-origin: bottom left;
-    transform: rotate(45deg);
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: -2px;
+
+  width: 5px;
+  height: 11px;
+  border-width: 0 2px 2px 0;
+  border-style: solid;
+  border-color: #23085a;
+  transform-origin: bottom left;
+  transform: rotate(45deg);
 }
 
 .items li .textLink {
-    color: #23085A;
-    text-decoration: none;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 18px;
+  color: #23085a;
+  text-decoration: none;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 18px;
 }
 
 .items li .textLink:hover {
-    color: #00953B;
-    text-decoration: underline;
+  color: #00953b;
+  text-decoration: underline;
 }
