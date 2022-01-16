@@ -30,8 +30,7 @@ const DetailSkills = (props) => {
               <div className={styles.blockColor1}></div>
               <div className={styles.blockColor2}>
                 <p>
-                  Discover your current English level by taking our free online
-                  test
+                  Are you looking for a face-to-face English course near you?
                 </p>
                 <button>Meeting</button>
               </div>
@@ -54,10 +53,10 @@ const DetailSkills = (props) => {
                       <h2>{item.level.nameLevel}</h2>
                     </Link>
                     <p>
-                      Listening practice to help you understand familiar words
-                      and basic phrases when people speak slowly and clearly.
-                      Situations include meeting people, shopping and
-                      conversations at work.
+                      {item.level.contentLevel.substring(
+                        0,
+                        item.level.contentLevel.indexOf(".") + 1
+                      )}
                     </p>
                   </div>
                 </div>

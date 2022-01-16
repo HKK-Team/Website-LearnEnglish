@@ -1,10 +1,20 @@
-import { React, Fragment } from "react";
+import { React, Fragment, useState, useEffect } from "react";
 import styles from "./Vocabulary.module.css";
 import RightItem from "../RightItem/RightItem";
 import LevelRightItem from "../RightItem/LevelRightItem/LevelRightItem";
-import ListItem from '../ListItem/ListItem'
+import ListItem from "../ListItem/ListItem";
+import { Link } from "react-router-dom";
 
-const Vocabulary = () => {
+const Vocabulary = (props) => {
+  const [data, setdata] = useState(props.data);
+
+  useEffect(() => {
+    setdata(props.data);
+  }, [props.data]);
+
+  if (!data[0].length) {
+    return <div>loading</div>;
+  }
   return (
     <Fragment>
       <div className={styles.containMain}>
@@ -28,7 +38,25 @@ const Vocabulary = () => {
             </p>
             <div className={styles.listItem}>
               <h1>Choose your level to practise your vocabulary</h1>
-              <ListItem/>
+              <div className={styles.contain}>
+                {data[0].map((item) => (
+                  <div className={styles.viewRow} key={item._id}>
+                    <div className={styles.imageFile}>
+                      <img src={item.level.images} alt="" />
+                    </div>
+                    <div className={styles.textView}>
+                      <Link to={item.level.slugLevel}>
+                        <h2>{item.level.nameLevel}</h2>
+                      </Link>
+                      <p>
+                        Here you can find activities to practise your listening
+                        skills. Listening will help you to improve your
+                        understanding of the language and your pronunciation.
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <div className={styles.contentRight}>

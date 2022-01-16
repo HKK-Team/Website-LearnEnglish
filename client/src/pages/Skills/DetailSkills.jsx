@@ -1,4 +1,4 @@
-import { React, Fragment,useContext } from "react";
+import { React, Fragment,useContext,useEffect,useState } from "react";
 import Header from "../../components/Headers/Header";
 import Footer from "../../components/Footer/Footer";
 import DetailSkills from "../../components/Skills/DetailSkills/DetailSkills";

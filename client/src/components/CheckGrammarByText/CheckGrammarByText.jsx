@@ -1,23 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./CheckGrammarByText.module.css";
 import Image1 from "../../images/grammar_check.jpg";
 import Image2 from "../../images/misused_words.jpg";
 import Image3 from "../../images/punctuation_check.jpg";
 import Image4 from "../../images/spelling_check.jpg";
+import AssistantGrammar from "../AssistantGrammar/AssistantGrammar";
 
 const CheckGrammarByText = () => {
   const [valueInput, setvalueInput] = useState("");
   const [data, setData] = useState("");
-  const [errordata, seterrordata] = useState([]);
-  const [correct, setcorrect] = useState([]);
-  const checkData = data.data !== undefined ? true : false;
+  const [checkData, setcheckData] = useState(false);
+  const [array1, setarray1] = useState([]);
+  const [array2, setarray2] = useState([]);
+
+  useEffect(() => {
+    data.data !== undefined ? setcheckData(true) : setcheckData(false);
+  }, [data]);
 
   const eventGetData = (e) => {
     setvalueInput(e.target.value);
-    setData(e.target.value)
+    setData(e.target.value);
   };
+
   const eventSubmit = async () => {
-    const response = await fetch("/api1/gramformer", {
+    setarray1([]);
+    setarray2([]);
+
+    await fetch("/api1/gramformer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,10 +34,19 @@ const CheckGrammarByText = () => {
       body: JSON.stringify(valueInput),
     });
 
-    fetch("/api1/gramformer")
+    await fetch("/api1/gramformer")
       .then((res) => res.json())
-      .then((data) => {
-        setData(data);
+      .then((datas) => {
+        setData(datas);
+        let str1 = valueInput.replace(/\s+/g, " ");
+        let str2 = datas.data.replace(/\s+/g, " ");
+
+        for (let i = 0; i < str1.split(" ").length; i++) {
+          if (str1.split(" ")[i] !== str2.split(" ")[i]) {
+            setarray1((prev) => [...prev, str1.split(" ")[i]]);
+            setarray2((prev) => [...prev, str2.split(" ")[i]]);
+          }
+        }
       });
   };
   return (
@@ -102,6 +120,11 @@ const CheckGrammarByText = () => {
           </div>
         </div>
       </div>
+      {checkData ? (
+        <AssistantGrammar data={true} array1={array1} array2={array2} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

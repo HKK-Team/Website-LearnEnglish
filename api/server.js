@@ -26,6 +26,7 @@ app.use([
 // Routes
 app.use("/api", require("./src/users/routers/skillRouter"));
 app.use("/api", require("./src/users/routers/grammarRouter"));
+app.use("/api", require("./src/users/routers/vocabularyRouter"));
 app.use("/api", require("./src/users/routers/ggMeetRouters"));
 app.use("/user", require("./src/users/routers/userRouter"));
 
