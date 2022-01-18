@@ -5,7 +5,6 @@ import Image2 from "../../images/RS5825_169280449-hig.jpg";
 import Image3 from "../../images/RS7522_ThinkstockPhotos-622015126-hig_0.jpg";
 import Image4 from "../../images/RS8016_GettyImages-646457628-hig_2.jpg";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 const ListItem = () => {
   return (
@@ -15,7 +14,7 @@ const ListItem = () => {
           <img src={Image1} alt="" />
         </div>
         <div className={styles.textView}>
-          <Link to={"listening"}>
+          <Link to={"/skill/listening"}>
             <h2>Listening</h2>
           </Link>
           <p>
@@ -31,7 +30,7 @@ const ListItem = () => {
           <img src={Image2} alt="" />
         </div>
         <div className={styles.textView}>
-          <Link to={"reading"}>
+          <Link to={"/skill/reading"}>
             <h2>Reading</h2>
           </Link>
           <p>

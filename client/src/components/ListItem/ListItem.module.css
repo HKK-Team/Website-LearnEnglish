@@ -1,7 +1,6 @@
 .contain {
     width: 1300px;
     height: auto;
-    margin-left: 35px;
     display: flex;
     flex-direction: column;
 }

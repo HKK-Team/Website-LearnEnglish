@@ -10,16 +10,13 @@ import { AiFillQuestionCircle } from "react-icons/ai";
 
 const AssistantGrammar = (props) => {
   const [data, setdata] = useState([]);
+  const [check, setcheck] = useState(!props.data);
 
   useEffect(() => {
     setdata([props]);
+    props.array1.length === 0 ? setcheck(true) : setcheck(false);
   }, [props]);
 
-  const [check, setcheck] = useState(!props.data);
-
-//   useEffect(() => {
-//     data[0].array1.length === 0 ? setcheck(true) : setcheck(false);
-//   }, [check, data]);
 
   if (!data.length) {
     return <div>loading</div>;
@@ -54,7 +51,7 @@ const AssistantGrammar = (props) => {
                 <div className={styles.textChange}>
                   <p className={styles.beforeChange}>{item}</p>
                   <p className={styles.affterChange}>
-                    {data[0].array2.find((item) => item[index])}
+                    {data[0].array2.find((item,indexs) => index === indexs)}
                   </p>
                 </div>
 

@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div>
-      <footer class={styles.footer}>
-        <div class={styles.container}>
-          <div class={styles.row}>
-            <div class={styles.footerCol}>
+      <footer className={styles.footer}>
+        <div className={styles.container}>
+          <div className={styles.row}>
+            <div className={styles.footerCol}>
               <h4>Grammar</h4>
               <ul>
                 <li>
@@ -36,7 +36,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div class={styles.footerCol}>
+            <div className={styles.footerCol}>
               <h4>Skills</h4>
               <ul>
                 <li>
@@ -61,7 +61,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div class={styles.footerCol}>
+            <div className={styles.footerCol}>
               <h4>Vocabulary</h4>
               <ul>
                 <li>
@@ -88,7 +88,7 @@ const Footer = () => {
             </div>
             <div className={styles.footerCol}>
               <h4>Follow Us</h4>
-              <div class={styles.socialLinks}>
+              <div className={styles.socialLinks}>
                 <Link className={styles.linkFooter} to={""}>
                   <FaFacebook />
                 </Link>

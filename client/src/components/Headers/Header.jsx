@@ -1,15 +1,12 @@
-import { Fragment, React, useState, useEffect,useContext } from "react";
-import { useParams} from "react-router-dom";
+import { Fragment, React } from "react";
 import styles from "./Header.module.css";
-import Navbar from "./Navbar/Navbar";
-import { Link } from "react-router-dom";
-import TwoItems from "./TwoItemsLogin&Regis/MenuLoginRegis";
-import IntroByHome from "./IntroByHome/IntroByHome";
 import IntroByDictionnary from "./IntroByDictionnary/IntroByDictionnary";
 import IntroByGrammar from "./IntroByGrammar/IntroByGrammar";
-import IntroByVoc from "./IntroByVocbulary/IntroByVocbulary";
+import IntroByHome from "./IntroByHome/IntroByHome";
 import IntroBySkill from "./IntroBySkills/IntroBySkills";
-import { GlobalState } from "../../GlobalState";
+import IntroByVoc from "./IntroByVocbulary/IntroByVocbulary";
+import Navbar from "./Navbar/Navbar";
+import TwoItems from "./TwoItemsLogin&Regis/MenuLoginRegis";
 
 const Header = () => {
   const url = `${window.location.pathname}`;

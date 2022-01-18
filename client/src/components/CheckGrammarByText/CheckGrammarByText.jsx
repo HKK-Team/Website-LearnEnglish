@@ -38,8 +38,8 @@ const CheckGrammarByText = () => {
       .then((res) => res.json())
       .then((datas) => {
         setData(datas);
-        let str1 = valueInput.replace(/\s+/g, " ");
-        let str2 = datas.data.replace(/\s+/g, " ");
+        let str1 = valueInput.trim().replace(/\s+/g, " ");
+        let str2 = datas.data
 
         for (let i = 0; i < str1.split(" ").length; i++) {
           if (str1.split(" ")[i] !== str2.split(" ")[i]) {

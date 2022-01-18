@@ -1,25 +1,23 @@
-import { React, useState, useRef, useEffect } from "react";
+import { React, useState } from "react";
 import styles from "./CheckGrammarByImage.module.css";
 import { createWorker } from "tesseract.js";
-import { FilePond, File, registerPlugin } from "react-filepond";
+import { FilePond, registerPlugin } from "react-filepond";
 import { FaSyncAlt } from "react-icons/fa";
 import "filepond/dist/filepond.min.css";
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
-// Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 const CheckGrammarByImage = () => {
   const [files, setFiles] = useState([]);
   const [text, setText] = useState({ ocrText: "", pctg: "0.00" });
   const [data, setData] = useState("");
-  const pond = useRef();
 
-  const eventChangeData = () =>{
+  const eventChangeData = () => {
     setData("");
-  }
+  };
 
   const worker = createWorker({
     logger: (m) => updateProgressAndLog(m),
@@ -42,13 +40,9 @@ const CheckGrammarByImage = () => {
       ocrText: "",
       pctg: "0.00",
     });
-    // Loading tesseract.js functions
     await worker.load();
-    // Loadingg language as 'English'
     await worker.loadLanguage("eng");
     await worker.initialize("eng");
-    // Sending the File Object into the Recognize function to
-    // parse the data
     const {
       data: { text },
     } = await worker.recognize(file.file);
@@ -64,7 +58,7 @@ const CheckGrammarByImage = () => {
         data: "Empty!!!",
       });
     }
-    const response = await fetch("/api1/gramformer", {
+    await fetch("/api1/gramformer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -106,10 +100,10 @@ const CheckGrammarByImage = () => {
               doOCR(file);
             }}
             onremovefile={(err, file) => {
-              setFiles([])
+              setFiles([]);
               setText({
                 ocrText: "",
-                pctg: "0.00" 
+                pctg: "0.00",
               });
               setData({
                 data: "Empty!!!",

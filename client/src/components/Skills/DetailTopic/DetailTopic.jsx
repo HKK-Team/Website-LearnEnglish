@@ -1,10 +1,10 @@
 import { React, Fragment, useState, useEffect } from "react";
-import styles from "./DetailSkills.module.css";
+import styles from "../DetailSkills/DetailSkills.module.css";
 import { Link } from "react-router-dom";
 import SkillItem from "../../RightItem/SkillItem/SkillItem";
 import RightItem from "../../RightItem/RightItem";
 
-const DetailSkills = (props) => {
+const DetailTopic = (props) => {
   const [data, setdata] = useState(props.data);
 
   useEffect(() => {
@@ -75,4 +75,5 @@ const DetailSkills = (props) => {
   );
 };
 
-export default DetailSkills;
+export default DetailTopic;
+

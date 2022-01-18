@@ -1,14 +1,12 @@
-import axios from 'axios';
-import React, { createContext, useEffect, useState } from 'react';
+import React, {createContext,useState,useEffect} from 'react';
 import DictionnaryAPI from './apiUsers/dictionnaryApi';
-import GrammarApi from './apiUsers/grammarApi';
-// import ListeningApi from './apiUsers/listeningApi';
-// import ReadingApi from './apiUsers/readingApi';
-// import SpeakingApi from './apiUsers/speakingApi';
-// import WritingApi from './apiUsers/writingApi';
-import SkillApi from './apiUsers/skillsApi';
-import VocabularyApi from './apiUsers/vocabularyApi'
 import UserAPI from './apiUsers/userApi';
+import ListeningApi from './apiUsers/listeningApi';
+import ReadingApi from './apiUsers/readingApi';
+import SpeakingApi from './apiUsers/speakingApi';
+import WritingApi from './apiUsers/writingApi';
+import GrammarApi from './apiUsers/grammarApi';
+import axios from 'axios';
 
 export const GlobalState = createContext()
 
@@ -34,13 +32,11 @@ export const DataProvider = ({children}) =>{
         token:[token, setToken],
         userApi:UserAPI(token),
         dictionnaryApi:DictionnaryAPI(),
-        // listeningApi:ListeningApi(),
-        // readingApi:ReadingApi(),
-        // speakingApi:SpeakingApi(),
-        // writingApi:WritingApi(),
-        skillApi:SkillApi(),
-        grammarApi:GrammarApi(),
-        vocabularyApi:VocabularyApi()
+        listeningApi:ListeningApi(),
+        readingApi:ReadingApi(),
+        speakingApi:SpeakingApi(),
+        writingApi:WritingApi(),
+        grammarApi:GrammarApi()
     }
     return (
         <GlobalState.Provider value={state}>

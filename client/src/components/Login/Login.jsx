@@ -1,7 +1,5 @@
 import { React, useState, useContext } from "react";
 import styles from "./Login.module.css";
-import Face from "../../images/fb-btn.png";
-import Google from "../../images/google-btn.png";
 import { MdMarkEmailUnread, MdPassword } from "react-icons/md";
 import { Link } from "react-router-dom";
 import axios from "axios";

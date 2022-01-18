@@ -95,6 +95,15 @@
     border-radius: 30px;
 }
 
+.blockColor2 button .textMeeting {
+    color: #fff;
+}
+
+.blockColor2 button .textMeeting:hover {
+    cursor: pointer;
+    color: #23085A;
+}
+
 .blockColor2 button:hover {
     background-color: #08943c;
     text-decoration: underline;

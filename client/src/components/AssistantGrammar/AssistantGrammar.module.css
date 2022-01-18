@@ -137,6 +137,7 @@
 
 .textChange .beforeChange {
     margin-left: 10px;
+    width: 50px;
 }
 
 .textChange .beforeChange::after {
@@ -145,12 +146,12 @@
     font-size: 25px;
     position: absolute;
     top: 35px;
-    left: 70px;
+    left: 100px;
 }
 
 .textChange .affterChange {
     margin-top: 8px;
-    margin-left: 40px;
+    margin-left: 60px;
     font-weight: 600;
     color: #fff;
     background: rgb(17, 166, 131);
