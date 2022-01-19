@@ -13,6 +13,9 @@ import DetailSkillReading from "../pages/Skills/DetailSkill/DetailSkillReading";
 import DetailSkillSpeaking from "../pages/Skills/DetailSkill/DetailSkillSpeaking";
 import DetailSkillWriting from "../pages/Skills/DetailSkill/DetailSkillWriting";
 import DetailLevelListen from "../pages/Skills/DetailTopic/DetailLevelListen";
+import DetailLevelReading from '../pages/Skills/DetailTopic/DetailLevelReading'
+import DetailLevelSpeaking from '../pages/Skills/DetailTopic/DetailLevelSpeaking'
+import DetailLevelWriting from '../pages/Skills/DetailTopic/DetailLevelWriting'
 
 import React from "react";
 
@@ -34,9 +37,9 @@ const Pages = () => {
 
       {/* detail topic by level */}
       <Route path="/skill/listening/:id" element={<DetailLevelListen />} />
-      <Route path="/skill/reading/:id" element={<DetailLevelListen />} />
-      <Route path="/skill/speaking/:id" element={<DetailLevelListen />} />
-      <Route path="/skill/writing/:id" element={<DetailLevelListen />} />
+      <Route path="/skill/reading/:id" element={<DetailLevelReading />} />
+      <Route path="/skill/speaking/:id" element={<DetailLevelSpeaking />} />
+      <Route path="/skill/writing/:id" element={<DetailLevelWriting />} />
       {/* detail topic by level */}
 
       <Route path="/meeting/:id" element={<CallPage />} />

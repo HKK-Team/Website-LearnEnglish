@@ -87,6 +87,10 @@ const Skill = () => {
               level2={"Reading"}
               level3={"Writing"}
               level4={"Speaking"}
+              sluglevel1={"/skill/listening"}
+              sluglevel2={"/skill/reading"}
+              sluglevel3={"/skill/writing"}
+              sluglevel4={"/skill/speaking"}
             />
             <RightItem />
           </div>

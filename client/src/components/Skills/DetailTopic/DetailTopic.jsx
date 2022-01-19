@@ -11,20 +11,19 @@ const DetailTopic = (props) => {
     setdata(props.data);
   }, [props.data]);
 
-  if (!data[0].length) {
+  if (!data.length) {
     return <div>loading</div>;
   }
-
   return (
     <Fragment>
       <div className={styles.conatiner}>
         <div className={styles.main}>
           <div className={styles.contentLeft}>
             <div className={styles.title}>
-              <h2>{data[0][0]?.type}</h2>
+              <h2>{data[0]?.level.nameLevel}</h2>
             </div>
             <div className={styles.imageFiled}>
-              <img src={data[0][0]?.imageType} alt="" />
+              <img src={data[0]?.level.images} alt="" />
             </div>
             <div className={styles.colorMain}>
               <div className={styles.blockColor1}></div>
@@ -33,31 +32,37 @@ const DetailTopic = (props) => {
                   Are you looking for a face-to-face English course near you?
                 </p>
                 <button>
-                  <Link className={styles.textMeeting} to={"/meeting"} target={"_blank"}>Meeting</Link>
+                  <Link
+                    className={styles.textMeeting}
+                    to={"/meeting"}
+                    target={"_blank"}
+                  >
+                    Meeting
+                  </Link>
                 </button>
               </div>
               <div className={styles.blockColor3}></div>
             </div>
 
             <div className={styles.textIntro}>
-              <p className={styles.text}>{data[0][0]?.contentType}</p>
-              <h2>Choose your level to practise your listening</h2>
+              <p className={styles.text}>{data[0]?.level.contentLevel}</p>
+              <h2>Choose a {(data[0]?.type).toLowerCase()} lesson</h2>
             </div>
 
             <div className={styles.contain}>
-              {data[0].map((item) => (
+              {data.map((item) => (
                 <div className={styles.viewRow} key={item._id}>
                   <div className={styles.imageFile}>
-                    <img src={item.level.images} alt="" />
+                    <img src={item?.level?.topic?.imageTopic} alt="" />
                   </div>
                   <div className={styles.textView}>
-                    <Link to={item.level.slugLevel}>
-                      <h2>{item.level.nameLevel}</h2>
+                    <Link to={item?.level?.topic?.slugTopic}>
+                      <h2>{item?.level?.topic?.nameTopic}</h2>
                     </Link>
                     <p>
-                      {item.level.contentLevel.substring(
+                      {item?.level?.topic?.contentTopic.substring(
                         0,
-                        item.level.contentLevel.indexOf(".") + 1
+                        item?.level?.topic?.contentTopic.indexOf(".") + 1
                       )}
                     </p>
                   </div>
@@ -76,4 +81,3 @@ const DetailTopic = (props) => {
 };
 
 export default DetailTopic;
-

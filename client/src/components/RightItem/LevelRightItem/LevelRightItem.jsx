@@ -7,17 +7,17 @@ const LevelRightItem = (props) => {
     <div className={styles.containList}>
       <ul className={styles.items}>
         <li>
-          <Link to={""} className={styles.textLink}>
+          <Link to={props.sluglevel1} className={styles.textLink}>
             {props.level1}
           </Link>
         </li>
         <li>
-          <Link to={""} className={styles.textLink}>
+          <Link to={props.sluglevel2} className={styles.textLink}>
             {props.level2}
           </Link>
         </li>
         <li>
-          <Link to={""} className={styles.textLink}>
+          <Link to={props.sluglevel3} className={styles.textLink}>
             {props.level3}
           </Link>
         </li>
@@ -25,7 +25,7 @@ const LevelRightItem = (props) => {
           ""
         ) : (
           <li>
-            <Link to={""} className={styles.textLink}>
+            <Link to={props.sluglevel4} className={styles.textLink}>
               {props.level4}
             </Link>
           </li>

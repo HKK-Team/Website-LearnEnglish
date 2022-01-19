@@ -9,11 +9,13 @@ const writingSchema = new mongoose.Schema({
   slug: String,
   level: {
     nameLevel: String,
+    slugLevel:String,
     images: String,
     contentLevel: String,
     topic: {
       topicCode: String,
       nameTopic: String,
+      slugTopic:String,
       imageTopic: String,
       contentTopic: String,
       task: {

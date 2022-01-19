@@ -41,7 +41,7 @@ const DetailSkills = (props) => {
 
             <div className={styles.textIntro}>
               <p className={styles.text}>{data[0][0]?.contentType}</p>
-              <h2>Choose your level to practise your listening</h2>
+              <h2>Choose your level to practise your {(data[0][0]?.type).toLowerCase()}</h2>
             </div>
 
             <div className={styles.contain}>
