@@ -1,34 +1,34 @@
 import { React, Fragment, useState, useEffect } from "react";
-import styles from "./DetailSkills.module.css";
+import styles from "../DetailSkills/DetailSkills.module.css";
 import { Link } from "react-router-dom";
 import SkillItem from "../../RightItem/SkillItem/SkillItem";
 import RightItem from "../../RightItem/RightItem";
 
-const DetailSkills = (props) => {
+const TopicGrammar = (props) => {
+  console.log(props.data)
   const [data, setdata] = useState(props.data);
-  const [dataContentType,setdataContentType] = useState([])
+  const [datalevel,setdatalevel] = useState([]);
 
   useEffect(() => {
     setdata(props.data);
-    if(props.data[0].length !== 0){
-      setdataContentType(props.data[0][0].contentType.split('\n\n'))
+    if(props.data.length){
+      setdatalevel(props.data[0].level.contentLevel.split('\n\n'))
     }
   }, [props.data]);
 
-  if (!data[0].length) {
+  if (!data.length) {
     return <div>loading</div>;
   }
-
   return (
     <Fragment>
       <div className={styles.conatiner}>
         <div className={styles.main}>
           <div className={styles.contentLeft}>
             <div className={styles.title}>
-              <h2>{data[0][0]?.type}</h2>
+              <h2>{data[0]?.level.nameLevel}</h2>
             </div>
             <div className={styles.imageFiled}>
-              <img src={data[0][0]?.imageType} alt="" />
+              <img src={data[0]?.level.images} alt="" />
             </div>
             <div className={styles.colorMain}>
               <div className={styles.blockColor1}></div>
@@ -37,33 +37,40 @@ const DetailSkills = (props) => {
                   Are you looking for a face-to-face English course near you?
                 </p>
                 <button>
-                  <Link className={styles.textMeeting} to={"/meeting"} target={"_blank"}>Meeting</Link>
+                  <Link
+                    className={styles.textMeeting}
+                    to={"/meeting"}
+                    target={"_blank"}
+                  >
+                    Meeting
+                  </Link>
                 </button>
               </div>
               <div className={styles.blockColor3}></div>
             </div>
 
             <div className={styles.textIntro}>
-              {dataContentType.map((item,index) =>(
+              {datalevel.map((item,index) =>(
                 <p className={styles.text} key={index}>{item}</p>
+
               ))}
-              <h2>Choose your level to practise your {(data[0][0]?.type).toLowerCase()}</h2>
+              <h2>Choose a {(data[0]?.type).toLowerCase()} lesson</h2>
             </div>
 
             <div className={styles.contain}>
-              {data[0].slice(0,5).map((item) => (
+              {data.map((item) => (
                 <div className={styles.viewRow} key={item._id}>
                   <div className={styles.imageFile}>
-                    <img src={item.level.images} alt="" />
+                    <img src={item?.level?.topic?.imageTopic} alt="" />
                   </div>
                   <div className={styles.textView}>
-                    <Link to={item.level.slugLevel}>
-                      <h2>{item.level.nameLevel}</h2>
+                    <Link to={item?.level?.topic?.slugTopic}>
+                      <h2>{item?.level?.topic?.nameTopic}</h2>
                     </Link>
                     <p>
-                      {item.level.contentLevel.substring(
+                      {item?.level?.topic?.contentTopic.substring(
                         0,
-                        item.level.contentLevel.indexOf(".") + 1
+                        item?.level?.topic?.contentTopic.indexOf(".") + 1
                       )}
                     </p>
                   </div>
@@ -81,4 +88,4 @@ const DetailSkills = (props) => {
   );
 };
 
-export default DetailSkills;
+export default TopicGrammar;

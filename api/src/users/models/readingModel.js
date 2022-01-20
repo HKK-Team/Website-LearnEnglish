@@ -18,6 +18,7 @@ const readingSchema = new mongoose.Schema({
       slugTopic:String,
       imageTopic: String,
       contentTopic: String,
+      readingText:String,
       task: {
         type: Array,
         default: [],

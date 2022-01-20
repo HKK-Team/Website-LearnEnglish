@@ -1,27 +1,27 @@
 import { Fragment, React, useContext, useState, useEffect } from "react";
+import Topics from "../../../components/Skills/Topic/Topic";
 import Footer from "../../../components/Footer/Footer";
 import Header from "../../../components/Headers/Header";
-import DetailTopic from "../../../components/Skills/DetailTopic/DetailTopic";
 import { GlobalState } from "../../../GlobalState";
 import { useLocation } from "react-router-dom";
-import { formatData } from "./utils";
+import { formatData } from "./utilsTopic";
 
-const DetailLevelWriting = () => {
+const TopicReading = () => {
   const state = useContext(GlobalState);
   const [data, setdata] = useState([]);
   const location = useLocation();
-  const [dataWriting] = state.writingApi.dataWriting;
+  const [dataReading] = state.readingApi.dataReading;
 
   useEffect(() => {
-    setdata(formatData(location.pathname, dataWriting));
-  }, [location.pathname, dataWriting]);
+    setdata(formatData(location.pathname,dataReading));
+  }, [location.pathname, dataReading]);
   return (
     <Fragment>
       <Header />
-      <DetailTopic data={data} />
+      <Topics data={data} />
       <Footer />
     </Fragment>
   );
 };
 
-export default DetailLevelWriting;
+export default TopicReading;

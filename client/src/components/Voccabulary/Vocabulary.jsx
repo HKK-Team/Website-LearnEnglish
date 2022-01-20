@@ -64,6 +64,9 @@ const Vocabulary = (props) => {
               level1={"Beginner to pre-intermediate"}
               level2={"Intermediate to upper intermediate"}
               level3={"English grammar reference"}
+              sluglevel1={"beginner-to-pre-intermediate"}
+              sluglevel2={"intermediate-to-upper-intermediate"}
+              sluglevel3={"english-grammar-reference"}
             />
             <RightItem />
           </div>

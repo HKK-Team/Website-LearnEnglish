@@ -15,7 +15,9 @@ const speakingSchema = new mongoose.Schema({
     topic: {
       topicCode: String,
       nameTopic: String,
+      imageTopic:String,
       slugTopic:String,
+      tranScript: String,
       videoTopic: String,
       contentTopic: String,
       task: {

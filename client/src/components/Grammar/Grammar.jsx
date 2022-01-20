@@ -1,9 +1,8 @@
-import { React, Fragment,useState,useEffect } from "react";
-import styles from "./Grammar.module.css";
-import RightItem from "../RightItem/RightItem";
-import LevelRightItem from "../RightItem/LevelRightItem/LevelRightItem";
-import Image1 from "../../images/11.jpg";
+import { Fragment, React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import LevelRightItem from "../RightItem/LevelRightItem/LevelRightItem";
+import RightItem from "../RightItem/RightItem";
+import styles from "./Grammar.module.css";
 
 const Grammar = (props) => {
   const [data, setdata] = useState(props.data);
@@ -43,16 +42,16 @@ const Grammar = (props) => {
               grammar, so come back tomorrow to choose another grammar point to
               work on. Good luck!
             </p>
-            <h1>Choose a section</h1>
+            <h1>Choose a grammar section</h1>
             <div className={styles.contain}>
-              {data[0].map(item =>(
+              {data[0].slice(0, 2).map(item =>(
               <div className={styles.viewRow} key={item._id}>
                 <div className={styles.imageFile}>
                   <img src={item.level.images} alt="" />
                 </div>
                 <div className={styles.textView}>
                   <Link to={item.level.slugLevel}>
-                    <h2>{item.level.nameLevel}</h2>
+                    <h2>{item.level.nameLevel}</h2> 
                   </Link>
                   <p>
                     Here you can find activities to practise your listening
@@ -70,6 +69,9 @@ const Grammar = (props) => {
               level1={"Beginner to pre-intermediate"}
               level2={"Intermediate to upper intermediate"}
               level3={"English grammar reference"}
+              sluglevel1={"beginner-to-pre-intermediate"}
+              sluglevel2={"intermediate-to-upper-intermediate"}
+              sluglevel3={"english-grammar-reference"}
             />
             <RightItem />
           </div>

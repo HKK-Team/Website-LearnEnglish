@@ -6,9 +6,13 @@ import RightItem from "../../RightItem/RightItem";
 
 const DetailTopic = (props) => {
   const [data, setdata] = useState(props.data);
+  const [datalevel,setdatalevel] = useState([]);
 
   useEffect(() => {
     setdata(props.data);
+    if(props.data.length){
+      setdatalevel(props.data[0].level.contentLevel.split('\n\n'))
+    }
   }, [props.data]);
 
   if (!data.length) {
@@ -45,7 +49,10 @@ const DetailTopic = (props) => {
             </div>
 
             <div className={styles.textIntro}>
-              <p className={styles.text}>{data[0]?.level.contentLevel}</p>
+              {datalevel.map((item,index) =>(
+                <p className={styles.text} key={index}>{item}</p>
+
+              ))}
               <h2>Choose a {(data[0]?.type).toLowerCase()} lesson</h2>
             </div>
 

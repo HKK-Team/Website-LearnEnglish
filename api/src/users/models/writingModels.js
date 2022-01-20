@@ -18,6 +18,7 @@ const writingSchema = new mongoose.Schema({
       slugTopic:String,
       imageTopic: String,
       contentTopic: String,
+      tips:String,
       task: {
         type: Array,
         default: [],

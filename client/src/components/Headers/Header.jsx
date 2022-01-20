@@ -10,6 +10,7 @@ import TwoItems from "./TwoItemsLogin&Regis/MenuLoginRegis";
 
 const Header = () => {
   const url = `${window.location.pathname}`;
+  
   var str = '/';
   for(let i = 1;i < url.length;i++){
     if(url[i] === '/')break;
