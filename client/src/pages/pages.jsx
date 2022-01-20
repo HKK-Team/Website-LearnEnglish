@@ -21,6 +21,7 @@ import TopicReading from "./Skills/Topic/TopicReading";
 import TopicSpeaking from "./Skills/Topic/TopicSpeaking";
 import TopicWriting from './Skills/Topic/TopicWriting'
 import TopicGrammar from './Grammar/Topic/Topic'
+import DetailTopic from './Grammar/DetailTopic/DetailTopic'
 
 import React from "react";
 
@@ -79,9 +80,14 @@ const Pages = () => {
       <Route path="/skill/writing/Advanced-C1/:id" element={<TopicWriting />} />
        {/* detail writing topic */}
 
-       {/* detail topic grammar */}
+       {/* detail level grammar */}
        <Route path="/grammar/:id" element={<TopicGrammar />} />
-       {/* detail topic grammar */}
+       {/* detail level grammar */}
+
+        {/* detail level grammar */}
+       <Route path="/grammar/beginner-to-pre-intermediate/:id" element={<DetailTopic />} />
+       <Route path="/grammar/Intermediate-to-upper-intermediate/:id" element={<DetailTopic />} />
+       {/* detail level grammar */}
 
       <Route path="/meeting/:id" element={<CallPage />} />
       <Route path="/meeting" element={<HomeGGMeet />} />

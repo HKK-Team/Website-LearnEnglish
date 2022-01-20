@@ -1,18 +1,17 @@
 import { React, Fragment, useState, useEffect } from "react";
-import styles from "../DetailSkills/DetailSkills.module.css";
+import styles from "../../Skills/DetailSkills/DetailSkills.module.css";
 import { Link } from "react-router-dom";
 import SkillItem from "../../RightItem/SkillItem/SkillItem";
 import RightItem from "../../RightItem/RightItem";
 
 const TopicGrammar = (props) => {
-  console.log(props.data)
   const [data, setdata] = useState(props.data);
-  const [datalevel,setdatalevel] = useState([]);
+  const [datalevel, setdatalevel] = useState([]);
 
   useEffect(() => {
     setdata(props.data);
-    if(props.data.length){
-      setdatalevel(props.data[0].level.contentLevel.split('\n\n'))
+    if (props.data.length) {
+      setdatalevel(props.data[0].level.contentLevel.split("\n\n"));
     }
   }, [props.data]);
 
@@ -50,11 +49,12 @@ const TopicGrammar = (props) => {
             </div>
 
             <div className={styles.textIntro}>
-              {datalevel.map((item,index) =>(
-                <p className={styles.text} key={index}>{item}</p>
-
+              {datalevel.map((item, index) => (
+                <p className={styles.text} key={index}>
+                  {item}
+                </p>
               ))}
-              <h2>Choose a {(data[0]?.type).toLowerCase()} lesson</h2>
+              <h2>Choose a grammar lesson</h2>
             </div>
 
             <div className={styles.contain}>
@@ -64,7 +64,7 @@ const TopicGrammar = (props) => {
                     <img src={item?.level?.topic?.imageTopic} alt="" />
                   </div>
                   <div className={styles.textView}>
-                    <Link to={item?.level?.topic?.slugTopic}>
+                    <Link to={item?.level?.topic?.slug}>
                       <h2>{item?.level?.topic?.nameTopic}</h2>
                     </Link>
                     <p>
