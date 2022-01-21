@@ -3,6 +3,8 @@ import axios from "axios";
 
 function ListeningApi() {
   const [dataListening, setdataListening] = useState([]);
+  const [currentPageListening, setcurrentPageListening] = useState(1)
+  const [postsPerPageListening] = useState(1)
 
   //get data skill listening
   useEffect(() => {
@@ -15,6 +17,8 @@ function ListeningApi() {
 
   return {
     dataListening: [dataListening, setdataListening],
+    currentPageListening:[currentPageListening, setcurrentPageListening],
+    postsPerPageListening:[postsPerPageListening] 
   };
 }
 export default ListeningApi;

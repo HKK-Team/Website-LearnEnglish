@@ -8,7 +8,6 @@ import AccordionSpeaking from "./AccordionSpeaking/AccordionSpeaking";
 import AccordionWriting from "./AccordionWriting/AccordionWriting";
 
 const Topic = (props) => {
-  console.log(props.data);
   const [data, setdata] = useState(props.data);
   const [isListening, setisListening] = useState(false);
   const [isReading, setisReading] = useState(false);
@@ -80,7 +79,7 @@ const Topic = (props) => {
                   <audio src={data[0]?.level.topic.radio} controls />
                 </div>
                 <div>
-                  <Accordion data={data[0]?.level.topic.tranScript} />
+                  <Accordion data={data[0]?.level} />
                 </div>
               </div>
             ) : (
