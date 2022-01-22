@@ -17,7 +17,6 @@ const Pagination = (props) => {
     for (let i = 1; i <= total; i++) {
       page.push(i);
     }
-    console.log(total);
     setpageNumber(page);
   }, [props.data.length, total]);
 

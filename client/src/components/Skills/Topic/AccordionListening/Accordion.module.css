@@ -197,6 +197,7 @@
     background-color: #fff;
     color: #333333;
     margin-left: 5px;
+    margin-top: 10px;
     border-radius: 5px;
     padding: 8px 16px;
     box-shadow: 0px 2px #d3d7d8;
@@ -229,16 +230,12 @@
     margin-top: 15px;
 }
 
-.contentLeft {
-    flex-grow: 1;
-}
-
 .contentLeft p {
     padding-left: 20px;
+    width: 400px;
 }
 
 .contentRight {
-    flex-grow: 1;
     position: relative;
 }
 
