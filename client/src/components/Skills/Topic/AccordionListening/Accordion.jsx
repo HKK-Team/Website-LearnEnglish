@@ -1,18 +1,18 @@
-import { React, useEffect, useState } from "react";
+import { React, useContext, useEffect, useState } from "react";
 import {
   Accordion,
   AccordionItem,
   AccordionItemButton,
   AccordionItemHeading,
-  AccordionItemPanel,
+  AccordionItemPanel
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
-import { FaFlag, FaHandPointDown, FaSync } from "react-icons/fa";
-import { Option, QuestionGroup, Test } from "react-multiple-choice";
-import styles from "./Accordion.module.css";
-import Pagination from "../../../Pagination/Pagination";
+import {
+  FaFlag, FaHandPointDown, FaSync
+} from "react-icons/fa";
 import { GlobalState } from "../../../../GlobalState";
-import { useContext } from "react";
+import Pagination from "../../../Pagination/Pagination";
+import styles from "./Accordion.module.css";
 
 export default function Accordions(props) {
   //pagination listening task1
@@ -27,7 +27,7 @@ export default function Accordions(props) {
 
   //set up for task2
   const [item, setitem] = useState({
-    items: ["Cake", "Donut", "Apple", "Pizza", "Pizzv"],
+    items: ["Cake", "Donut", "Apple", "Pizza", "Pizzv", "dfsdf", "sfsd"],
   });
   const [draggedItem, setdraggedItem] = useState(0);
   const [draggedIdx, setdraggedIdx] = useState(0);
@@ -107,56 +107,24 @@ export default function Accordions(props) {
             </div>
 
             <div className={styles.checkBox}>
-              <div className={styles.mutipleChoise}>
-                <Test
-                  onOptionSelect={(selectedOptions) =>
-                    setselectedOptions({ selectedOptions })
-                  }
-                >
-                  {currentPost.map((item, index) => (
-                    <QuestionGroup questionNumber={0} key={index}>
-                      <div>{item.question}</div>
-                      {Object.entries(item)
-                        .slice(1, 5)
-                        .map((items, indexs) =>
-                          items[1] ? (
-                            <Option
-                              value={indexs}
-                              style={{
-                                option: {
-                                  width: "600px",
-                                  height: "20px",
-                                  marginTop: "10px",
-                                  boxShadow: "none",
-                                },
-                              }}
-                            >
-                              {items[1]}
-                            </Option>
-                          ) : (
-                            ""
-                          )
-                        )}
-
-                      {/* {item.option.map((items, indexs) => (
-                        <Option
-                          value={indexs}
-                          style={{
-                            option: {
-                              width: "0px",
-                              height: "20px",
-                              marginTop: "10px",
-                              boxShadow: "none",
-                            },
-                          }}
-                        >
-                          {items[indexs]}
-                        </Option>
-                      ))} */}
-                    </QuestionGroup>
-                  ))}
-                </Test>
-              </div>
+              {currentPost.map((item, index) => (
+                <div key={index}>
+                  <p className={styles.question}>{item.question}</p>
+                  {Object.entries(item)
+                    .slice(1, 5)
+                    .map((items, indexs) =>
+                      items[1] ? (
+                        <label className={styles.checkBoxMutiple}>
+                          <input type="radio" name="radio" />
+                          <span className={styles.checkmark}></span>
+                          {items[1]}
+                        </label>
+                      ) : (
+                        ""
+                      )
+                    )}
+                </div>
+              ))}
 
               <div className={styles.buttonCheck}>
                 <button className={styles.buttonFis}>
@@ -190,23 +158,127 @@ export default function Accordions(props) {
             </div>
 
             <div className={styles.checkBox}>
-              <div className={styles.elements}>
-                <div className={styles.items}>
-                  <ul className={styles.item}>
-                    {item.items.map((item, index) => (
-                      <li key={index} onDragOver={() => onDragOver(index)}>
-                        <div
-                          className={styles.drag}
-                          draggable
-                          onDragStart={(e) => onDragStart(e, index)}
-                          onDragEnd={onDragEnd}
-                        >
-                          {item}
-                        </div>
+              <div className={styles.items}>
+                <ul className={styles.item}>
+                  {item.items.map((item, index) => (
+                    <li key={index} onDragOver={() => onDragOver(index)}>
+                      <div
+                        className={styles.drag}
+                        draggable
+                        onDragStart={(e) => onDragStart(e, index)}
+                        onDragEnd={onDragEnd}
+                      >
+                        {item}
                         <FaHandPointDown className={styles.icon} />
-                      </li>
-                    ))}
-                  </ul>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className={styles.buttonCheck}>
+                <button className={styles.buttonFis}>
+                  <FaFlag /> Finish
+                </button>
+                <button className={styles.buttonTry}>
+                  <FaSync /> Try again
+                </button>
+              </div>
+            </div>
+          </div>
+        </AccordionItemPanel>
+      </AccordionItem>
+
+      <AccordionItem className={styles.item}>
+        <AccordionItemHeading className={styles.headerTranscript}>
+          <AccordionItemButton className={styles.transcript}>
+            Task3
+          </AccordionItemButton>
+        </AccordionItemHeading>
+        <AccordionItemPanel className={styles.panelTextForm}>
+          <div className={styles.form}>
+            <div>
+              <p className={styles.textTitle}>
+                Listening A1: A request from your boss – 2
+              </p>
+              <p className={styles.subtitle}>
+                Match the verbs and nouns from the interview.
+              </p>
+              <p className={styles.remaining}>4 items remaining</p>
+            </div>
+
+            <div className={styles.checkBox}>
+              <div className={styles.itemSelection}>
+                <ul>
+                  <li>
+                    <div>
+                      to solve{" "}
+                      <FaHandPointDown className={styles.iconSelection} />
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      to come up with{" "}
+                      <FaHandPointDown className={styles.iconSelection} />
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      to speak for{" "}
+                      <FaHandPointDown className={styles.iconSelection} />
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div className={styles.blockContent}>
+                <div className={styles.content}>
+                  <div className={styles.contentLeft}>
+                    <p>to solve</p>
+                  </div>
+                  <div className={styles.contentRight}>
+                    <div className={styles.addSelection}></div>
+                  </div>
+                </div>
+                <div className={styles.content}>
+                  <div className={styles.contentLeft}>
+                    <p>to solve</p>
+                  </div>
+                  <div className={styles.contentRight}>
+                    <div className={styles.addSelection}></div>
+                  </div>
+                </div>
+                <div className={styles.content}>
+                  <div className={styles.contentLeft}>
+                    <p>to solve</p>
+                  </div>
+                  <div className={styles.contentRight}>
+                    <div className={styles.addSelection}></div>
+                  </div>
+                </div>
+                <div className={styles.content}>
+                  <div className={styles.contentLeft}>
+                    <p>to solve</p>
+                  </div>
+                  <div className={styles.contentRight}>
+                    <div className={styles.addSelection}></div>
+                  </div>
+                </div>
+                <div className={styles.content}>
+                  <div className={styles.contentLeft}>
+                    <p>to solve</p>
+                  </div>
+                  <div className={styles.contentRight}>
+                    <div className={styles.addSelection}></div>
+                  </div>
+                </div>
+                <div className={styles.content}>
+                  <div className={styles.contentLeft}>
+                    <p>to solve</p>
+                  </div>
+                  <div className={styles.contentRight}>
+                    <div className={styles.addSelection}></div>
+                  </div>
                 </div>
               </div>
 

@@ -17,8 +17,9 @@ const Pagination = (props) => {
     for (let i = 1; i <= total; i++) {
       page.push(i);
     }
+    console.log(total);
     setpageNumber(page);
-  },[]);
+  }, [props.data.length, total]);
 
   const eventPrev = () => {
     setcurrentPageListening(currentPageListening - 1);
@@ -28,30 +29,32 @@ const Pagination = (props) => {
   };
 
   return (
-    <div>
-      <div className={styles.pagination}>
+    <div className={styles.pagination}>
+      <div className={styles.itemWrapper}>
         <ul className={styles.items}>
-          {pageNumber.map((item) => (
-            <li className={styles.item}>{item}</li>
+          {pageNumber.map((item, index) => (
+            <li className={styles.item} key={index}>
+              {item}
+            </li>
           ))}
         </ul>
-      </div>
 
-      <div className={styles.buttonMove}>
-        <button
-          className={styles.buttonPrev}
-          onClick={eventPrev}
-          disabled={currentPageListening <= 1}
-        >
-          <FaAngleLeft />
-        </button>
-        <button
-          className={styles.buttonNext}
-          onClick={eventRight}
-          disabled={currentPageListening >= total}
-        >
-          <FaAngleRight />
-        </button>
+        <div className={styles.buttonMove}>
+          <button
+            className={styles.buttonPrev}
+            onClick={eventPrev}
+            disabled={currentPageListening <= 1}
+          >
+            <FaAngleLeft />
+          </button>
+          <button
+            className={styles.buttonNext}
+            onClick={eventRight}
+            disabled={currentPageListening >= total}
+          >
+            <FaAngleRight />
+          </button>
+        </div>
       </div>
     </div>
   );
