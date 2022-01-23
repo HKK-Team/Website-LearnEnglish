@@ -66,6 +66,32 @@
     position: relative;
 }
 
+.dialogForm {
+    position: absolute;
+    top: 10px;
+    left: 130px;
+    width: 550px;
+    height: 140px;
+    border: 1px solid #333333;
+    background-color: #fff;
+}
+
+.dialogForm .text {
+    text-align: center;
+}
+
+.dialogForm .total {
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 70px;
+}
+
+.dialogForm .iconClose {
+    float: right;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
 .form .textTitle {
     color: #658600;
     font-size: 18px;
@@ -129,13 +155,11 @@
 
 .buttonCheck .buttonFis {
     padding: 8px;
-    width: 90px;
     cursor: pointer;
 }
 
 .buttonCheck .buttonTry {
     padding: 8px;
-    width: 90px;
     margin-left: 11px;
     cursor: pointer;
 }

@@ -15,8 +15,23 @@
     width: 20px;
     display: inline-block;
     padding-right: 10px;
+    color: #658600;
 }
 
 .buttonMove {
     display: inline-block;
+}
+
+.buttonPrev {
+    cursor: pointer;
+    width: 50px;
+    border-radius: 5px;
+    color: #658600;
+}
+
+.buttonNext {
+    cursor: pointer;
+    width: 50px;
+    border-radius: 5px;
+    color: #658600;
 }
