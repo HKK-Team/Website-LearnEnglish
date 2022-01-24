@@ -1,9 +1,9 @@
 import { React, useState } from "react";
 import {
-    AccordionItem,
-    AccordionItemButton,
-    AccordionItemHeading,
-    AccordionItemPanel
+  AccordionItem,
+  AccordionItemButton,
+  AccordionItemHeading,
+  AccordionItemPanel,
 } from "react-accessible-accordion";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaFlag, FaHandPointDown, FaSync, FaThList } from "react-icons/fa";
@@ -85,95 +85,95 @@ const Task2 = (props) => {
   };
   return (
     <div>
-        <AccordionItem className={styles.item}>
-          <AccordionItemHeading className={styles.headerTranscript}>
-            <AccordionItemButton className={styles.transcript}>
-              Task2
-            </AccordionItemButton>
-          </AccordionItemHeading>
-          <AccordionItemPanel className={styles.panelTextForm}>
-            <div className={styles.form}>
-              {dialog ? (
-                <div className={styles.dialogForm}>
-                  <p className={styles.text}>Feedback</p>
-                  <span className={styles.iconClose}>
-                    <AiOutlineClose onClick={() => setdialog(false)} />
-                  </span>
-                  <p className={styles.total}>
-                    Total score is {answerCorrect} out of {dataTask2.length} (
-                    {((answerCorrect / dataTask2.length) * 100).toFixed(0)}%)
-                  </p>
-                </div>
-              ) : (
-                ""
-              )}
-
-              <div>
-                <p className={styles.textTitle}>
-                  Listening{" "}
-                  {props.data.data.nameLevel.substring(
-                    props.data.data.nameLevel.indexOf(" ")
-                  )}
-                  : {props.data.data.topic.nameTopic} – 1
-                </p>
-                <p className={styles.subtitle}>Choose the correct answer.</p>
-                <p className={styles.remaining}>
-                  {dataTask2.length} items remaining
+      <AccordionItem className={styles.item}>
+        <AccordionItemHeading className={styles.headerTranscript}>
+          <AccordionItemButton className={styles.transcript}>
+            Task2
+          </AccordionItemButton>
+        </AccordionItemHeading>
+        <AccordionItemPanel className={styles.panelTextForm}>
+          <div className={styles.form}>
+            {dialog ? (
+              <div className={styles.dialogForm}>
+                <p className={styles.text}>Feedback</p>
+                <span className={styles.iconClose}>
+                  <AiOutlineClose onClick={() => setdialog(false)} />
+                </span>
+                <p className={styles.total}>
+                  Total score is {answerCorrect} out of {dataTask2.length} (
+                  {((answerCorrect / dataTask2.length) * 100).toFixed(0)}%)
                 </p>
               </div>
+            ) : (
+              ""
+            )}
 
-              <div className={styles.checkBox}>
-                <div className={styles.items}>
-                  <ul className={styles.item}>
-                    {dataTask2.map((item, index) => (
-                      <li
-                        key={index}
-                        onDragOver={() => onDragOver(index)}
-                        style={{
-                          backgroundColor: colorTask2
-                            ? "#70cce4"
-                            : colorAnswertask2.includes(index)
-                            ? "#b8ecbc"
-                            : "#dedae6",
-                          //   :"#ffccc4"
-                        }}
-                      >
-                        <div
-                          className={styles.drag}
-                          draggable
-                          onDragStart={(e) => onDragStart(e, index)}
-                          onDragEnd={onDragEnd}
-                        >
-                          {item.substring(0, item.indexOf("-"))}
-                          <FaHandPointDown className={styles.icon} />
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            <div>
+              <p className={styles.textTitle}>
+                Listening{" "}
+                {props.data.data.nameLevel.substring(
+                  props.data.data.nameLevel.indexOf(" ")
+                )}
+                : {props.data.data.topic.nameTopic} – 1
+              </p>
+              <p className={styles.subtitle}>Choose the correct answer.</p>
+              <p className={styles.remaining}>
+                {dataTask2.length} items remaining
+              </p>
+            </div>
 
-                <div className={styles.buttonCheck}>
-                  {showAnswer ? (
-                    <button
-                      className={styles.buttonFis}
-                      onClick={eventShowAnswer}
+            <div className={styles.checkBox}>
+              <div className={styles.items}>
+                <ul className={styles.item}>
+                  {dataTask2.map((item, index) => (
+                    <li
+                      key={index}
+                      onDragOver={() => onDragOver(index)}
+                      style={{
+                        backgroundColor: colorTask2
+                          ? "#70cce4"
+                          : colorAnswertask2.includes(index)
+                          ? "#b8ecbc"
+                          : "#dedae6",
+                        //   :"#ffccc4"
+                      }}
                     >
-                      <FaThList /> Show answers
-                    </button>
-                  ) : (
-                    <button className={styles.buttonFis} onClick={eventFinish}>
-                      <FaFlag /> Finish
-                    </button>
-                  )}
+                      <div
+                        className={styles.drag}
+                        draggable
+                        onDragStart={(e) => onDragStart(e, index)}
+                        onDragEnd={onDragEnd}
+                      >
+                        {item.substring(0, item.indexOf("-"))}
+                        <FaHandPointDown className={styles.icon} />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-                  <button className={styles.buttonTry} onClick={eventTry}>
-                    <FaSync /> Try again
+              <div className={styles.buttonCheck}>
+                {showAnswer ? (
+                  <button
+                    className={styles.buttonFis}
+                    onClick={eventShowAnswer}
+                  >
+                    <FaThList /> Show answers
                   </button>
-                </div>
+                ) : (
+                  <button className={styles.buttonFis} onClick={eventFinish}>
+                    <FaFlag /> Finish
+                  </button>
+                )}
+
+                <button className={styles.buttonTry} onClick={eventTry}>
+                  <FaSync /> Try again
+                </button>
               </div>
             </div>
-          </AccordionItemPanel>
-        </AccordionItem>
+          </div>
+        </AccordionItemPanel>
+      </AccordionItem>
     </div>
   );
 };

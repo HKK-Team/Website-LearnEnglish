@@ -267,6 +267,8 @@
     width: 270px;
     height: 40px;
     border: 3px solid #e7e7e7;
+    text-align: center;
+    color: #658600;
     position: absolute;
     left: 50px;
     top: -10px;
