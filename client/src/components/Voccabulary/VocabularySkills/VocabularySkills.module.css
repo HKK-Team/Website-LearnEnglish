@@ -1,0 +1,21 @@
+.heading{
+    margin-bottom: 50px;
+}
+.depthLink{
+    color: #23085a;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+.line{
+    width: 5%;
+    height: 5px;
+    background-color: #23085A;
+}
+.containerLesson{
+    margin-bottom: 145px;
+}
+@media (max-width: 768px) {
+    .containerLesson{
+        margin: 0;
+    }
+}

@@ -11,7 +11,7 @@ const Vocabulary = (props) => {
   useEffect(() => {
     setdata(props.data);
   }, [props.data]);
-
+  console.log(data[0]);
   if (!data[0].length) {
     return <div>loading</div>;
   }
@@ -45,7 +45,7 @@ const Vocabulary = (props) => {
                       <img src={item.level.images} alt="" />
                     </div>
                     <div className={styles.textView}>
-                      <Link to={item.level.slugLevel}>
+                      <Link to={item.level.slugLevel || " "}>
                         <h2>{item.level.nameLevel}</h2>
                       </Link>
                       <p>
