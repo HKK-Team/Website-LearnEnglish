@@ -33,15 +33,16 @@ const DetailTopic = (props) => {
     }
   }, [props.data]);
 
+
   if (!data.length) {
     return <div>loading</div>;
   }
 
   return (
     <Fragment>
-      <div className={styles.conatiner}>
-        <div className={styles.main}>
-          <div className={styles.contentLeft}>
+      <div className="grid wide">
+        <div className="row">
+          <div className="col l-9 m-12 c-12">
             <div className={styles.title}>
               <h2>{data[0]?.level.topic.nameTopic}</h2>
             </div>
@@ -140,7 +141,7 @@ const DetailTopic = (props) => {
               </div>
             </div>
           </div>
-          <div className={styles.contentRight}>
+          <div className="col l-3 m-12 c-12" style={{ marginTop: 105 }}>
             <SkillItem />
             <RightItem />
           </div>

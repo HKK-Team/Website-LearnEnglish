@@ -7,27 +7,33 @@ import { Link } from "react-router-dom";
 
 const RightItem = () => {
   return (
-    <div>
+    <div style={{width:'100%'}}>
       <div className={styles.containImage}>
         <img src={Image3} alt="" />
-        <Link to={""} className={styles.text}>
-          Self-study online
-          <br /> courses
-        </Link>
+        <div className={styles.BoxText}>
+          <Link to={""} className={styles.text}>
+            Self-study online
+            <br /> courses
+          </Link>
+        </div>
       </div>
 
       <div className={styles.containImage}>
         <img src={Image2} alt="" />
-        <Link to={""} className={styles.text}>
-          Live online classes
-        </Link>
+        <div className={styles.BoxText}>
+          <Link to={""} className={styles.text}>
+            Live online classes
+          </Link>
+        </div>
       </div>
 
       <div className={styles.containImage}>
         <img src={Image1} alt="" />
-        <Link to={""} className={styles.text}>
-          Personal online tutoring
-        </Link>
+        <div className={styles.BoxText}>
+          <Link to={""} className={styles.text}>
+            Personal online tutoring
+          </Link>
+        </div>
       </div>
 
       <div className={styles.containOur}>

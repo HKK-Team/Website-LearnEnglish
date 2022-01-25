@@ -1,50 +1,28 @@
-.conatiner {
-    width: 100%;
-    height: auto;
-    margin-top: 50px;
-}
-
-.main {
-    display: flex;
-    align-items: stretch;
-}
-
-.contentLeft {
-    width: 970px;
-}
-
-.contentRight {
-    width: 290px;
-    height: auto;
-    margin-top: 100px;
-}
 
 .title {
     font-size: 25px;
     font-weight: 400;
     line-height: 1.1;
     color: #23085A;
-    margin-left: 15px;
 }
 
 .imageFiled img {
-    margin-left: 19px;
-    width: 910px;
-    height: 582px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
     border-bottom-right-radius: 35px;
 }
 
 .blockMeeting {
-    width: 910px;
+    width: 100%;
     height: 350px;
     position: relative;
 }
 
 .colorMain {
     margin-top: 30px;
-    margin-left: 19px;
     background-color: #60ec4c;
-    width: 910px;
+    width: 100%;
     height: 250px;
     border-top-left-radius: 55px;
     border-bottom-right-radius: 55px;
@@ -58,13 +36,13 @@
     height: 220px;
     position: absolute;
     left: 0px;
-    bottom: -1px;
+    bottom: 0px;
     background-color: #280c5c;
     clip-path: polygon(0 39%, 69% 0, 69% 100%, 0 100%);
 }
 
 .blockColor2 {
-    width: 700px;
+    width: 80%;
     height: 220px;
     background-color: #fff;
     position: absolute;
@@ -125,7 +103,6 @@
     background-color: #fff;
     width: 100px;
     height: 100px;
-    margin-left: 19px;
     position: relative;
 }
 
@@ -135,7 +112,6 @@
 }
 
 .textIntro p {
-    margin-left: 19px;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 18px;
     line-height: 1.42857;
@@ -145,7 +121,6 @@
 .textExample {
     width: 910px;
     height: auto;
-    margin-left: 15px;
     display: flex;
     align-items: stretch;
 }
@@ -167,7 +142,6 @@
 }
 
 .accordion .text {
-    margin-left: 19px;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 18px;
     line-height: 1.42857;
@@ -184,12 +158,10 @@
     font-weight: 700;
     line-height: 1.1;
     color: #23085A;
-    margin-left: 15px;
 }
 
 .grammarExplan p {
     width: 870px;
-    margin-left: 19px;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 18px;
     line-height: 1.42857;
@@ -202,7 +174,6 @@
 
 .accordion1 .text {
     width: 870px;
-    margin-left: 19px;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 18px;
     line-height: 1.42857;

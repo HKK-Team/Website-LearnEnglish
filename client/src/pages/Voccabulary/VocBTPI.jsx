@@ -6,13 +6,10 @@ import { GlobalState } from "../../GlobalState";
 
 export default function VocBTPI() {
   const state = useContext(GlobalState);
-  console.log(state);
   return (
     <Fragment>
       <Header />
-      <VocabularySkills
-        {...state.vocabularyApi.vocData[0][0]}
-      />
+      <VocabularySkills {...state.vocabularyApi.vocData[0][0]} />
       <Footer />
     </Fragment>
   );

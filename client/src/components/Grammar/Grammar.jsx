@@ -16,9 +16,9 @@ const Grammar = (props) => {
   }
   return (
     <Fragment>
-      <div className={styles.containMain}>
-        <div className={styles.content}>
-          <div className={styles.contentLeft}>
+      <div className="grid wide" style={{marginTop:60}}>
+        <div className="row">
+          <div className="col l-9 m-12 c-12">
             <p>
               Practise your English grammar with clear grammar explanations and
               practice exercises to test your understanding. All learners,
@@ -64,7 +64,7 @@ const Grammar = (props) => {
             </div>
           </div>
 
-          <div className={styles.contentRight}>
+          <div className="col l-3 m-12 c-12">
             <LevelRightItem
               level1={"Beginner to pre-intermediate"}
               level2={"Intermediate to upper intermediate"}

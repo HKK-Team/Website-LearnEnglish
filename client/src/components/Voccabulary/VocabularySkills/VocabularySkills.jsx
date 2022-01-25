@@ -16,7 +16,7 @@ export default function VocabularySkills(props) {
   return (
     <div className="grid wide">
       <div className="row">
-        <div className="col l-8 m-12 c-12">
+        <div className="col l-9 m-12 c-12">
           <div className={styles.heading}>
             <p className={styles.depthLink}>
               <Link to="/voccabulary">Vocabulary</Link>

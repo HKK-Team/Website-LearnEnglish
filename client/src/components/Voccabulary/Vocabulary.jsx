@@ -1,9 +1,8 @@
-import { React, Fragment, useState, useEffect } from "react";
-import styles from "./Vocabulary.module.css";
-import RightItem from "../RightItem/RightItem";
-import LevelRightItem from "../RightItem/LevelRightItem/LevelRightItem";
-import ListItem from "../ListItem/ListItem";
+import { Fragment, React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import LevelRightItem from "../RightItem/LevelRightItem/LevelRightItem";
+import RightItem from "../RightItem/RightItem";
+import styles from "./Vocabulary.module.css";
 
 const Vocabulary = (props) => {
   const [data, setdata] = useState(props.data);
@@ -11,15 +10,15 @@ const Vocabulary = (props) => {
   useEffect(() => {
     setdata(props.data);
   }, [props.data]);
-  console.log(data[0]);
+  
   if (!data[0].length) {
     return <div>loading</div>;
   }
   return (
     <Fragment>
-      <div className={styles.containMain}>
-        <div className={styles.content}>
-          <div className={styles.contentLeft}>
+      <div className="grid wide" style={{marginTop:60}}>
+        <div className="row">
+          <div className="col l-9 m-12 c-12">
             <p>
               Do you need to learn new words to understand and express yourself
               clearly in English?
@@ -59,7 +58,7 @@ const Vocabulary = (props) => {
               </div>
             </div>
           </div>
-          <div className={styles.contentRight}>
+          <div className="col l-3 c-12 m-12">
             <LevelRightItem
               level1={"Beginner to pre-intermediate"}
               level2={"Intermediate to upper intermediate"}
