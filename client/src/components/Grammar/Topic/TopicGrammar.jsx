@@ -20,9 +20,9 @@ const TopicGrammar = (props) => {
   }
   return (
     <Fragment>
-      <div className={styles.conatiner}>
-        <div className={styles.main}>
-          <div className={styles.contentLeft}>
+      <div className="grid wide">
+        <div className="row">
+          <div className="col l-9 m-12 c-12">
             <div className={styles.title}>
               <h2>{data[0]?.level.nameLevel}</h2>
             </div>
@@ -78,7 +78,7 @@ const TopicGrammar = (props) => {
               ))}
             </div>
           </div>
-          <div className={styles.contentRight}>
+          <div className="col m-12 c-12 l-3" style={{ marginTop: 105 }}>
             <SkillItem />
             <RightItem />
           </div>

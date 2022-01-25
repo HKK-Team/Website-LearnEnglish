@@ -1,16 +1,16 @@
+import axios from "axios";
 import { useEffect, useReducer, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Peer from "simple-peer";
+import io from "socket.io-client";
+import MessageListReducer from "../../reducers/MessageListReducer";
+import { BASE_URL, GET_CALL_ID, SAVE_CALL_ID } from "../../utils/apiEndpoints";
+import Alert from "../UIGGMeet/Alert/Alert";
 import CallPageFooter from "../UIGGMeet/CallPageFooter/CallPageFooter";
 import CallPageHeader from "../UIGGMeet/CallPageHeader/CallPageHeader";
 import MeetingInfo from "../UIGGMeet/MeetingInfo/MeetingInfo";
 import Messenger from "../UIGGMeet/Messenger/Messenger";
-import io from "socket.io-client";
-import Peer from "simple-peer";
 import styles from "./CallPage.module.scss";
-import MessageListReducer from "../../reducers/MessageListReducer";
-import Alert from "../UIGGMeet/Alert/Alert";
-import axios from "axios";
-import { BASE_URL, GET_CALL_ID, SAVE_CALL_ID } from "../../utils/apiEndpoints";
 
 let peer = null;
 const socket = io.connect(process.env.REACT_APP_BASE_URL);

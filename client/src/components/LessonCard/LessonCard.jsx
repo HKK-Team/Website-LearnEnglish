@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./../Grammar/Grammar.module.css";
+import styles from "./LessonCard.module.css";
 export default function LessonCard(props) {
   return (
     <div
