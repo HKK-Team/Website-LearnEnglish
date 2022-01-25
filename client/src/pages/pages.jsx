@@ -140,7 +140,7 @@ const Pages = () => {
 
       {/* detail level grammar */}
       <Route
-        path="/grammar/beginner-to-pre-intermediate"
+        path="/grammar/beginner-to-pre-intermediate/:id"
         element={<DetailTopic />}
       />
       <Route

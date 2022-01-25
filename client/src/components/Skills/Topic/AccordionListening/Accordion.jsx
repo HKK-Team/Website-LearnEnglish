@@ -4,13 +4,12 @@ import {
   AccordionItem,
   AccordionItemButton,
   AccordionItemHeading,
-  AccordionItemPanel
+  AccordionItemPanel,
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import styles from "./Accordion.module.css";
 import Task1 from "./Task/Task1";
 import Task2 from "./Task/Task2";
-import Task3 from "./Task/Task3";
 
 export default function Accordions(props) {
   const [data, setdata] = useState(props.data.topic.tranScript.split("\n\n"));
@@ -45,9 +44,15 @@ export default function Accordions(props) {
         </AccordionItemPanel>
       </AccordionItem>
 
-      {dataTask1.length ? <Task1 data={props} /> : " "}
+      {[dataTask1].length
+        ? [dataTask1].map((item, index) => <Task1 {...item} key={index} />)
+        : ""}
+
       {dataTask2.length ? <Task2 data={props} /> : ""}
-      {dataTask3.length ? <Task3 data={props} /> : ""}
+
+      {![dataTask3].length
+        ? [dataTask3].map((item, index) => <Task1 {...item} key={index} />)
+        : ""}
     </Accordion>
   );
 }

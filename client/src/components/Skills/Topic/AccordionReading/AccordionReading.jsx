@@ -4,17 +4,19 @@ import {
   AccordionItem,
   AccordionItemButton,
   AccordionItemHeading,
-  AccordionItemPanel,
+  AccordionItemPanel
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
-import styles from "./AccordionReading.module.css";
-import { FaFlag, FaSync, FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import styles from "../AccordionListening/Accordion.module.css";
+import Task1 from "../AccordionListening/Task/Task1";
 
 export default function AccordionReading(props) {
-  const [data, setdata] = useState(props.data.split("\n\n"));
+  const [data, setdata] = useState(props.data.topic.readingText.split("\n\n"));
+  const [dataTask, setdataTask] = useState(props.data.topic.task[0].task1);
 
   useEffect(() => {
-    setdata(props.data.split("\n\n"));
+    setdata(props.data.topic.readingText.split("\n\n"));
+    setdataTask(props.data.topic.task[0].task1);
   }, [props.data]);
 
   return (
@@ -32,67 +34,9 @@ export default function AccordionReading(props) {
         </AccordionItemPanel>
       </AccordionItem>
 
-      <AccordionItem className={styles.item}>
-        <AccordionItemHeading className={styles.headerTranscript}>
-          <AccordionItemButton className={styles.transcript}>
-            Task1
-          </AccordionItemButton>
-        </AccordionItemHeading>
-        <AccordionItemPanel className={styles.panelTextForm}>
-          <div className={styles.form}>
-            <div>
-              <p className={styles.textTitle}>
-                Listening A1: A voicemail message – 1
-              </p>
-              <p className={styles.subtitle}>Choose the correct answer.</p>
-              <p className={styles.remaining}>4 items remaining</p>
-            </div>
-
-            <div className={styles.checkBox}>
-              <p className={styles.question}>John works at Old Time Toys.</p>
-
-              <label className={styles.container}>
-                <input type="radio" checked="checked" name="radio" />
-                <span className={styles.checkmark}></span>
-                Yes
-              </label>
-
-              <label className={styles.container}>
-                <input type="radio" name="radio" />
-                <span className={styles.checkmark}></span>
-                No
-              </label>
-
-              <div className={styles.buttonCheck}>
-                <button className={styles.buttonFis}>
-                  <FaFlag /> Finish
-                </button>
-                <button className={styles.buttonTry}>
-                  <FaSync /> Try again
-                </button>
-              </div>
-
-              <div className={styles.pagination}>
-                <ul className={styles.items}>
-                  <li className={styles.item}>1</li>
-                  <li className={styles.item}>2</li>
-                  <li className={styles.item}>3</li>
-                  <li className={styles.item}>4</li>
-                </ul>
-              </div>
-
-              <div className={styles.buttonMove}>
-                <button className={styles.buttonPrev}>
-                  <FaAngleLeft />
-                </button>
-                <button className={styles.buttonNext}>
-                  <FaAngleRight />
-                </button>
-              </div>
-            </div>
-          </div>
-        </AccordionItemPanel>
-      </AccordionItem>
+      {[dataTask].map((item, index) => (
+        <Task1 {...item} />
+      ))}
     </Accordion>
   );
 }

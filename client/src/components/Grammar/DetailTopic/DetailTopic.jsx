@@ -3,8 +3,8 @@ import { React, Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SkillItem from "../../RightItem/SkillItem/SkillItem";
 import RightItem from "../../RightItem/RightItem";
-import Accordions from "./AccordionGrammar/AccordionTask1";
-import Accordions1 from "./AccordionGrammar/AccordionTask2";
+import { Accordion } from "react-accessible-accordion";
+import TaskLession from "../../TaskLesson/TaskLesson";
 
 const DetailTopic = (props) => {
   const [data, setdata] = useState(props.data);
@@ -12,10 +12,12 @@ const DetailTopic = (props) => {
   const [dataexample, setdataexample] = useState([]);
   const [dataexplan, setdataexplan] = useState([]);
   const [Grammarexplanation, setGrammarexplanation] = useState([]);
+  const [dataTask, setdataTask] = useState([]);
 
   useEffect(() => {
     setdata(props.data);
     if (props.data.length) {
+      setdataTask(props.data[0].level.topic.task);
       let temp = props.data[0].level.topic.contentTopic;
       let array = [];
       let explan = props.data[0].level.topic.grammarExplanation;
@@ -30,8 +32,6 @@ const DetailTopic = (props) => {
       setGrammarexplanation(array);
     }
   }, [props.data]);
-
-  console.log(Grammarexplanation);
 
   if (!data.length) {
     return <div>loading</div>;
@@ -87,7 +87,11 @@ const DetailTopic = (props) => {
             </div>
 
             <div className={styles.accordion}>
-              <Accordions />
+              <Accordion allowZeroExpanded style={{ marginLeft: 15 }}>
+                {dataTask.map((items, index) =>
+                  index === 0 ? <TaskLession {...items} /> : ""
+                )}
+              </Accordion>
               <p className={styles.text}>Read the explanation to learn more.</p>
             </div>
 
@@ -124,12 +128,17 @@ const DetailTopic = (props) => {
             </div>
 
             <div className={styles.accordion1}>
-              <p className={styles.text}>Do this exercise to test your grammar again.</p>
+              <p className={styles.text}>
+                Do this exercise to test your grammar again.
+              </p>
               <div>
-                  <Accordions1/>
+                <Accordion allowZeroExpanded style={{ marginLeft: 15 }}>
+                  {dataTask.map((items, index) =>
+                    index === 1 ? <TaskLession {...items} /> : ""
+                  )}
+                </Accordion>
               </div>
             </div>
-
           </div>
           <div className={styles.contentRight}>
             <SkillItem />

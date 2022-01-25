@@ -6,6 +6,7 @@ import Accordion from "./AccordionListening/Accordion";
 import AccordionReading from "./AccordionReading/AccordionReading";
 import AccordionSpeaking from "./AccordionSpeaking/AccordionSpeaking";
 import AccordionWriting from "./AccordionWriting/AccordionWriting";
+import ReactPlayer from "react-player";
 
 const Topic = (props) => {
   const [data, setdata] = useState(props.data);
@@ -14,10 +15,12 @@ const Topic = (props) => {
   const [isSpeaking, setisSpeaking] = useState(false);
   const [isWriting, setisWriting] = useState(false);
   const [dataIntroText, setdataIntroText] = useState([]);
+  const [dataVideo,setdataVideo] = useState([])
 
   useEffect(() => {
     setdata(props.data);
     if (props.data.length) {
+      setdataVideo(props.data[0].level.topic.videoTopic)
       setdataIntroText(props.data[0].level.topic.contentTopic.split("\n\n"));
       if (props.data[0].slug === "listening") setisListening(true);
       else if (props.data[0].slug === "reading") setisReading(true);
@@ -25,6 +28,7 @@ const Topic = (props) => {
       else if (props.data[0].slug === "writing") setisWriting(true);
     }
   }, [props.data]);
+
 
   if (!data.length) {
     return <div>loading</div>;
@@ -39,7 +43,13 @@ const Topic = (props) => {
             </div>
 
             {isSpeaking ? (
-              ""
+              <div>
+                <ReactPlayer
+                  url={dataVideo}
+                  width="910px"
+                  height="500px"
+                />
+              </div>
             ) : (
               <div className={styles.imageFiled}>
                 <img src={data[0]?.level.topic.imageTopic} alt="" />
@@ -88,7 +98,7 @@ const Topic = (props) => {
             {isReading ? (
               <div className={styles.sessionMutipleChoise}>
                 <div>
-                  <AccordionReading data={data[0]?.level.topic.readingText} />
+                  <AccordionReading data={data[0]?.level} />
                 </div>
               </div>
             ) : (
@@ -97,7 +107,7 @@ const Topic = (props) => {
             {isSpeaking ? (
               <div className={styles.sessionMutipleChoise}>
                 <div>
-                  <AccordionSpeaking data={data[0]?.level.topic.tranScript} />
+                  <AccordionSpeaking data={data[0]?.level} />
                 </div>
               </div>
             ) : (
@@ -106,7 +116,7 @@ const Topic = (props) => {
             {isWriting ? (
               <div className={styles.sessionMutipleChoise}>
                 <div>
-                  <AccordionWriting data={data[0]?.level.topic.readingText} tips={data[0]?.level.topic.tips}/>
+                  <AccordionWriting data={data[0]?.level} />
                 </div>
               </div>
             ) : (

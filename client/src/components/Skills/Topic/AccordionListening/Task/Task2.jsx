@@ -83,11 +83,13 @@ const Task2 = (props) => {
     }
     setdataTask2(array);
   };
+
   return (
     <div>
       <AccordionItem className={styles.item}>
         <AccordionItemHeading className={styles.headerTranscript}>
           <AccordionItemButton className={styles.transcript}>
+            {/* {props.data.data.topic.task[1].task2.taskName} */}
             Task2
           </AccordionItemButton>
         </AccordionItemHeading>
@@ -123,38 +125,42 @@ const Task2 = (props) => {
                 </p>
               ) : (
                 <p className={styles.remaining}>
-                {dataTask2.length} items remaining
-              </p>
+                  {dataTask2.length} items remaining
+                </p>
               )}
             </div>
 
             <div className={styles.checkBox}>
               <div className={styles.items}>
                 <ul className={styles.item}>
-                  {dataTask2.map((item, index) => (
-                    <li
-                      key={index}
-                      onDragOver={() => onDragOver(index)}
-                      style={{
-                        backgroundColor: colorTask2
-                          ? "#70cce4"
-                          : colorAnswertask2.includes(index)
-                          ? "#b8ecbc"
-                          : "#dedae6",
-                        //   :"#ffccc4"
-                      }}
-                    >
-                      <div
-                        className={styles.drag}
-                        draggable
-                        onDragStart={(e) => onDragStart(e, index)}
-                        onDragEnd={onDragEnd}
+                  {dataTask2.map((item, index) =>
+                    item.includes('-') ? (
+                      <li
+                        key={index}
+                        onDragOver={() => onDragOver(index)}
+                        style={{
+                          backgroundColor: colorTask2
+                            ? "#70cce4"
+                            : colorAnswertask2.includes(index)
+                            ? "#b8ecbc"
+                            : "#dedae6",
+                          //   :"#ffccc4"
+                        }}
                       >
-                        {item.substring(0, item.indexOf("-"))}
-                        <FaHandPointDown className={styles.icon} />
-                      </div>
-                    </li>
-                  ))}
+                        <div
+                          className={styles.drag}
+                          draggable
+                          onDragStart={(e) => onDragStart(e, index)}
+                          onDragEnd={onDragEnd}
+                        >
+                          {item.substring(0, item.indexOf("-"))}
+                          <FaHandPointDown className={styles.icon} />
+                        </div>
+                      </li>
+                    ) : (
+                      ""
+                    )
+                  )}
                 </ul>
               </div>
 
