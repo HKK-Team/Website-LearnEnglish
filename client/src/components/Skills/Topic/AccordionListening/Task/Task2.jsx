@@ -117,9 +117,15 @@ const Task2 = (props) => {
                 : {props.data.data.topic.nameTopic} – 1
               </p>
               <p className={styles.subtitle}>Choose the correct answer.</p>
-              <p className={styles.remaining}>
+              {colorTask2 ? (
+                <p className={styles.remaining}>
+                  {dataTask2.length - 1} items remaining
+                </p>
+              ) : (
+                <p className={styles.remaining}>
                 {dataTask2.length} items remaining
               </p>
+              )}
             </div>
 
             <div className={styles.checkBox}>

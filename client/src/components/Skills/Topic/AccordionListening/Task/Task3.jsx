@@ -40,13 +40,10 @@ const Task3 = (props) => {
 
     e.dataTransfer.setData("card_id", target.id);
 
-    setTimeout(() => {
-      e.target.style.display = "none";
-    }, 0);
+    // setTimeout(() => {
+    //   e.target.style.display = "none";
+    // }, 0);
   };
-  // const dragOvers = (e) => {
-  //   e.stopPropagation();
-  // };
 
   return (
     <div>
@@ -84,7 +81,6 @@ const Task3 = (props) => {
                       onDrop={(e) => drop(e)}
                       onDragOver={(e) => dragOver(e)}
                       onDragStart={(e) => dragStart(e)}
-
                     >
                       <div
                         id="dragtarget"
