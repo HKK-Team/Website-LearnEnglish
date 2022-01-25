@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LessonCard from "../../LessonCard/LessonCard";
 import LevelRightItem from "../../RightItem/LevelRightItem/LevelRightItem";
+import RightItem from "../../RightItem/RightItem";
 import styles from "./VocabularySkills.module.css";
 
 export default function VocabularySkills(props) {
@@ -15,7 +16,7 @@ export default function VocabularySkills(props) {
   return (
     <div className="grid wide">
       <div className="row">
-        <div className="col l-8 md-12 sm-12">
+        <div className="col l-8 m-12 c-12">
           <div className={styles.heading}>
             <p className={styles.depthLink}>
               <Link to="/voccabulary">Vocabulary</Link>
@@ -44,7 +45,7 @@ export default function VocabularySkills(props) {
             ))}
           </div>
         </div>
-        <div className="col l-3 md-12 sm-12" style={{ marginTop: 193 }}>
+        <div className="col l-3 m-12 c-12" style={{ marginTop: 193 }}>
           <LevelRightItem
             level1={"Beginner to pre-intermediate"}
             level2={"Intermediate to upper intermediate"}
@@ -53,6 +54,7 @@ export default function VocabularySkills(props) {
             sluglevel2={"intermediate-to-upper-intermediate"}
             sluglevel3={"english-grammar-reference"}
           />
+          <RightItem />
         </div>
       </div>
     </div>

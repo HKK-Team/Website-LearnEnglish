@@ -23,12 +23,15 @@ import TopicWriting from "./Skills/Topic/TopicWriting";
 import TopicGrammar from "./Grammar/Topic/Topic";
 import DetailTopic from "./Grammar/DetailTopic/DetailTopic";
 
-import React from "react";
+import React, { useContext } from "react";
 import VocBTPI from "./Voccabulary/VocBTPI";
 import VocITUI from "./Voccabulary/VocITUI";
 import VocGames from "./Voccabulary/VocGames";
+import VoccabularyLesson from "./Voccabulary/VoccabularyLesson/VoccabularyLesson";
+import { GlobalState } from "../GlobalState";
 
 const Pages = () => {
+  const state = useContext(GlobalState);
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -152,14 +155,21 @@ const Pages = () => {
         element={<VocBTPI />}
       />
       <Route
+        path="/voccabulary/beginner-to-pre-intermediate/Accessories"
+        element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][0]} />}
+      />
+      <Route
         path="/voccabulary/Intermediate-to-upper-intermediate/"
         element={<VocITUI />}
       />
-        <Route
-        path="/voccabulary/Vocabulary-games/"
-        element={<VocGames />}
+      <Route
+        path="/voccabulary/Intermediate-to-upper-intermediate/AirTravel"
+        element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][1]} />}
       />
+      <Route path="/voccabulary/Vocabulary-games/" element={<VocGames />} />
+      <Route path="/voccabulary/Vocabulary-games/Sushi-Spell" element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][2]} />} />
       {/* detail level voccabulary */}
+
       <Route path="/meeting/:id" element={<CallPage />} />
       <Route path="/meeting" element={<HomeGGMeet />} />
       <Route path="/Login" element={<Login />} />
