@@ -57,12 +57,38 @@
   width: 500px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1230px) {
   .textView {
-    left: -60%;
+    left: -50%;
     top: 70% !important;
     width: 100%;
-    height: auto;
+    height: 200px;
+  }
+  
+  .textView p {
+    font-size: 18px;
+    overflow-wrap: break-word;
+  }
+  .textView h2 {
+    font-size: 21px;
+  }
+  .viewRow:last-child{
+    margin-bottom: 150px !important;
+  }
+}
+@media (max-width: 767px) and (max-width: 1024px) {
+  .textView {
+    left: -70%;
+    top: 70% !important;
+    width: 100%;
+    height: 200px;
+  }
+  .viewRow:last-child{
+    margin-bottom: 150px !important;
+  }
+  .textView p {
+    font-size: 15px;
+    overflow-wrap: break-word;
   }
   .textView h2 {
     font-size: 21px;
@@ -70,12 +96,19 @@
 }
 @media (max-width: 500px) {
   .textView {
-    left: -90%;
+    left: -95%;
     top: 70% !important;
     width: 100%;
-    height: auto;
+    height: 150px;
+  }
+  .viewRow:last-child{
+    margin-bottom: 100px !important;
+  }
+  .textView p {
+    font-size: 12px;
+    overflow-wrap: break-word;
   }
   .textView h2 {
-    font-size: 21px;
+    font-size: 18px;
   }
 }

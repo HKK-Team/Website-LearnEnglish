@@ -1,13 +1,10 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home/Home";
-import Dictionnary from "../pages/Dictionnary/Dictionnary";
-import HomeGGMeet from "../pages/HomeGGMeet/GGMeet";
+import React, { useContext } from "react";
+import { Route, Routes } from "react-router-dom";
+import { GlobalState } from "../GlobalState";
 import CallPage from "../pages/CallPage/CallPageGGMeet";
-import Login from "./Login/Login";
-import Register from "./Register/Register";
-import Grammars from "./Grammar/Grammars";
-import Skill from "./Skills/skill";
-import Voccabulary from "./Voccabulary/voc";
+import Dictionnary from "../pages/Dictionnary/Dictionnary";
+import Home from "../pages/Home/Home";
+import HomeGGMeet from "../pages/HomeGGMeet/GGMeet";
 import DetailSkillListening from "../pages/Skills/DetailSkill/DetailSkillListening";
 import DetailSkillReading from "../pages/Skills/DetailSkill/DetailSkillReading";
 import DetailSkillSpeaking from "../pages/Skills/DetailSkill/DetailSkillSpeaking";
@@ -16,19 +13,22 @@ import DetailLevelListen from "../pages/Skills/DetailTopic/DetailLevelListen";
 import DetailLevelReading from "../pages/Skills/DetailTopic/DetailLevelReading";
 import DetailLevelSpeaking from "../pages/Skills/DetailTopic/DetailLevelSpeaking";
 import DetailLevelWriting from "../pages/Skills/DetailTopic/DetailLevelWriting";
+import DetailTopic from "./Grammar/DetailTopic/DetailTopic";
+import Grammars from "./Grammar/Grammars";
+import TopicGrammar from "./Grammar/Topic/Topic";
+import Login from "./Login/Login";
+import Register from "./Register/Register";
+import Skill from "./Skills/skill";
 import TopicListening from "./Skills/Topic/TopicListening";
 import TopicReading from "./Skills/Topic/TopicReading";
 import TopicSpeaking from "./Skills/Topic/TopicSpeaking";
 import TopicWriting from "./Skills/Topic/TopicWriting";
-import TopicGrammar from "./Grammar/Topic/Topic";
-import DetailTopic from "./Grammar/DetailTopic/DetailTopic";
-
-import React, { useContext } from "react";
+import Voccabulary from "./Voccabulary/voc";
 import VocBTPI from "./Voccabulary/VocBTPI";
-import VocITUI from "./Voccabulary/VocITUI";
-import VocGames from "./Voccabulary/VocGames";
 import VoccabularyLesson from "./Voccabulary/VoccabularyLesson/VoccabularyLesson";
-import { GlobalState } from "../GlobalState";
+import VocGames from "./Voccabulary/VocGames";
+import VocITUI from "./Voccabulary/VocITUI";
+
 
 const Pages = () => {
   const state = useContext(GlobalState);
@@ -167,7 +167,10 @@ const Pages = () => {
         element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][1]} />}
       />
       <Route path="/voccabulary/Vocabulary-games/" element={<VocGames />} />
-      <Route path="/voccabulary/Vocabulary-games/Sushi-Spell" element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][2]} />} />
+      <Route
+        path="/voccabulary/Vocabulary-games/Sushi-Spell"
+        element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][2]} />}
+      />
       {/* detail level voccabulary */}
 
       <Route path="/meeting/:id" element={<CallPage />} />

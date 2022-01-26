@@ -1,7 +1,7 @@
 .containList {
     background-color: #fff;
     border: 10px solid #f0ecf4;
-    height: 400px;
+    height: auto;
     border-bottom-left-radius: 25px;
     border-top-right-radius: 25px;
 }

@@ -7,16 +7,15 @@
 .registerWrapper {
     font-size: 14px;
     line-height: 20px;
-    padding: 0px 10px;
 }
 
 .userBox {
     background-color: #ffffff;
     border: 1px solid #eeeeee;
     box-shadow: #000000 0px 2px 4px 0px;
-    margin: 20px 407.5px 0px;
     padding: 15px;
-    width: 31%;
+    width: 100%;
+    margin: 50px 0 50px 0;
 }
 
 .accountTitle {

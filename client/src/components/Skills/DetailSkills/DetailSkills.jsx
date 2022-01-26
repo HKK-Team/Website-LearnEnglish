@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import LessonCard from "../../LessonCard/LessonCard";
 import RightItem from "../../RightItem/RightItem";
 import SkillItem from "../../RightItem/SkillItem/SkillItem";
 import styles from "./DetailSkills.module.css";
@@ -58,22 +59,23 @@ const DetailSkills = (props) => {
           </div>
           <div className={styles.contain}>
             {data[0].slice(0, 5).map((item) => (
-              <div className={styles.viewRow} key={item._id}>
-                <div className={styles.imageFile}>
-                  <img src={item.level.images} alt="" />
-                </div>
-                <div className={styles.textView}>
-                  <Link to={item.level.slugLevel}>
-                    <h2>{item.level.nameLevel}</h2>
-                  </Link>
-                  <p>
-                    {item.level.contentLevel.substring(
-                      0,
-                      item.level.contentLevel.indexOf(".") + 1
-                    )}
-                  </p>
-                </div>
-              </div>
+              <LessonCard {...item} />
+              // <div className={styles.viewRow} key={item._id}>
+              //   <div className={styles.imageFile}>
+              //     <img src={item.level.images} alt="" />
+              //   </div>
+              //   <div className={styles.textView}>
+              //     <Link to={item.level.slugLevel}>
+              //       <h2>{item.level.nameLevel}</h2>
+              //     </Link>
+              //     <p>
+              //       {item.level.contentLevel.substring(
+              //         0,
+              //         item.level.contentLevel.indexOf(".") + 1
+              //       )}
+              //     </p>
+              //   </div>
+              // </div>
             ))}
           </div>
         </div>

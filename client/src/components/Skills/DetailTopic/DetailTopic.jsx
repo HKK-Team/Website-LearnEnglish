@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import LessonCard from "../../LessonCard/LessonCard";
 import RightItem from "../../RightItem/RightItem";
 import SkillItem from "../../RightItem/SkillItem/SkillItem";
 import styles from "../DetailSkills/DetailSkills.module.css";
@@ -54,22 +55,23 @@ const DetailTopic = (props) => {
           </div>
           <div className={styles.contain}>
             {data.map((item) => (
-              <div className={styles.viewRow} key={item._id}>
-                <div className={styles.imageFile}>
-                  <img src={item?.level?.topic?.imageTopic} alt="" />
-                </div>
-                <div className={styles.textView}>
-                  <Link to={item?.level?.topic?.slugTopic}>
-                    <h2>{item?.level?.topic?.nameTopic}</h2>
-                  </Link>
-                  <p>
-                    {item?.level?.topic?.contentTopic.substring(
-                      0,
-                      item?.level?.topic?.contentTopic.indexOf(".") + 1
-                    )}
-                  </p>
-                </div>
-              </div>
+              <LessonCard {...item}/>
+              // <div className={styles.viewRow} key={item._id}>
+              //   <div className={styles.imageFile}>
+              //     <img src={item?.level?.topic?.imageTopic} alt="" />
+              //   </div>
+              //   <div className={styles.textView}>
+              //     <Link to={item?.level?.topic?.slugTopic}>
+              //       <h2>{item?.level?.topic?.nameTopic}</h2>
+              //     </Link>
+              //     <p>
+              //       {item?.level?.topic?.contentTopic.substring(
+              //         0,
+              //         item?.level?.topic?.contentTopic.indexOf(".") + 1
+              //       )}
+              //     </p>
+              //   </div>
+              // </div>
             ))}
           </div>
         </div>

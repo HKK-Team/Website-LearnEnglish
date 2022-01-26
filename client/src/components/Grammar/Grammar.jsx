@@ -1,5 +1,5 @@
 import { Fragment, React, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import LessonCard from "../LessonCard/LessonCard";
 import LevelRightItem from "../RightItem/LevelRightItem/LevelRightItem";
 import RightItem from "../RightItem/RightItem";
 import styles from "./Grammar.module.css";
@@ -10,13 +10,12 @@ const Grammar = (props) => {
   useEffect(() => {
     setdata(props.data);
   }, [props.data]);
-
   if (!data[0].length) {
     return <div>loading</div>;
   }
   return (
     <Fragment>
-      <div className="grid wide" style={{marginTop:60}}>
+      <div className="grid wide" style={{ marginTop: 60 }}>
         <div className="row">
           <div className="col l-9 m-12 c-12">
             <p>
@@ -44,22 +43,8 @@ const Grammar = (props) => {
             </p>
             <h1>Choose a grammar section</h1>
             <div className={styles.contain}>
-              {data[0].slice(0, 2).map(item =>(
-              <div className={styles.viewRow} key={item._id}>
-                <div className={styles.imageFile}>
-                  <img src={item.level.images} alt="" />
-                </div>
-                <div className={styles.textView}>
-                  <Link to={item.level.slugLevel}>
-                    <h2>{item.level.nameLevel}</h2> 
-                  </Link>
-                  <p>
-                    Here you can find activities to practise your listening
-                    skills. Listening will help you to improve your
-                    understanding of the language and your pronunciation.
-                  </p>
-                </div>
-              </div>
+              {data[0].slice(0, 2).map((item) => (
+                <LessonCard {...item} />
               ))}
             </div>
           </div>

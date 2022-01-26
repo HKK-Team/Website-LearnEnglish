@@ -1,7 +1,8 @@
 .containerRegister {
     margin-top: 100px;
     width: 100%;
-    height: 700px;
+    height: auto;
+    margin-bottom: 50px;
 }
 
 .registerWrapper {

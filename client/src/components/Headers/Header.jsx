@@ -1,4 +1,4 @@
-import { Fragment, React } from "react";
+import { Fragment, React, useEffect } from "react";
 import styles from "./Header.module.css";
 import IntroByDictionnary from "./IntroByDictionnary/IntroByDictionnary";
 import IntroByGrammar from "./IntroByGrammar/IntroByGrammar";
@@ -10,6 +10,10 @@ import TwoItems from "./TwoItemsLogin&Regis/MenuLoginRegis";
 
 const Header = () => {
   const url = `${window.location.pathname}`;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   var str = '/';
   for(let i = 1;i < url.length;i++){
