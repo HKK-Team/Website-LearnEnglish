@@ -3,8 +3,10 @@ import axios from "axios";
 
 function ListeningApi() {
   const [dataListening, setdataListening] = useState([]);
-  const [currentPageListening, setcurrentPageListening] = useState(1)
-  const [postsPerPageListening] = useState(1)
+  const [currentPageListening, setcurrentPageListening] = useState(1);
+  const [postsPerPageListening] = useState(1);
+  const [stateTranslate, setstateTranslate] = useState(false);
+  const [dataTranslate, setdataTranslate] = useState([]);
 
   //get data skill listening
   useEffect(() => {
@@ -17,8 +19,10 @@ function ListeningApi() {
 
   return {
     dataListening: [dataListening, setdataListening],
-    currentPageListening:[currentPageListening, setcurrentPageListening],
-    postsPerPageListening:[postsPerPageListening] 
+    currentPageListening: [currentPageListening, setcurrentPageListening],
+    postsPerPageListening: [postsPerPageListening],
+    stateTranslate: [stateTranslate, setstateTranslate],
+    dataTranslate: [dataTranslate, setdataTranslate],
   };
 }
 export default ListeningApi;

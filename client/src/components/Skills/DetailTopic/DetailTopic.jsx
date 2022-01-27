@@ -19,6 +19,7 @@ const DetailTopic = (props) => {
   if (!data.length) {
     return <div>loading</div>;
   }
+
   return (
     <div className="grid wide">
       <div className="row">
@@ -55,23 +56,23 @@ const DetailTopic = (props) => {
           </div>
           <div className={styles.contain}>
             {data.map((item) => (
-              <LessonCard {...item}/>
-              // <div className={styles.viewRow} key={item._id}>
-              //   <div className={styles.imageFile}>
-              //     <img src={item?.level?.topic?.imageTopic} alt="" />
-              //   </div>
-              //   <div className={styles.textView}>
-              //     <Link to={item?.level?.topic?.slugTopic}>
-              //       <h2>{item?.level?.topic?.nameTopic}</h2>
-              //     </Link>
-              //     <p>
-              //       {item?.level?.topic?.contentTopic.substring(
-              //         0,
-              //         item?.level?.topic?.contentTopic.indexOf(".") + 1
-              //       )}
-              //     </p>
-              //   </div>
-              // </div>
+              // <LessonCard {...item}/>
+              <div className={styles.viewRow} key={item._id}>
+                <div className={styles.imageFile}>
+                  <img src={item?.level?.topic?.imageTopic} alt="" />
+                </div>
+                <div className={styles.textView}>
+                  <Link to={item?.level?.topic?.slugTopic}>
+                    <h2>{item?.level?.topic?.nameTopic}</h2>
+                  </Link>
+                  <p>
+                    {item?.level?.topic?.contentTopic.substring(
+                      0,
+                      item?.level?.topic?.contentTopic.indexOf(".") + 1
+                    )}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
         </div>

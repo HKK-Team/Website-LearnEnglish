@@ -10,8 +10,22 @@ import "react-accessible-accordion/dist/fancy-example.css";
 import styles from "./Accordion.module.css";
 import Task1 from "./Task/Task1";
 import Task2 from "./Task/Task2";
+import Translate from "../../../Translates/Translate";
+import { GlobalState } from "../../../../GlobalState";
+import { useContext } from "react";
 
 export default function Accordions(props) {
+  const state = useContext(GlobalState);
+  const [stateTranslate] = state.listeningApi.stateTranslate;
+  const [dataTranslate] = state.listeningApi.dataTranslate;
+  const [dataTranslates, setdataTranslates] = useState([]);
+
+  useEffect(() => {
+    if (dataTranslate.length) {
+      setdataTranslates(dataTranslate.split("break"));
+    }
+  }, [dataTranslate]);
+
   const [data, setdata] = useState(props.data.topic.tranScript.split("\n\n"));
   const [dataTask1, setdataTask1] = useState(props.data.topic.task[0].task1);
   const [dataTask2, setdataTask2] = useState(
@@ -35,12 +49,23 @@ export default function Accordions(props) {
           </AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className={styles.panelText}>
-          {data.map((item, index) => (
-            <p key={index}>
-              <strong> {item?.substring(0, item?.indexOf(":") - 1)}</strong>
-              {item?.substring(item?.indexOf(":"))}
-            </p>
-          ))}
+          <Translate data={props.data.topic.tranScript} />
+          {stateTranslate
+            ? data.map((item, index) => (
+                <p key={index}>
+                  <strong>
+                    {" "}
+                    {item?.substring(0, item?.indexOf(":") + 1)}{" "}
+                  </strong>
+                  {dataTranslates[index]}
+                </p>
+              ))
+            : data.map((item, index) => (
+                <p key={index}>
+                  <strong> {item?.substring(0, item?.indexOf(":") - 1)}</strong>
+                  {item?.substring(item?.indexOf(":"))}
+                </p>
+              ))}
         </AccordionItemPanel>
       </AccordionItem>
 

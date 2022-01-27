@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import "./GirdSysTem.css";
 import App from "./App";
+import "./GirdSysTem.css";
+import "./index.css";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
+<React.StrictMode>
+    <App/>
   </React.StrictMode>,
   document.getElementById("root")
 );

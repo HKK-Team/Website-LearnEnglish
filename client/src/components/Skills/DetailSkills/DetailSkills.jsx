@@ -20,6 +20,8 @@ const DetailSkills = (props) => {
     return <div>loading</div>;
   }
 
+
+
   return (
     <div className="grid wide">
       <div className="row">
@@ -59,23 +61,23 @@ const DetailSkills = (props) => {
           </div>
           <div className={styles.contain}>
             {data[0].slice(0, 5).map((item) => (
-              <LessonCard {...item} />
-              // <div className={styles.viewRow} key={item._id}>
-              //   <div className={styles.imageFile}>
-              //     <img src={item.level.images} alt="" />
-              //   </div>
-              //   <div className={styles.textView}>
-              //     <Link to={item.level.slugLevel}>
-              //       <h2>{item.level.nameLevel}</h2>
-              //     </Link>
-              //     <p>
-              //       {item.level.contentLevel.substring(
-              //         0,
-              //         item.level.contentLevel.indexOf(".") + 1
-              //       )}
-              //     </p>
-              //   </div>
-              // </div>
+              // <LessonCard {...item} key={item._id}/>
+              <div className={styles.viewRow} key={item._id}>
+                <div className={styles.imageFile}>
+                  <img src={item.level.images} alt="" />
+                </div>
+                <div className={styles.textView}>
+                  <Link to={item.level.slugLevel}>
+                    <h2>{item.level.nameLevel}</h2>
+                  </Link>
+                  <p>
+                    {item.level.contentLevel.substring(
+                      0,
+                      item.level.contentLevel.indexOf(".") + 1
+                    )}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
