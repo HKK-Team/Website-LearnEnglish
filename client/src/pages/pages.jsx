@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
+import LoginAdmin from "../admin/components/loginAdmin/loginAdmin";
 import { GlobalState } from "../GlobalState";
 import CallPage from "../pages/CallPage/CallPageGGMeet";
 import Dictionnary from "../pages/Dictionnary/Dictionnary";
@@ -13,6 +14,7 @@ import DetailLevelListen from "../pages/Skills/DetailTopic/DetailLevelListen";
 import DetailLevelReading from "../pages/Skills/DetailTopic/DetailLevelReading";
 import DetailLevelSpeaking from "../pages/Skills/DetailTopic/DetailLevelSpeaking";
 import DetailLevelWriting from "../pages/Skills/DetailTopic/DetailLevelWriting";
+import NotFound from "../utils/not_found/NotFound";
 import DetailTopic from "./Grammar/DetailTopic/DetailTopic";
 import Grammars from "./Grammar/Grammars";
 import TopicGrammar from "./Grammar/Topic/Topic";
@@ -29,9 +31,9 @@ import VoccabularyLesson from "./Voccabulary/VoccabularyLesson/VoccabularyLesson
 import VocGames from "./Voccabulary/VocGames";
 import VocITUI from "./Voccabulary/VocITUI";
 
-
 const Pages = () => {
   const state = useContext(GlobalState);
+  const [isLogin] = state.userApi.isLogged;
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -175,8 +177,12 @@ const Pages = () => {
 
       <Route path="/meeting/:id" element={<CallPage />} />
       <Route path="/meeting" element={<HomeGGMeet />} />
-      <Route path="/Login" element={<Login />} />
-      <Route path="/Register" element={<Register />} />
+      <Route path="/Login" element={isLogin ? <NotFound /> : <Login />} />
+      <Route path="/Register" element={isLogin ? <NotFound /> : <Register />} />
+
+      {/* admin page */}
+      <Route path="/admin" element={<LoginAdmin />} />
+      {/* admin page */}
     </Routes>
   );
 };

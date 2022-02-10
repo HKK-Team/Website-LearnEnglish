@@ -29,6 +29,8 @@ app.use("/api", require("./src/users/routers/grammarRouter"));
 app.use("/api", require("./src/users/routers/vocabularyRouter"));
 app.use("/api", require("./src/users/routers/ggMeetRouters"));
 app.use("/user", require("./src/users/routers/userRouter"));
+app.use("/admin", require("./src/admin/routers/adminRouter"));
+
 
 //socket.io
 const io = (module.exports.io = require("socket.io")(server, {

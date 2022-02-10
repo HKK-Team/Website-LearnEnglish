@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import styles from "./CheckGrammarByImage.module.css";
 import { createWorker } from "tesseract.js";
 import { FilePond, registerPlugin } from "react-filepond";
@@ -46,6 +46,21 @@ const CheckGrammarByImage = () => {
     const {
       data: { text },
     } = await worker.recognize(file.file);
+
+    let temp = text.split(" ").join("");
+    let check = false;
+    for (let i = 0; i < temp.length; i++) {
+      if (temp[i].charCodeAt() >= 33 && temp[i].charCodeAt() <= 45) {
+        check = true;
+        break;
+      }
+    }
+    if (check) {
+      setData({
+        data: "The image should contain the character!",
+      });
+    }
+
     setText({
       ocrText: text,
       pctg: 100.0,
@@ -72,7 +87,6 @@ const CheckGrammarByImage = () => {
         setData(data);
       });
   };
-
 
   return (
     <div className={styles.container}>

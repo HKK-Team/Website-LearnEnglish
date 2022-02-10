@@ -7,6 +7,7 @@ import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GlobalState } from "../../GlobalState";
 
+
 const Login = () => {
   const state = useContext(GlobalState);
   const [dataLoginMedia, setdataLoginMedia] = state.userApi.dataLoginMedia;
