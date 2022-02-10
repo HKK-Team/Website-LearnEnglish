@@ -113,7 +113,7 @@ const Topic = (props) => {
             ""
           )}
         </div>
-        <div className="col l-3 m-12 c-12">
+        <div className="col l-3 m-12 c-12" style={{ marginTop: 90 }}>
           <RightItem />
         </div>
       </div>

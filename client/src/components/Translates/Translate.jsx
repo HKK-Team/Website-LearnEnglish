@@ -1,10 +1,10 @@
 import axios from "axios";
-import { React, useContext, useState } from "react";
+import { React, useContext, useState, useEffect } from "react";
 import { GlobalState } from "../../GlobalState";
 import styles from "./Translate.module.css";
 
 const Translate = (props) => {
-  const [data] = useState(props.data.split("\n\n"));
+  const [data] = useState(props.data);
   const state = useContext(GlobalState);
   const [stateTranslate, setstateTranslate] = state.listeningApi.stateTranslate;
   const [dataTranslate, setdataTranslate] = state.listeningApi.dataTranslate;
@@ -24,34 +24,50 @@ const Translate = (props) => {
         },
       })
       .then((res) => {
-        console.log(res.data)
         temp = res.data.translatedText;
       });
     return temp;
   };
 
   const eventTranslate = async () => {
-    let tempstr = "";
-    for (let i = 0; i < data.length; i++) {
-      let array = "";
-      if (data[i].includes(":")) {
-        array = data[i].substring(data[i].indexOf(":") + 2);
-      } else {
-        array = data[i];
+    if (dataTranslate.length === 0) {
+      let arayDataEnglish;
+      let datas = data.split("\n\n");
+      let arrayCutData = [];
+      let temp = "";
+      let tempstr = "";
+      arayDataEnglish = datas.join(" ").split(" ");
+      // if (datas[datas.length - 1].includes(":")) {
+      //   let temp = "";
+      //   for (let i = 0; i < datas.length; i++) {
+      //     temp += datas[i].substring(datas[i].indexOf(":") + 1);
+      //   }
+      //   arayDataEnglish = temp.trim().split(" ").join(" ").split(" ");
+      // } else arayDataEnglish = datas.join(" ").split(" ");
+
+      for (let i = 0; i < arayDataEnglish.length; i++) {
+        if (temp.split(" ").length > 80) {
+          arrayCutData.push(temp);
+          temp = "";
+        } else if (i === arayDataEnglish.length - 1) {
+          temp += arayDataEnglish[i];
+          arrayCutData.push(temp);
+          break;
+        }
+        temp += arayDataEnglish[i] + " ";
       }
-      if (i === data.length - 1) {
-        tempstr += await translatedata(array);
-        break;
+      for (let i = 0; i < arrayCutData.length; i++) {
+        tempstr += await translatedata(arrayCutData[i]);
       }
-      tempstr += (await translatedata(array)) + "break";
+      setdataTranslate(tempstr);
+      setstateTranslate(true);
+    } else {
+      setstateTranslate(true);
     }
-    setstateTranslate(true);
-    setdataTranslate(tempstr);
   };
 
   const eventTranslateEng = () => {
     setstateTranslate(false);
-    setdataTranslate([]);
   };
 
   return (

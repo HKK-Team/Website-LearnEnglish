@@ -1,10 +1,10 @@
-import styles from "./DetailTopic.module.css";
-import { React, Fragment, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import SkillItem from "../../RightItem/SkillItem/SkillItem";
-import RightItem from "../../RightItem/RightItem";
+import { Fragment, React, useEffect, useState } from "react";
 import { Accordion } from "react-accessible-accordion";
+import { Link } from "react-router-dom";
+import LevelRightItem from "../../RightItem/LevelRightItem/LevelRightItem";
+import RightItem from "../../RightItem/RightItem";
 import TaskLession from "../../TaskLesson/TaskLesson";
+import styles from "./DetailTopic.module.css";
 
 const DetailTopic = (props) => {
   const [data, setdata] = useState(props.data);
@@ -77,7 +77,7 @@ const DetailTopic = (props) => {
 
               <div className={styles.textExample}>
                 <div className={styles.line}></div>
-                <div>
+                <div style={{ marginLeft: 15 }}>
                   {dataexample.map((item, index) => (
                     <p key={index}>{item}</p>
                   ))}
@@ -88,7 +88,7 @@ const DetailTopic = (props) => {
             </div>
 
             <div className={styles.accordion}>
-              <Accordion allowZeroExpanded style={{ marginLeft: 15 }}>
+              <Accordion allowZeroExpanded style={{ marginLeft: 1 }}>
                 {dataTask.map((items, index) =>
                   index === 0 ? <TaskLession {...items} /> : ""
                 )}
@@ -114,7 +114,7 @@ const DetailTopic = (props) => {
 
                       <div className={styles.textExample}>
                         <div className={styles.line}></div>
-                        <div>
+                        <div style={{ marginLeft: 15 }}>
                           {item1.example
                             .split("\n")
                             .map((item2, index2) =>
@@ -133,7 +133,7 @@ const DetailTopic = (props) => {
                 Do this exercise to test your grammar again.
               </p>
               <div>
-                <Accordion allowZeroExpanded style={{ marginLeft: 15 }}>
+                <Accordion allowZeroExpanded style={{ marginLeft: 1 }}>
                   {dataTask.map((items, index) =>
                     index === 1 ? <TaskLession {...items} /> : ""
                   )}
@@ -142,7 +142,14 @@ const DetailTopic = (props) => {
             </div>
           </div>
           <div className="col l-3 m-12 c-12" style={{ marginTop: 105 }}>
-            <SkillItem />
+          <LevelRightItem
+              level1={"Beginner to pre-intermediate"}
+              level2={"Intermediate to upper intermediate"}
+              level3={"English grammar reference"}
+              sluglevel1={"beginner-to-pre-intermediate"}
+              sluglevel2={"intermediate-to-upper-intermediate"}
+              sluglevel3={"english-grammar-reference"}
+            />
             <RightItem />
           </div>
         </div>

@@ -21,7 +21,7 @@ export default function AccordionReading(props) {
 
   useEffect(() => {
     if (dataTranslate.length) {
-      setdataTranslates(dataTranslate.split("break"));
+      setdataTranslates(dataTranslate);
     }
   }, [dataTranslate]);
 
@@ -44,7 +44,7 @@ export default function AccordionReading(props) {
         <AccordionItemPanel className={styles.panelText}>
           <Translate data={props.data.topic.readingText} />
           {stateTranslate
-            ? dataTranslates.map((item, index) => <p key={index}>{item}</p>)
+            ? [dataTranslates].map((item, index) => <p key={index}>{item}</p>)
             : data.map((item, index) => <p key={index}>{item}</p>)}
         </AccordionItemPanel>
       </AccordionItem>

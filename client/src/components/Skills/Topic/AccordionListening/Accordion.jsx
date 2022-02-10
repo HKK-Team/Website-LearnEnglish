@@ -22,7 +22,7 @@ export default function Accordions(props) {
 
   useEffect(() => {
     if (dataTranslate.length) {
-      setdataTranslates(dataTranslate.split("break"));
+      setdataTranslates(dataTranslate);
     }
   }, [dataTranslate]);
 
@@ -51,18 +51,10 @@ export default function Accordions(props) {
         <AccordionItemPanel className={styles.panelText}>
           <Translate data={props.data.topic.tranScript} />
           {stateTranslate
-            ? data.map((item, index) => (
-                <p key={index}>
-                  <strong>
-                    {" "}
-                    {item?.substring(0, item?.indexOf(":") + 1)}{" "}
-                  </strong>
-                  {dataTranslates[index]}
-                </p>
-              ))
+            ? [dataTranslates].map((item, index) => <p key={index}>{item}</p>)
             : data.map((item, index) => (
                 <p key={index}>
-                  <strong> {item?.substring(0, item?.indexOf(":") - 1)}</strong>
+                  <strong> {item?.substring(0, item?.indexOf(":"))}</strong>
                   {item?.substring(item?.indexOf(":"))}
                 </p>
               ))}

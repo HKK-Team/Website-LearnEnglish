@@ -2,6 +2,8 @@ import { React, Fragment, useState, useEffect } from "react";
 import styles from "../../Skills/DetailSkills/DetailSkills.module.css";
 import { Link } from "react-router-dom";
 import SkillItem from "../../RightItem/SkillItem/SkillItem";
+import LevelRightItem from "../../RightItem/LevelRightItem/LevelRightItem";
+
 import RightItem from "../../RightItem/RightItem";
 
 const TopicGrammar = (props) => {
@@ -79,7 +81,14 @@ const TopicGrammar = (props) => {
             </div>
           </div>
           <div className="col m-12 c-12 l-3" style={{ marginTop: 105 }}>
-            <SkillItem />
+            <LevelRightItem
+              level1={"Beginner to pre-intermediate"}
+              level2={"Intermediate to upper intermediate"}
+              level3={"English grammar reference"}
+              sluglevel1={"beginner-to-pre-intermediate"}
+              sluglevel2={"intermediate-to-upper-intermediate"}
+              sluglevel3={"english-grammar-reference"}
+            />
             <RightItem />
           </div>
         </div>
