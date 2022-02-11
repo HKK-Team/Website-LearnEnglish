@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import styles from "./loginAdmin.module.css";
+import styles from "./LoginAdmin.module.css";
 import axios from "axios";
 
 
@@ -21,7 +21,7 @@ const LoginAdmin = () => {
       localStorage.setItem("AdminLogin", true);
       alert("Login Successfully!");
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/homeadmin";
       }, 2000);
     } catch (err) {
       alert(err.response.data.msg);

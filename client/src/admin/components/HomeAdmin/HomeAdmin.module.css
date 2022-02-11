@@ -1,0 +1,16 @@
+.home {
+    display: flex;
+    align-items: stretch;
+    background-color: aqua;
+    height: 100vh;
+}
+
+.leftContent {
+    width: 25%;
+    height: auto;
+}
+
+.rightContent {
+    width: 75%;
+    height: auto;
+}

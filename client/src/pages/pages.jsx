@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
-import LoginAdmin from "../admin/components/loginAdmin/loginAdmin";
+
+import LoginAdmin from "../admin/components/LoginAdmin/LoginAdmin";
+import HomeAdmin from "../admin/components/HomeAdmin/HomeAdmin";
+
 import { GlobalState } from "../GlobalState";
 import CallPage from "../pages/CallPage/CallPageGGMeet";
 import Dictionnary from "../pages/Dictionnary/Dictionnary";
@@ -182,6 +185,8 @@ const Pages = () => {
 
       {/* admin page */}
       <Route path="/admin" element={<LoginAdmin />} />
+      <Route path="/homeadmin" element={<HomeAdmin />} />
+      
       {/* admin page */}
     </Routes>
   );
