@@ -1,5 +1,4 @@
 import { Fragment, React, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import LessonCard from "../LessonCard/LessonCard";
 import LevelRightItem from "../RightItem/LevelRightItem/LevelRightItem";
 import RightItem from "../RightItem/RightItem";
@@ -11,8 +10,6 @@ const Vocabulary = (props) => {
   useEffect(() => {
     setdata(props.data);
   }, [props.data]);
-
-  console.log(props.data);
 
   if (!data[0].length) {
     return <div>loading</div>;
@@ -41,8 +38,8 @@ const Vocabulary = (props) => {
             <div className={styles.listItem}>
               <h1>Choose your level to practise your vocabulary</h1>
               <div className={styles.contain}>
-                {data[0].map((item) => (
-                  <LessonCard {...item} />
+                {data[0].map((item,index) => (
+                  <LessonCard {...item} key={index}/>
                 ))}
               </div>
             </div>

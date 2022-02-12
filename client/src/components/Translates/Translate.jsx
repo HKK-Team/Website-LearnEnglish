@@ -37,13 +37,6 @@ const Translate = (props) => {
       let temp = "";
       let tempstr = "";
       arayDataEnglish = datas.join(" ").split(" ");
-      // if (datas[datas.length - 1].includes(":")) {
-      //   let temp = "";
-      //   for (let i = 0; i < datas.length; i++) {
-      //     temp += datas[i].substring(datas[i].indexOf(":") + 1);
-      //   }
-      //   arayDataEnglish = temp.trim().split(" ").join(" ").split(" ");
-      // } else arayDataEnglish = datas.join(" ").split(" ");
 
       for (let i = 0; i < arayDataEnglish.length; i++) {
         if (temp.split(" ").length > 80) {

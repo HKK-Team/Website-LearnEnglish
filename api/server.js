@@ -30,6 +30,7 @@ app.use("/api", require("./src/users/routers/vocabularyRouter"));
 app.use("/api", require("./src/users/routers/ggMeetRouters"));
 app.use("/user", require("./src/users/routers/userRouter"));
 app.use("/admin", require("./src/admin/routers/adminRouter"));
+app.use("/admin", require("./src/admin/routers/analysis"));
 
 
 //socket.io

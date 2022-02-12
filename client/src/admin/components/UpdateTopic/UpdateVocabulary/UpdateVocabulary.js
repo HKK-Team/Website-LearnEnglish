@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import styles from "../UpdateTopic.module.css";
 
-const UpdateReading = () => {
+const UpdateVocabulary = () => {
   const [stateTask1, setstateTask1] = useState(false);
   const [stateTask2, setstateTask2] = useState(false);
   const [stateTask3, setstateTask3] = useState(false);
+  const [stateTask4, setstateTask4] = useState(false);
+  const [stateTask5, setstateTask5] = useState(false);
 
   const onChangeTask = (e) => {
     let temp = e.target.value;
@@ -14,54 +16,22 @@ const UpdateReading = () => {
       setstateTask2(true);
     } else if (temp === "task3") {
       setstateTask3(true);
+    } else if (temp === "task4") {
+      setstateTask4(true);
+    } else if (temp === "task5") {
+      setstateTask5(true);
     } else {
       setstateTask1(false);
       setstateTask2(false);
       setstateTask3(false);
+      setstateTask4(false);
+      setstateTask5(false);
     }
   };
+
   return (
     <div>
       <form>
-        {/* section skill */}
-        <div className={styles.typeInput}>
-          <label>Content Skills</label>
-          <textarea
-            spellCheck="false"
-            className={styles.typeInputValues}
-            placeholder="Please type content..."
-          />
-        </div>
-        <div className={styles.typeInput}>
-          <label>Images Skills</label>
-          <input
-            type="file"
-            id="file"
-            spellCheck="false"
-            className={styles.typeInputValues}
-            placeholder="Please type content..."
-          />
-        </div>
-
-        <div className={styles.typeInputDouple}>
-          <div className={styles.left}>
-            <label>Type Skills</label>
-            <input
-              className={styles.typeInputValuesDp1}
-              placeholder="Please type content..."
-            />
-          </div>
-
-          <div className={styles.right}>
-            <label>Slug Skills</label>
-            <input
-              className={styles.typeInputValuesDp2}
-              placeholder="Please type content..."
-            />
-          </div>
-        </div>
-        {/* section skill */}
-
         {/* section level skill */}
         <div className={styles.typeInput}>
           <label>Content Level Skills</label>
@@ -121,15 +91,6 @@ const UpdateReading = () => {
           />
         </div>
 
-        <div className={styles.typeInput}>
-          <label>Text Reading</label>
-          <textarea
-            spellCheck="false"
-            className={styles.typeInputValues}
-            placeholder="Please type content..."
-          />
-        </div>
-
         <div className={styles.typeInputDouple}>
           <div className={styles.left}>
             <label>Name Topic</label>
@@ -161,6 +122,8 @@ const UpdateReading = () => {
             <option value="task1">Update: Task1</option>
             <option value="task2">Update: Task2</option>
             <option value="task3">Update: Task3</option>
+            <option value="task4">Update: Task4</option>
+            <option value="task5">Update: Task5</option>
           </select>
         </div>
         {/* task1 in topic */}
@@ -193,7 +156,7 @@ const UpdateReading = () => {
         {stateTask2 ? (
           <div>
             <div className={styles.typeInput}>
-              <label>Data Text1 Task2</label>
+              <label>Data Task2</label>
               <input
                 spellCheck="false"
                 className={styles.typeInputValues}
@@ -201,39 +164,7 @@ const UpdateReading = () => {
               />
             </div>
             <div className={styles.typeInput}>
-              <label>Data Text2 Task2</label>
-              <input
-                spellCheck="false"
-                className={styles.typeInputValues}
-                placeholder="Please type content..."
-              />
-            </div>
-            <div className={styles.typeInput}>
-              <label>Data Text3 Task2</label>
-              <input
-                spellCheck="false"
-                className={styles.typeInputValues}
-                placeholder="Please type content..."
-              />
-            </div>
-            <div className={styles.typeInput}>
-              <label>Data Text4 Task2</label>
-              <input
-                spellCheck="false"
-                className={styles.typeInputValues}
-                placeholder="Please type content..."
-              />
-            </div>
-            <div className={styles.typeInput}>
-              <label>Data Text5 Task2</label>
-              <input
-                spellCheck="false"
-                className={styles.typeInputValues}
-                placeholder="Please type content..."
-              />
-            </div>
-            <div className={styles.typeInput}>
-              <label>Data Text6 Task2</label>
+              <label>Task Name</label>
               <input
                 spellCheck="false"
                 className={styles.typeInputValues}
@@ -272,10 +203,61 @@ const UpdateReading = () => {
         )}
 
         {/* task3 in topic */}
+
+        {/* task3 in topic */}
+        {stateTask4 ? (
+          <div>
+            <div className={styles.typeInput}>
+              <label>Data Task4</label>
+              <input
+                spellCheck="false"
+                className={styles.typeInputValues}
+                placeholder="Please type content..."
+              />
+            </div>
+            <div className={styles.typeInput}>
+              <label>Task Name</label>
+              <input
+                spellCheck="false"
+                className={styles.typeInputValues}
+                placeholder="Please type content..."
+              />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {/* task4 in topic */}
+        {/* task5 in topic */}
+        {stateTask5 ? (
+          <div>
+            <div className={styles.typeInput}>
+              <label>Data Task5</label>
+              <input
+                spellCheck="false"
+                className={styles.typeInputValues}
+                placeholder="Please type content..."
+              />
+            </div>
+            <div className={styles.typeInput}>
+              <label>Task Name</label>
+              <input
+                spellCheck="false"
+                className={styles.typeInputValues}
+                placeholder="Please type content..."
+              />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {/* task3 in topic */}
         {/* task in topic */}
       </form>
     </div>
   );
 };
 
-export default UpdateReading;
+export default UpdateVocabulary;

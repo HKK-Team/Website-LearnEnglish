@@ -8,6 +8,7 @@ import styles from "./VocabularySkills.module.css";
 export default function VocabularySkills(props) {
   const [data, setData] = useState(props.level?.topic);
 
+
   useEffect(() => {
     setData(props.level?.topic);
   }, [props.level?.topic]);
@@ -44,6 +45,7 @@ export default function VocabularySkills(props) {
               <LessonCard _id={index} {...item} />
             ))}
           </div>
+
         </div>
         <div className="col l-3 m-12 c-12" style={{ marginTop: 193 }}>
           <LevelRightItem

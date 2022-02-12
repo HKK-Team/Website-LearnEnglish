@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./LessonCard.module.css";
 export default function LessonCard(props) {
-  // console.log(props)
+  console.log(props);
   return (
     <div
       className={styles.viewRow}
@@ -17,7 +17,7 @@ export default function LessonCard(props) {
           <h2>{props?.nameTopic || props?.level?.nameLevel}</h2>
         </Link>
         <p>
-          {props?.contentTopic ||
+          {props?.contentTopic?.substring(0, props?.contentTopic.indexOf(".") + 1) ||
             props?.level?.contentLevel.substring(
               0,
               props?.level?.contentLevel.indexOf(".") + 1

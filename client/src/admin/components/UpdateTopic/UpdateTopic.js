@@ -6,9 +6,14 @@ import UpdateListening from "./UpdateListening/UpdateListening";
 import UpdateReading from "./UpdateReading/UpdateReading";
 import UpdateSpeaking from "./UpdateSpeaking/UpdateSpeaking";
 import UpdateWriting from "./UpdateWriting/UpdateWriting";
+import UpdateGrammars from "./UpdateGrammars/UpdateGrammars";
+import UpdateVocabulary from "./UpdateVocabulary/UpdateVocabulary";
 
 const UpdateTopic = () => {
   const [stateSkillsOption, setstateSkillsOption] = useState(false);
+  const [stateGrammar, setstateGrammar] = useState(false);
+  const [stateVoc, setstateVoc] = useState(false);
+
   const [stateUpdateListening, setstateUpdateListening] = useState(false);
   const [stateUpdateSpeaking, setstateUpdateSpeaking] = useState(false);
   const [stateUpdateReading, setstateUpdateReading] = useState(false);
@@ -17,7 +22,17 @@ const UpdateTopic = () => {
   const onchangeInput = (e) => {
     if (e.target.value === "skill") {
       setstateSkillsOption(true);
-    } else setstateSkillsOption(false);
+      setstateGrammar(false);
+      setstateVoc(false);
+    } else if (e.target.value === "grammar") {
+      setstateGrammar(true);
+      setstateSkillsOption(false);
+      setstateVoc(false);
+    } else if (e.target.value === "vocabulary") {
+      setstateVoc(true);
+      setstateSkillsOption(false);
+      setstateGrammar(false);
+    }
   };
   const onInput = (e) => {
     if (e.target.value === "listening") {
@@ -40,8 +55,7 @@ const UpdateTopic = () => {
       setstateUpdateReading(false);
       setstateUpdateSpeaking(false);
       setstateUpdateWriting(true);
-    }
-    else{
+    } else {
       setstateUpdateListening(false);
       setstateUpdateReading(false);
       setstateUpdateSpeaking(false);
@@ -90,6 +104,8 @@ const UpdateTopic = () => {
           {stateUpdateReading ? <UpdateReading /> : ""}
           {stateUpdateSpeaking ? <UpdateSpeaking /> : ""}
           {stateUpdateWriting ? <UpdateWriting /> : ""}
+          {stateGrammar ? <UpdateGrammars /> : ""}
+          {stateVoc ? <UpdateVocabulary /> : ""}
         </div>
       </div>
     </div>

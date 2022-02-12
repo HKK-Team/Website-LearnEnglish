@@ -33,7 +33,6 @@ const DetailTopic = (props) => {
     }
   }, [props.data]);
 
-
   if (!data.length) {
     return <div>loading</div>;
   }
@@ -44,6 +43,25 @@ const DetailTopic = (props) => {
         <div className="row">
           <div className="col l-9 m-12 c-12">
             <div className={styles.title}>
+
+              <div className={styles.heading}>
+                <p className={styles.depthLink}>
+                  <Link to="/voccabulary">Vocabulary</Link>
+                  <span> {">"} </span>
+                  <span>{props?.level?.slugLevel}</span>
+                </p>
+                <div className={styles.line}></div>
+                <h1
+                  style={{
+                    color: "#23085A",
+                    margin: "30px 0 0 0",
+                    fontSize: 36,
+                  }}
+                >
+                  {props?.level?.nameLevel}
+                </h1>
+              </div>
+              
               <h2>{data[0]?.level.topic.nameTopic}</h2>
             </div>
             <div className={styles.imageFiled}>
@@ -142,7 +160,7 @@ const DetailTopic = (props) => {
             </div>
           </div>
           <div className="col l-3 m-12 c-12" style={{ marginTop: 105 }}>
-          <LevelRightItem
+            <LevelRightItem
               level1={"Beginner to pre-intermediate"}
               level2={"Intermediate to upper intermediate"}
               level3={"English grammar reference"}

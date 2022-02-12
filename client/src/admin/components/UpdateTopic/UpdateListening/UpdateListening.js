@@ -105,7 +105,7 @@ const UpdateListening = () => {
         {/* section topic skill */}
         <div className={styles.typeInput}>
           <label>Content Topic</label>
-          <input
+          <textarea
             spellCheck="false"
             className={styles.typeInputValues}
             placeholder="Please type content..."

@@ -1,13 +1,66 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { AiOutlineClockCircle } from "react-icons/ai";
-import { FaSignal, FaUserPlus } from "react-icons/fa";
+import {
+  FaChartArea,
+  FaChartBar,
+  FaChartLine,
+  FaUserPlus,
+} from "react-icons/fa";
+import HeaderSideBar from "../HeaderSideBar/HeaderSideBar";
 import styles from "./RightContent.module.css";
-import HeaderSideBar from '../HeaderSideBar/HeaderSideBar'
+import { GlobalState } from "../../../GlobalState";
+import { useState } from "react";
 
 const RightContent = () => {
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const state = useContext(GlobalState);
+  const [dataUser] = state.userTotalApi.dataUser;
+  const [grammar] = state.grammarApi.dataGrammar;
+  const [vocabulary] = state.vocabularyApi.vocData;
+
+  const [dataListening] = state.listeningApi.dataListening;
+  const [dataReading] = state.readingApi.dataReading;
+  const [dataSpeaking] = state.speakingApi.dataSpeaking;
+  const [dataWriting] = state.writingApi.dataWriting;
+  const [totalSkill, settotalSkill] = useState(0);
+  const [dataWidget, setdataWidget] = useState([]);
+
+  useEffect(() => {
+    let sum =
+      dataListening.length +
+      dataReading.length +
+      dataSpeaking.length +
+      dataWriting.length;
+    let array = [];
+    array.push(...dataListening);
+    array.push(...dataReading);
+    array.push(...dataSpeaking);
+    array.push(...dataWriting);
+    array.push(...grammar);
+    array.push(...vocabulary);
+
+    array.sort(function (a, b) {
+      return new Date(b.dateCreate) - new Date(a.dateCreate);
+    });
+
+    setdataWidget(array);
+    settotalSkill(sum);
+  }, [
+    dataListening,
+    dataReading,
+    dataSpeaking,
+    dataWriting,
+    grammar,
+    vocabulary,
+  ]);
+
+  if (!dataUser.length) {
+    return <div></div>;
+  }
+
   return (
     <div>
-      <HeaderSideBar/>
+      <HeaderSideBar />
       <div className={styles.widgetMain}>
         <div className={styles.widget}>
           <div
@@ -18,7 +71,7 @@ const RightContent = () => {
           </div>
           <div className={styles.information}>
             <span>Followers</span>
-            <h2>+91</h2>
+            <h2>+{dataUser.length}</h2>
           </div>
           <div className={styles.line}></div>
           <div className={styles.textInfor}>
@@ -31,11 +84,11 @@ const RightContent = () => {
             className={styles.widgetMini}
             style={{ backgroundColor: "#44a0f0" }}
           >
-            <FaUserPlus />
+            <FaChartArea />
           </div>
           <div className={styles.information}>
-            <span>Followers</span>
-            <h2>+91</h2>
+            <span>Skills</span>
+            <h2>+{totalSkill}</h2>
           </div>
           <div className={styles.line}></div>
           <div className={styles.textInfor}>
@@ -48,11 +101,11 @@ const RightContent = () => {
             className={styles.widgetMini}
             style={{ backgroundColor: "#60b464" }}
           >
-            <FaUserPlus />
+            <FaChartBar />
           </div>
           <div className={styles.information}>
-            <span>Followers</span>
-            <h2>+91</h2>
+            <span>Grammars</span>
+            <h2>+{grammar.length}</h2>
           </div>
           <div className={styles.line}></div>
           <div className={styles.textInfor}>
@@ -65,149 +118,63 @@ const RightContent = () => {
             className={styles.widgetMini}
             style={{ backgroundColor: "#f03c74" }}
           >
-            <FaSignal />
+            <FaChartLine />
           </div>
           <div className={styles.information}>
-            <span>Followers</span>
-            <h2>+91</h2>
+            <span>Vocabulary</span>
+            <h2>+{vocabulary.length}</h2>
           </div>
           <div className={styles.line}></div>
           <div className={styles.textInfor}>
-            <span>
+            <span>Just updated</span>
+
+            {/* <span>
               <strong style={{ color: "#68bc64" }}>+3%</strong> than last month
-            </span>
+            </span> */}
           </div>
         </div>
       </div>
 
       <div className={styles.widgetTopic}>
-        <div className={styles.widgetTopicMini}>
-          <div className={styles.widgetMini}>
-            <img
-              src={
-                "https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/430x261_4/public/2021-09/GettyImages-1072206958_0.jpg?itok=qJTgFre7"
-              }
-              alt=""
-            />
+        {dataWidget.slice(0, 3).map((item, index) => (
+          <div className={styles.widgetTopicMini} key={index}>
+            <div className={styles.widgetMini}>
+              <img src={item.level.topic.imageTopic} alt="" />
+            </div>
+            <div className={styles.information}>
+              <h4>{item.level.topic.nameTopic}</h4>
+              <span>{item.type}</span>
+            </div>
+            <div className={styles.line}></div>
+            <div className={styles.textInfor}>
+              <span>
+                <AiOutlineClockCircle />{" "}
+                 {new Date(item.dateCreate).toLocaleDateString("en-US",options)}
+              </span>
+            </div>
           </div>
-          <div className={styles.information}>
-            <h4>Website Views</h4>
-            <span>Last Campaign Performance</span>
-          </div>
-          <div className={styles.line}></div>
-          <div className={styles.textInfor}>
-            <span>
-              <AiOutlineClockCircle /> campaign sent 2 days ago
-            </span>
-          </div>
-        </div>
-
-        <div className={styles.widgetTopicMini}>
-          <div className={styles.widgetMini}>
-            <img
-              src={
-                "https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2FsbCUyMGJhY2tncm91bmR8ZW58MHx8MHx8&w=1000&q=80"
-              }
-              alt=""
-            />
-          </div>
-          <div className={styles.information}>
-            <h4>Website Views</h4>
-            <span>Last Campaign Performance</span>
-          </div>
-          <div className={styles.line}></div>
-          <div className={styles.textInfor}>
-            <span>
-              <AiOutlineClockCircle /> campaign sent 2 days ago
-            </span>
-          </div>
-        </div>
-
-        <div className={styles.widgetTopicMini}>
-          <div className={styles.widgetMini}>
-            <img
-              src={
-                "https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2FsbCUyMGJhY2tncm91bmR8ZW58MHx8MHx8&w=1000&q=80"
-              }
-              alt=""
-            />
-          </div>
-          <div className={styles.information}>
-            <h4>Website Views</h4>
-            <span>Last Campaign Performance</span>
-          </div>
-          <div className={styles.line}></div>
-          <div className={styles.textInfor}>
-            <span>
-              <AiOutlineClockCircle /> campaign sent 2 days ago
-            </span>
-          </div>
-        </div>
+        ))}
       </div>
 
       <div className={styles.widgetTopicSecond}>
-        <div className={styles.widgetTopicMini}>
-          <div className={styles.widgetMini}>
-            <img
-              src={
-                "https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/430x261_4/public/2021-09/GettyImages-1072206958_0.jpg?itok=qJTgFre7"
-              }
-              alt=""
-            />
+      {dataWidget.slice(3, 6).map((item, index) => (
+          <div className={styles.widgetTopicMini} key={index}>
+            <div className={styles.widgetMini}>
+              <img src={item.level.topic.imageTopic} alt="" />
+            </div>
+            <div className={styles.information}>
+              <h4>{item.level.topic.nameTopic}</h4>
+              <span>{item.type}</span>
+            </div>
+            <div className={styles.line}></div>
+            <div className={styles.textInfor}>
+              <span>
+                <AiOutlineClockCircle />{" "}
+                 {new Date(item.dateCreate).toLocaleDateString("en-US",options)}
+              </span>
+            </div>
           </div>
-          <div className={styles.information}>
-            <h4>Website Views</h4>
-            <span>Last Campaign Performance</span>
-          </div>
-          <div className={styles.line}></div>
-          <div className={styles.textInfor}>
-            <span>
-              <AiOutlineClockCircle /> campaign sent 2 days ago
-            </span>
-          </div>
-        </div>
-
-        <div className={styles.widgetTopicMini}>
-          <div className={styles.widgetMini}>
-            <img
-              src={
-                "https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2FsbCUyMGJhY2tncm91bmR8ZW58MHx8MHx8&w=1000&q=80"
-              }
-              alt=""
-            />
-          </div>
-          <div className={styles.information}>
-            <h4>Website Views</h4>
-            <span>Last Campaign Performance</span>
-          </div>
-          <div className={styles.line}></div>
-          <div className={styles.textInfor}>
-            <span>
-              <AiOutlineClockCircle /> campaign sent 2 days ago
-            </span>
-          </div>
-        </div>
-
-        <div className={styles.widgetTopicMini}>
-          <div className={styles.widgetMini}>
-            <img
-              src={
-                "https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2FsbCUyMGJhY2tncm91bmR8ZW58MHx8MHx8&w=1000&q=80"
-              }
-              alt=""
-            />
-          </div>
-          <div className={styles.information}>
-            <h4>Website Views</h4>
-            <span>Last Campaign Performance</span>
-          </div>
-          <div className={styles.line}></div>
-          <div className={styles.textInfor}>
-            <span>
-              <AiOutlineClockCircle /> campaign sent 2 days ago
-            </span>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

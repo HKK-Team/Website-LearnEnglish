@@ -8,6 +8,7 @@ import WritingApi from './apiUsers/writingApi';
 import GrammarApi from './apiUsers/grammarApi';
 import VocabularyApi from './apiUsers/vocabularyApi'
 import AdminApi from './admin/apiAdmin/LoginAdminApi'
+import UserTotalApi from './admin/apiAdmin/userApi'
 import axios from 'axios';
 
 export const GlobalState = createContext()
@@ -55,7 +56,8 @@ export const DataProvider = ({children}) =>{
         speakingApi:SpeakingApi(),
         writingApi:WritingApi(),
         grammarApi:GrammarApi(),
-        vocabularyApi:VocabularyApi()
+        vocabularyApi:VocabularyApi(),
+        userTotalApi:UserTotalApi()
     }
     return (
         <GlobalState.Provider value={state}>

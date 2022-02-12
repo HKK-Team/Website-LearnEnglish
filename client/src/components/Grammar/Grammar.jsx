@@ -41,7 +41,7 @@ const Grammar = (props) => {
               grammar, so come back tomorrow to choose another grammar point to
               work on. Good luck!
             </p>
-            <h1>Choose a grammar section</h1>
+            <h1 style={{color:"#23085a"}}>Choose a grammar section</h1>
             <div className={styles.contain}>
               {data[0].slice(0, 2).map((item) => (
                 <LessonCard {...item} />

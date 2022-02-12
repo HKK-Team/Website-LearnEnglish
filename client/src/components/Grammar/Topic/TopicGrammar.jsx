@@ -1,10 +1,9 @@
-import { React, Fragment, useState, useEffect } from "react";
-import styles from "../../Skills/DetailSkills/DetailSkills.module.css";
+import { Fragment, React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import SkillItem from "../../RightItem/SkillItem/SkillItem";
 import LevelRightItem from "../../RightItem/LevelRightItem/LevelRightItem";
-
 import RightItem from "../../RightItem/RightItem";
+import styles from "../../Voccabulary/VocabularySkills/VocabularySkills.module.css";
+import LessonCard from "../../LessonCard/LessonCard";
 
 const TopicGrammar = (props) => {
   const [data, setdata] = useState(props.data);
@@ -25,6 +24,59 @@ const TopicGrammar = (props) => {
       <div className="grid wide">
         <div className="row">
           <div className="col l-9 m-12 c-12">
+            <div className={styles.heading}>
+              <p className={styles.depthLink}>
+                <Link to="/grammar">Grammar</Link>
+
+                <span> {">"} </span>
+                <span>{props?.level?.slugLevel}</span>
+              </p>
+              <div className={styles.line}></div>
+              <h1
+                style={{ color: "#23085A", margin: "30px 0 0 0", fontSize: 36 }}
+              >
+                {data[0]?.level.nameLevel}
+              </h1>
+            </div>
+            <img
+              src={data[0]?.level.images}
+              alt="s"
+              style={{ width: "100%" }}
+            />
+            <div className={styles.contactBox}>
+              {datalevel.map((item, index) => (
+                <p className={styles.text} key={index}>
+                  {item}
+                </p>
+              ))}
+            </div>
+
+            <h2
+              style={{ color: "#23085A", margin: "30px 0 0 0", fontSize: 36 }}
+            >
+              Choose a vocabulary lesson
+            </h2>
+
+            <div className={styles.containerLesson}>
+              {[data[0].level.topic].map((item, index) => (
+                <LessonCard _id={index} {...item} />
+              ))}
+            </div>
+
+            {/* <div className={styles.heading}>
+              <p className={styles.depthLink}>
+                <Link to="/grammar">Grammar</Link>
+                <span> {">"} </span>
+                <span>{props?.level?.slugLevel}</span>
+              </p>
+              <div className={styles.line}></div>
+              <h1
+                style={{ color: "#23085A", margin: "30px 0 0 0", fontSize: 36 }}
+              >
+                {props?.level?.nameLevel}
+              </h1>
+            </div>
+
             <div className={styles.title}>
               <h2>{data[0]?.level.nameLevel}</h2>
             </div>
@@ -78,9 +130,9 @@ const TopicGrammar = (props) => {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
-          <div className="col m-12 c-12 l-3" style={{ marginTop: 105 }}>
+          <div className="col l-3 m-12 c-12" style={{ marginTop: 193 }}>
             <LevelRightItem
               level1={"Beginner to pre-intermediate"}
               level2={"Intermediate to upper intermediate"}
