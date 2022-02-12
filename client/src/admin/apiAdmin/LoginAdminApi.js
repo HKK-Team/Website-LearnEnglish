@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function LoginAdminApi(token) {
-    const [isLogin, setIsLogin] = useState(false)
+    const [isLoginAdmin, setisLoginAdmin] = useState(false)
     const [admin, setadmin] = useState([])
     const [idadmin, setidadmin] = useState([])
     useEffect(() => {
@@ -13,7 +13,7 @@ function LoginAdminApi(token) {
                         headers: { Authorization: token }
                     })
                     setadmin(res.data)
-                    setIsLogin(true)
+                    setisLoginAdmin(true)
                     setidadmin(res.data._id)
                 } catch (err) {
                     alert(err.response.data.msg)
@@ -25,7 +25,7 @@ function LoginAdminApi(token) {
     }, [token])
     return {
         admin: [admin, setadmin],
-        isLogin: [isLogin, setIsLogin],
+        isLoginAdmin: [isLoginAdmin, setisLoginAdmin],
         idadmin: [idadmin, setidadmin]
     }
 }

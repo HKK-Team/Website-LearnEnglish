@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import LoginAdmin from "../admin/components/LoginAdmin/LoginAdmin";
 import HomeAdmin from "../admin/components/HomeAdmin/HomeAdmin";
+import UpdateTopic from "../admin/components/UpdateTopic/UpdateTopic";
 
 import { GlobalState } from "../GlobalState";
 import CallPage from "../pages/CallPage/CallPageGGMeet";
@@ -37,6 +38,8 @@ import VocITUI from "./Voccabulary/VocITUI";
 const Pages = () => {
   const state = useContext(GlobalState);
   const [isLogin] = state.userApi.isLogged;
+  const [isLoginAdmin] = state.adminApi.isLoginAdmin;
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -185,8 +188,9 @@ const Pages = () => {
 
       {/* admin page */}
       <Route path="/admin" element={<LoginAdmin />} />
-      <Route path="/homeadmin" element={<HomeAdmin />} />
-      
+      <Route path="/dashboard" element={<HomeAdmin />} />
+      <Route path="/update" element={<UpdateTopic />} />
+
       {/* admin page */}
     </Routes>
   );

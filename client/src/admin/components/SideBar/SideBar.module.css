@@ -10,13 +10,13 @@
     position: absolute;
     top: 20px;
     left: 20px;
-    background: linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25));
+    background-color: #202c3c;
     border-radius: 15px;
     color: white;
 }
 
 .main .title {
-    padding-top: 10px;
+    padding-top: 20px;
     height: 40px;
     text-align: center;
     font-family: Roboto, Helvetica, Arial, sans-serif;
@@ -44,6 +44,7 @@
 
 .items {
     margin-left: -20px;
+    margin-top: 40px;
     height: auto;
 }
 

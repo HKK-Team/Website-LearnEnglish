@@ -21,7 +21,7 @@ const LoginAdmin = () => {
       localStorage.setItem("AdminLogin", true);
       alert("Login Successfully!");
       setTimeout(() => {
-        window.location.href = "/homeadmin";
+        window.location.href = "/dashboard";
       }, 2000);
     } catch (err) {
       alert(err.response.data.msg);

@@ -20,7 +20,7 @@ const SideBar = () => {
             <li className={styles.active}>
               <div className={styles.elementItem}>
                 <FaMicrosoft className={styles.iconLeft} />
-                <Link to={"/homeadmin"} className={styles.element}>
+                <Link to={"/dashboard"} className={styles.element}>
                   Dashboard
                 </Link>
               </div>
@@ -28,7 +28,7 @@ const SideBar = () => {
             <li>
               <div className={styles.elementItem}>
                 <FaRegListAlt className={styles.iconLeft} />{" "}
-                <Link to={""} className={styles.element}>
+                <Link to={"/update"} className={styles.element}>
                   Update
                 </Link>
               </div>
@@ -53,7 +53,7 @@ const SideBar = () => {
               <div className={styles.elementItem}>
                 <FaOutdent className={styles.iconLeft} />{" "}
                 <Link to={""} className={styles.element}>
-                  Sign up
+                  Logout
                 </Link>
               </div>
             </li>

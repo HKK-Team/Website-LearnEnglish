@@ -1,7 +1,7 @@
 .home {
     display: flex;
     align-items: stretch;
-    background-color: aqua;
+    background-color: #202434;
     height: 100vh;
 }
 
@@ -13,4 +13,5 @@
 .rightContent {
     width: 75%;
     height: auto;
+    overflow: auto;
 }

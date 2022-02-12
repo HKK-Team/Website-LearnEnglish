@@ -1,50 +1,3 @@
-.headerRight {
-    width: 100%;
-    height: 100px;
-    margin-top: 20px;
-    display: flex;
-    align-items: stretch;
-}
-
-.leftItem {
-    padding-top: 20px;
-}
-
-.leftItem span {
-    margin: 0px;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    letter-spacing: 0.02857em;
-    opacity: 1;
-    text-transform: capitalize;
-    vertical-align: unset;
-    text-decoration: none;
-    font-weight: 400;
-    line-height: 0;
-}
-
-.leftItem h3 {
-    margin-top: 6px;
-}
-
-.rightItem {
-    display: flex;
-    align-items: stretch;
-    margin-left: 500px;
-    margin-top: 30px;
-}
-
-.rightItem input {
-    width: 150px;
-    height: 40px;
-    border-radius: 5px;
-}
-
-.iconRightItem span {
-    font-size: 23px;
-    padding-left: 15px;
-}
-
 .widgetMain {
     width: 100%;
     height: auto;
@@ -73,11 +26,9 @@
     align-items: center;
     width: 4rem;
     height: 4rem;
-    background-color: #30344c;
     position: absolute;
     top: -24px;
     opacity: 1;
-    background: linear-gradient(195deg, rgb(50, 58, 84), rgb(26, 32, 53));
     color: rgb(255, 255, 255);
     border-radius: 0.75rem;
     box-shadow: rgb(0 0 0 / 14%) 0rem 0.25rem 1.25rem 0rem, rgb(64 64 64 / 40%) 0rem 0.4375rem 0.625rem -0.3125rem;
@@ -93,16 +44,114 @@
 
 .widgetMain .widget .information h2 {
     position: absolute;
-    top: 5px;
+    top: 15px;
     right: 20px;
     color: white;
 }
 
 .widgetMain .widget .line {
     position: absolute;
-    top: 60px;
+    top: 70px;
     left: 10px;
     width: 200px;
+    background-color: aliceblue;
+    flex-shrink: 0;
+    border-top: 0px solid rgba(0, 0, 0, 0.08);
+    border-right: 0px solid rgba(0, 0, 0, 0.08);
+    border-left: 0px solid rgba(0, 0, 0, 0.08);
+    height: 0.0625rem;
+    margin: 1rem 0px;
+    border-bottom: none;
+    opacity: 0.25;
+    background-color: transparent;
+    background-image: linear-gradient(to right, rgba(52, 71, 103, 0), rgb(255, 255, 255), rgba(52, 71, 103, 0)) !important;
+}
+
+.widgetMain .widget .textInfor {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+}
+
+.widgetTopic {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: stretch;
+    margin-top: 40px;
+}
+
+.widgetTopic div {
+    margin: 10px;
+}
+
+.widgetTopicSecond {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: stretch;
+    margin-top: 40px;
+}
+
+.widgetTopicSecond div {
+    margin: 10px;
+}
+
+.widgetTopicMini {
+    width: 295px;
+    height: 310px;
+    border-radius: 0.75rem;
+    background-color: #282c44;
+    margin-top: 50px;
+    position: relative;
+}
+
+.widgetTopicMini .widgetMini {
+    width: 275px;
+    height: 200px;
+    position: absolute;
+    top: -40px;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 14%) 0rem 0.25rem 1.25rem 0rem, rgb(0 187 212 / 40%) 0rem 0.4375rem 0.625rem -0
+}
+
+.widgetTopicMini .widgetMini img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.widgetTopicMini .information {
+    position: absolute;
+    top: 160px;
+    color: white;
+    margin-left: 20px;
+}
+
+.widgetTopicMini .information h4 {
+    height: 1px;
+}
+
+.widgetTopicMini .information span {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.02857em;
+    opacity: 1;
+    text-transform: none;
+    vertical-align: unset;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+}
+
+.widgetTopicMini .line {
+    position: absolute;
+    top: 240px;
+    left: 20px;
+    width: 250px;
     background-color: aliceblue;
     flex-shrink: 0;
     border-top: 0px solid rgba(0, 0, 0, 0.08);
@@ -116,9 +165,18 @@
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgba(255, 255, 255, 0)) !important;
 }
 
-.widgetMain .widget .textInfor {
+.widgetTopicMini .textInfor {
     position: absolute;
-    bottom: 10px;
+    bottom: 8px;
     left: 10px;
-    color: white;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.02857em;
+    opacity: 1;
+    text-transform: none;
+    vertical-align: unset;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
 }
