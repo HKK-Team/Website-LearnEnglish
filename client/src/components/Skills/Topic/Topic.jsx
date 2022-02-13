@@ -7,6 +7,7 @@ import AccordionSpeaking from "./AccordionSpeaking/AccordionSpeaking";
 import AccordionWriting from "./AccordionWriting/AccordionWriting";
 import ReactPlayer from "react-player";
 import styles from "./Topic.module.css";
+import style from "../DetailSkills/DetailSkills.module.css";
 
 const Topic = (props) => {
   const [data, setdata] = useState(props.data);
@@ -30,23 +31,40 @@ const Topic = (props) => {
   }, [props.data]);
 
   if (!data.length) {
-    return <div>loading</div>;
+    return <div></div>;
   }
   return (
     <div className="grid wide">
       <div className="row">
         <div className="col l-9 m-12 c-12">
-          <div className={styles.title}>
-            <h2>{data[0]?.level.topic.nameTopic}</h2>
+          <div className={style.heading}>
+            <p className={style.depthLink}>
+              <Link to="/skill">Skills</Link>
+              <span> {">"} </span>
+              <span>{data[0]?.type}</span>
+              <span> {">"} </span>
+              <span>{data[0]?.level?.slugLevel}</span>
+              <span> {">"} </span>
+              <span>{data[0]?.level?.topic?.nameTopic}</span>
+            </p>
+            <div className={style.line}></div>
+            <h1
+              style={{ color: "#23085A", margin: "30px 0 0 0", fontSize: 36 }}
+            >
+              {data[0]?.level.topic.nameTopic}
+            </h1>
           </div>
+
           {isSpeaking ? (
             <div>
               <ReactPlayer url={dataVideo} width="910px" height="500px" />
             </div>
           ) : (
-            <div className={styles.imageFiled}>
-              <img src={data[0]?.level.topic.imageTopic} alt="" />
-            </div>
+            <img
+              src={data[0]?.level.topic.imageTopic}
+              alt="s"
+              style={{ width: "100%" }}
+            />
           )}
           <div className={styles.colorMain}>
             <div className={styles.blockColor1}></div>
@@ -64,6 +82,7 @@ const Topic = (props) => {
             </div>
             <div className={styles.blockColor3}></div>
           </div>
+
           <div className={styles.textIntro}>
             {dataIntroText.map((item, index) => (
               <p className={styles.text} key={index}>
@@ -104,16 +123,14 @@ const Topic = (props) => {
           {isWriting ? (
             <div className={styles.sessionMutipleChoise}>
               <div>
-                <AccordionWriting
-                  data={data[0]?.level}
-                />
+                <AccordionWriting data={data[0]?.level} />
               </div>
             </div>
           ) : (
             ""
           )}
         </div>
-        <div className="col l-3 m-12 c-12" style={{ marginTop: 90 }}>
+        <div className="col l-3 m-12 c-12" style={{ marginTop: 193 }}>
           <RightItem />
         </div>
       </div>

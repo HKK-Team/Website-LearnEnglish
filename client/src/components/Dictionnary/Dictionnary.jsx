@@ -1,16 +1,15 @@
-import {React, Fragment,useContext} from 'react'
 import { Container } from "@material-ui/core";
+import { Fragment, React, useContext, useState } from 'react';
+import { GlobalState } from '../../GlobalState';
+import Footer from '../Footer/Footer';
+import Header from '../Headers/Header';
 // import { grey } from "@material-ui/core/colors";
 import styles from "./Dictionnary.module.css";
-import { useState } from "react";
-import HeaderDic from './DictionnaryHeader/HeaderDic'
-import Header from '../Headers/Header'
-import Footer from '../Footer/Footer'
-import { GlobalState } from '../../GlobalState';
+import HeaderDic from './DictionnaryHeader/HeaderDic';
 
 const Dictionnary = () => {
 
-    const [LightTheme, setLightTheme] = useState(true);
+    const [LightTheme] = useState(true);
 
     const state = useContext(GlobalState);
     const [word, setWord] = state.dictionnaryApi.word

@@ -18,25 +18,19 @@ const Grammar = (props) => {
       <div className="grid wide" style={{ marginTop: 60 }}>
         <div className="row">
           <div className="col l-9 m-12 c-12">
-            <p>
+            <p style={{fontSize:18}}>
               Practise your English grammar with clear grammar explanations and
               practice exercises to test your understanding. All learners,
               whatever their level, have questions and doubts about grammar as
               they're learning English and this guide helps to explain the verb
-              tenses and grammar rules in a clear and simple way.
-            </p>
-            <p>
+              tenses and grammar rules in a clear and simple way.<br/><br/>
               Choose your level, from beginner to advanced, and start learning
               today by reading the explanations and doing the exercises. By
               revising and practising your grammar you will increase your
-              confidence in English and improve your language level.
-            </p>
-            <p>
+              confidence in English and improve your language level.<br/><br/>
               Decide which area of grammar you need help with today and choose a
               grammar point to work on. When you do the interactive exercises,
-              you can see how well you've done.
-            </p>
-            <p>
+              you can see how well you've done.<br/><br/>
               Practising little and often is the best way to improve your
               grammar, so come back tomorrow to choose another grammar point to
               work on. Good luck!

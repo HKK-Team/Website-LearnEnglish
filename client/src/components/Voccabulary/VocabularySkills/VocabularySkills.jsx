@@ -33,7 +33,9 @@ export default function VocabularySkills(props) {
           </div>
           <img src={props?.level?.images} alt="s" style={{ width: "100%" }} />
           <div className={styles.contactBox}>
-            <p>{props?.level?.contentLevel}</p>
+            {props?.level?.contentLevel.split('\n\n').map((item,index) =>(
+              <p key={index} style={{fontSize:18}}>{item}</p>
+            ))}
           </div>
 
           <h2 style={{ color: "#23085A", margin: "30px 0 0 0", fontSize: 36 }}>

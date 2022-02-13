@@ -13,6 +13,7 @@ const DetailTopic = (props) => {
   const [dataexplan, setdataexplan] = useState([]);
   const [Grammarexplanation, setGrammarexplanation] = useState([]);
   const [dataTask, setdataTask] = useState([]);
+  console.log(data[0]?.level?.topic?.slug);
 
   useEffect(() => {
     setdata(props.data);
@@ -43,12 +44,13 @@ const DetailTopic = (props) => {
         <div className="row">
           <div className="col l-9 m-12 c-12">
             <div className={styles.title}>
-
               <div className={styles.heading}>
                 <p className={styles.depthLink}>
-                  <Link to="/voccabulary">Vocabulary</Link>
+                  <Link to="/grammar">Grammar</Link>
                   <span> {">"} </span>
-                  <span>{props?.level?.slugLevel}</span>
+                  <span>{data[0]?.level?.slugLevel}</span>
+                  <span> {">"} </span>
+                  <span>{data[0]?.level?.topic?.slug}</span>
                 </p>
                 <div className={styles.line}></div>
                 <h1
@@ -61,7 +63,7 @@ const DetailTopic = (props) => {
                   {props?.level?.nameLevel}
                 </h1>
               </div>
-              
+
               <h2>{data[0]?.level.topic.nameTopic}</h2>
             </div>
             <div className={styles.imageFiled}>
@@ -159,7 +161,7 @@ const DetailTopic = (props) => {
               </div>
             </div>
           </div>
-          <div className="col l-3 m-12 c-12" style={{ marginTop: 105 }}>
+          <div className="col l-3 m-12 c-12" style={{ marginTop: 185 }}>
             <LevelRightItem
               level1={"Beginner to pre-intermediate"}
               level2={"Intermediate to upper intermediate"}

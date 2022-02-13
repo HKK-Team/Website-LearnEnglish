@@ -4,6 +4,7 @@ import LevelRightItem from "../../RightItem/LevelRightItem/LevelRightItem";
 import RightItem from "../../RightItem/RightItem";
 import styles from "../../Voccabulary/VocabularySkills/VocabularySkills.module.css";
 import LessonCard from "../../LessonCard/LessonCard";
+import style from '../../Skills/DetailSkills/DetailSkills.module.css'
 
 const TopicGrammar = (props) => {
   const [data, setdata] = useState(props.data);
@@ -29,7 +30,7 @@ const TopicGrammar = (props) => {
                 <Link to="/grammar">Grammar</Link>
 
                 <span> {">"} </span>
-                <span>{props?.level?.slugLevel}</span>
+                <span>{data[0]?.level?.slugLevel}</span>
               </p>
               <div className={styles.line}></div>
               <h1
@@ -45,10 +46,29 @@ const TopicGrammar = (props) => {
             />
             <div className={styles.contactBox}>
               {datalevel.map((item, index) => (
-                <p className={styles.text} key={index}>
+                <p className={styles.text} key={index} style={{fontSize:18}}>
                   {item}
                 </p>
               ))}
+            </div>
+
+            <div className={style.colorMain} style={{marginLeft:1}}>
+              <div className={style.blockColor1}></div>
+              <div className={style.blockColor2}>
+                <p>
+                  Are you looking for a face-to-face English course near you?
+                </p>
+                <button>
+                  <Link
+                    className={style.textMeeting}
+                    to={"/meeting"}
+                    target={"_blank"}
+                  >
+                    Meeting
+                  </Link>
+                </button>
+              </div>
+              <div className={style.blockColor3}></div>
             </div>
 
             <h2

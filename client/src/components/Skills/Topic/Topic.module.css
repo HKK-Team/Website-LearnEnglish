@@ -41,7 +41,6 @@
 
 .colorMain {
     margin-top: 30px;
-    margin-left: 19px;
     background-color: #60ec4c;
     width: 100%;
     height: 250px;
@@ -134,7 +133,6 @@
 }
 
 .textIntro p {
-    margin-left: 19px;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 18px;
     line-height: 1.42857;
@@ -148,6 +146,5 @@
 }
 
 .audioLoad audio {
-    margin-left: 15px;
     width: 100%;
 }

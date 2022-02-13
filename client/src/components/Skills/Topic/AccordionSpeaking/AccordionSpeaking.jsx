@@ -9,27 +9,41 @@ import {
 import "react-accessible-accordion/dist/fancy-example.css";
 import styles from "../AccordionListening/Accordion.module.css";
 import Task1 from "../AccordionListening/Task/Task1";
-import Translate from "../../../Translates/Translate";
-import { GlobalState } from "../../../../GlobalState";
-import { useContext } from "react";
+import Translates from "../Translates/Translates";
 
 export default function Accordions(props) {
-  const state = useContext(GlobalState);
-  const [stateTranslate] = state.listeningApi.stateTranslate;
-  const [dataTranslate] = state.listeningApi.dataTranslate;
   const [dataTranslates, setdataTranslates] = useState([]);
 
-  useEffect(() => {
-    if (dataTranslate.length) {
-      setdataTranslates(dataTranslate);
-    }
-  }, [dataTranslate]);
   const [data, setdata] = useState(props.data.topic.tranScript.split("\n\n"));
   const [dataTask, setdataTask] = useState(props.data.topic.task[0].task1);
 
   useEffect(() => {
     setdata(props.data.topic.tranScript.split("\n\n"));
   }, [props.data]);
+
+  const event = async () => {
+    let array = [];
+    let temp = document.getSelection().toString();
+    temp.trim();
+    array.push(temp);
+
+    if (temp !== "") {
+      await fetch("/api1/translate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(temp),
+      });
+
+      await fetch("/api1/translate")
+        .then((res) => res.json())
+        .then((datas) => {
+          array.push(datas);
+        });
+      setdataTranslates(array);
+    }
+  };
 
   return (
     <Accordion allowZeroExpanded className={styles.accordion}>
@@ -40,15 +54,13 @@ export default function Accordions(props) {
           </AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className={styles.panelText}>
-          <Translate data={props.data.topic.tranScript} />
-          {stateTranslate
-            ? [dataTranslates].map((item, index) => <p key={index}>{item}</p>)
-            : data.map((item, index) => (
-                <p key={index}>
-                  <strong> {item?.substring(0, item?.indexOf(":") - 1)}</strong>
-                  {item?.substring(item?.indexOf(":"))}
-                </p>
-              ))}
+          <Translates data={dataTranslates} />
+          {data.map((item, index) => (
+            <p key={index} onMouseUp={event}>
+              <strong> {item?.substring(0, item?.indexOf(":") - 1)}</strong>
+              {item?.substring(item?.indexOf(":"))}
+            </p>
+          ))}
         </AccordionItemPanel>
       </AccordionItem>
       {[dataTask].map((item, index) => (

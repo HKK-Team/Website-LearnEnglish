@@ -1,9 +1,9 @@
 import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import LessonCard from "../../LessonCard/LessonCard";
 import RightItem from "../../RightItem/RightItem";
 import SkillItem from "../../RightItem/SkillItem/SkillItem";
 import styles from "./DetailSkills.module.css";
+import style from "../../LessonCard/LessonCard.module.css";
 
 const DetailSkills = (props) => {
   const [data, setdata] = useState(props.data);
@@ -20,18 +20,25 @@ const DetailSkills = (props) => {
     return <div>loading</div>;
   }
 
-
-
   return (
     <div className="grid wide">
       <div className="row">
         <div className="col l-9 m-12 c-12">
-          <div className={styles.title}>
-            <h2>{data[0][0]?.type}</h2>
+          <div className={styles.heading}>
+            <p className={styles.depthLink}>
+              <Link to="/skill">Skills</Link>
+              <span> {">"} </span>
+              <span>{data[0][0]?.type}</span>
+            </p>
+            <div className={styles.line}></div>
+            <h1
+              style={{ color: "#23085A", margin: "30px 0 0 0", fontSize: 36 }}
+            >
+              {data[0][0]?.type}
+            </h1>
           </div>
-          <div className={styles.imageFiled}>
-            <img src={data[0][0]?.imageType} alt="" />
-          </div>
+          <img src={data[0][0]?.imageType} alt="s" style={{ width: "100%" }} />
+
           <div className={styles.colorMain}>
             <div className={styles.blockColor1}></div>
             <div className={styles.blockColor2}>
@@ -48,6 +55,7 @@ const DetailSkills = (props) => {
             </div>
             <div className={styles.blockColor3}></div>
           </div>
+
           <div className={styles.textIntro}>
             {dataContentType.map((item, index) => (
               <p className={styles.text} key={index}>
@@ -59,29 +67,50 @@ const DetailSkills = (props) => {
               {(data[0][0]?.type).toLowerCase()}
             </h2>
           </div>
+
           <div className={styles.contain}>
-            {data[0].slice(0, 5).map((item) => (
-              // <LessonCard {...item} key={item._id}/>
-              <div className={styles.viewRow} key={item._id}>
-                <div className={styles.imageFile}>
-                  <img src={item.level.images} alt="" />
+            {data[0].slice(0, 5).map((item, index) => (
+              <div
+                className={style.viewRow}
+                key={index}
+                style={{ margin: "40px 0 0 0" }}
+              >
+                <div className={style.imageFile}>
+                  <img src={item?.level?.images} alt="" />
                 </div>
-                <div className={styles.textView}>
-                  <Link to={item.level.slugLevel}>
-                    <h2>{item.level.nameLevel}</h2>
+                <div className={style.textView}>
+                  <Link to={item?.level?.slugLevel || " "}>
+                    <h2>{item?.level?.nameLevel}</h2>
                   </Link>
                   <p>
-                    {item.level.contentLevel.substring(
+                    {item?.level?.contentLevel.substring(
                       0,
-                      item.level.contentLevel.indexOf(".") + 1
+                      item?.level?.contentLevel.indexOf(".") + 1
                     )}
                   </p>
                 </div>
               </div>
+              // <LessonCard {...item} key={index}/>
+              // <div className={styles.viewRow} key={item._id}>
+              //   <div className={styles.imageFile}>
+              //     <img src={item.level.images} alt="" />
+              //   </div>
+              //   <div className={styles.textView}>
+              //     <Link to={item.level.slugLevel}>
+              //       <h2>{item.level.nameLevel}</h2>
+              //     </Link>
+              //     <p>
+              //       {item.level.contentLevel.substring(
+              //         0,
+              //         item.level.contentLevel.indexOf(".") + 1
+              //       )}
+              //     </p>
+              //   </div>
+              // </div>
             ))}
           </div>
         </div>
-        <div className="col l-3 m-12 c-12" style={{marginTop:105}}>
+        <div className="col l-3 m-12 c-12" style={{ marginTop: 193 }}>
           <SkillItem />
           <RightItem />
         </div>

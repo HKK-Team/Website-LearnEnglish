@@ -11,6 +11,7 @@ function DictionnaryAPI() {
       const data = await axios.get(
         `https://api.dictionaryapi.dev/api/v2/entries/${category}/${word}`
       );
+      console.log(data.data)
       setMeanings(data.data);
     };
     dictionaryApi();

@@ -1,29 +1,19 @@
-import { React, useEffect, useState, useContext } from "react";
+import { React, useEffect, useState } from "react";
 import {
   Accordion,
   AccordionItem,
   AccordionItemButton,
   AccordionItemHeading,
-  AccordionItemPanel,
+  AccordionItemPanel
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import styles from "../AccordionListening/Accordion.module.css";
 import Task1 from "../AccordionListening/Task/Task1";
+import Translates from "../Translates/Translates";
 import style from "./AccordionWriting.module.css";
-import { GlobalState } from "../../../../GlobalState";
-import Translate from "../../../Translates/Translate";
 
 export default function AccordionWriting(props) {
-  const state = useContext(GlobalState);
-  const [stateTranslate] = state.listeningApi.stateTranslate;
-  const [dataTranslate] = state.listeningApi.dataTranslate;
   const [dataTranslates, setdataTranslates] = useState([]);
-
-  useEffect(() => {
-    if (dataTranslate.length) {
-      setdataTranslates(dataTranslate);
-    }
-  }, [dataTranslate]);
 
   const [data, setdata] = useState(props.data.topic.readingText.split("\n\n"));
   const [datatips, setdatatips] = useState(props.data.topic.tips.split("\n"));
@@ -35,6 +25,31 @@ export default function AccordionWriting(props) {
     setdataTask(props.data.topic.task[0].task1);
   }, [props]);
 
+  const event = async () => {
+    let array = [];
+    let temp = document.getSelection().toString();
+    temp.trim();
+    console.log(temp)
+    array.push(temp);
+
+    if (temp !== "") {
+      await fetch("/api1/translate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(temp),
+      });
+
+      await fetch("/api1/translate")
+        .then((res) => res.json())
+        .then((datas) => {
+          array.push(datas);
+        });
+      setdataTranslates(array);
+    }
+  };
+
   return (
     <Accordion allowZeroExpanded className={styles.accordion}>
       <AccordionItem className={styles.item} style={{ marginLeft: -10 }}>
@@ -44,10 +59,12 @@ export default function AccordionWriting(props) {
           </AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className={styles.panelText}>
-          <Translate data={props.data.topic.readingText} />
-          {stateTranslate
-            ? [dataTranslates].map((item, index) => <p key={index}>{item}</p>)
-            : data.map((item, index) => <p key={index}>{item}</p>)}
+          <Translates data={dataTranslates} />
+          {data.map((item, index) => (
+            <p key={index} onMouseUp={event}>
+              {item}
+            </p>
+          ))}
         </AccordionItemPanel>
       </AccordionItem>
 

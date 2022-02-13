@@ -1,6 +1,5 @@
 import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import LessonCard from "../../LessonCard/LessonCard";
 import RightItem from "../../RightItem/RightItem";
 import SkillItem from "../../RightItem/SkillItem/SkillItem";
 import styles from "../DetailSkills/DetailSkills.module.css";
@@ -24,12 +23,24 @@ const DetailTopic = (props) => {
     <div className="grid wide">
       <div className="row">
         <div className="col l-9 c-12 m-12">
-          <div className={styles.title}>
-            <h2>{data[0]?.level.nameLevel}</h2>
+          <div className={styles.heading}>
+            <p className={styles.depthLink}>
+              <Link to="/skill">Skills</Link>
+              <span> {">"} </span>
+              <span>{data[0]?.type}</span>
+              <span> {">"} </span>
+              <span>{data[0]?.level?.slugLevel}</span>
+            </p>
+            <div className={styles.line}></div>
+            <h1
+              style={{ color: "#23085A", margin: "30px 0 0 0", fontSize: 36 }}
+            >
+              {data[0]?.level.nameLevel}
+            </h1>
           </div>
-          <div className={styles.imageFiled}>
-            <img src={data[0]?.level.images} alt="" />
-          </div>
+
+          <img src={data[0]?.level.images} alt="s" style={{ width: "100%" }} />
+
           <div className={styles.colorMain}>
             <div className={styles.blockColor1}></div>
             <div className={styles.blockColor2}>
@@ -54,6 +65,7 @@ const DetailTopic = (props) => {
             ))}
             <h2>Choose a {(data[0]?.type).toLowerCase()} lesson</h2>
           </div>
+
           <div className={styles.contain}>
             {data.map((item) => (
               // <LessonCard {...item}/>
@@ -76,7 +88,7 @@ const DetailTopic = (props) => {
             ))}
           </div>
         </div>
-        <div className="col l-3 m-12 c-12" style={{marginTop:105}}>
+        <div className="col l-3 m-12 c-12" style={{ marginTop: 193 }}>
           <SkillItem />
           <RightItem />
         </div>

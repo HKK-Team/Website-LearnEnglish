@@ -19,27 +19,22 @@ const Vocabulary = (props) => {
       <div className="grid wide" style={{ marginTop: 60 }}>
         <div className="row">
           <div className="col l-9 m-12 c-12">
-            <p>
+            <p style={{ fontSize: 18 }}>
               Do you need to learn new words to understand and express yourself
-              clearly in English?
-            </p>
-            <p>
+              clearly in English? <br />
+              <br />
               In this section you will find activities to help you learn the
-              meaning, pronunciation and spelling of new words.
-              <br />
-              Learning vocabulary will help you improve your language level and
-              communicate in English confidently and
-              <br />
-              effectively. The pages are organised by topic and include
-              interactive exercises to help you learn and remember
-              <br />
-              the new words.
+              meaning, pronunciation and spelling of new words. Learning
+              vocabulary will help you improve your language level and
+              communicate in English confidently and effectively. The pages are
+              organised by topic and include interactive exercises to help you
+              learn and remember the new words.
             </p>
             <div className={styles.listItem}>
               <h1>Choose your level to practise your vocabulary</h1>
               <div className={styles.contain}>
-                {data[0].map((item,index) => (
-                  <LessonCard {...item} key={index}/>
+                {data[0].map((item, index) => (
+                  <LessonCard {...item} key={index} />
                 ))}
               </div>
             </div>

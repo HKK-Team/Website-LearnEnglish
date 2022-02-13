@@ -1,4 +1,3 @@
-
 .title {
     font-size: 25px;
     font-weight: 400;
@@ -178,4 +177,20 @@
     font-size: 18px;
     line-height: 1.42857;
     color: #000;
+}
+
+.heading {
+    margin-bottom: 50px;
+}
+
+.depthLink {
+    color: #23085a;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.line {
+    width: 8%;
+    height: 5px;
+    background-color: #23085A;
 }
