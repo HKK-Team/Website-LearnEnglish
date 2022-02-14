@@ -1,6 +1,5 @@
 const categories = [
-    { value: "English", label: "en" },
-    { value: "VietNamese", label: "vi" },
+    { value: "English", label: "en" }
   ];
   
   export default categories;

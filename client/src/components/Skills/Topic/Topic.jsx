@@ -43,7 +43,7 @@ const Topic = (props) => {
               <span> {">"} </span>
               <span>{data[0]?.type}</span>
               <span> {">"} </span>
-              <span>{data[0]?.level?.slugLevel}</span>
+              <span>{data[0]?.level?.nameLevel}</span>
               <span> {">"} </span>
               <span>{data[0]?.level?.topic?.nameTopic}</span>
             </p>
@@ -130,7 +130,7 @@ const Topic = (props) => {
             ""
           )}
         </div>
-        <div className="col l-3 m-12 c-12" style={{ marginTop: 193 }}>
+        <div className="col l-3 m-12 c-12" style={{ marginTop: 180 }}>
           <RightItem />
         </div>
       </div>

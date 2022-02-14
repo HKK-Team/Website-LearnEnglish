@@ -33,7 +33,6 @@ export default function Accordions(props) {
     let array = [];
     let temp = document.getSelection().toString();
     temp.trim();
-    console.log(temp)
     array.push(temp);
 
     if (temp !== "") {
@@ -53,6 +52,8 @@ export default function Accordions(props) {
       setdataTranslates(array);
     }
   };
+
+  console.log(dataTask2[0]);
 
   return (
     <Accordion allowZeroExpanded className={styles.accordion}>
@@ -77,7 +78,7 @@ export default function Accordions(props) {
         ? [dataTask1].map((item, index) => <Task1 {...item} key={index} />)
         : ""}
 
-      {dataTask2.length ? <Task2 data={props} /> : ""}
+      {dataTask2[0] === '' ? "" : <Task2 data={props} />}
 
       {![dataTask3].length
         ? [dataTask3].map((item, index) => <Task1 {...item} key={index} />)

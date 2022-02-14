@@ -29,7 +29,7 @@ const DetailTopic = (props) => {
               <span> {">"} </span>
               <span>{data[0]?.type}</span>
               <span> {">"} </span>
-              <span>{data[0]?.level?.slugLevel}</span>
+              <span>{data[0]?.level?.nameLevel}</span>
             </p>
             <div className={styles.line}></div>
             <h1

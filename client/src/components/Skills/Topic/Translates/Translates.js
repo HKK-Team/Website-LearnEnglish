@@ -3,9 +3,8 @@ import styles from "./Translates.module.css";
 import { AiFillSound, AiOutlineClose } from "react-icons/ai";
 
 const Translates = (props) => {
-
-  if(!props.data.length){
-    return <div></div>
+  if (!props.data.length) {
+    return <div></div>;
   }
   return (
     <div className={styles.container}>
@@ -20,7 +19,7 @@ const Translates = (props) => {
           }}
         />
         <div>
-          <select className={styles.selectLanguage}>
+          <select className={styles.selectLanguage} readonly="readonly">
             <option>ANH</option>
           </select>
           <p className={styles.textTranslate}>

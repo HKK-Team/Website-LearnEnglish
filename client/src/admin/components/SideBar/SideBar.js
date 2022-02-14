@@ -10,6 +10,10 @@ import {
 import { Link } from "react-router-dom";
 
 const SideBar = () => {
+  const eventLogout = () => {
+    localStorage.removeItem("AdminLogin");
+    window.location.href = "/admin";
+  };
   return (
     <div className={styles.container}>
       <div className={styles.main}>
@@ -52,7 +56,11 @@ const SideBar = () => {
             <li>
               <div className={styles.elementItem}>
                 <FaOutdent className={styles.iconLeft} />{" "}
-                <Link to={""} className={styles.element}>
+                <Link
+                  to={"/logoutadmin"}
+                  className={styles.element}
+                  onClick={eventLogout}
+                >
                   Logout
                 </Link>
               </div>

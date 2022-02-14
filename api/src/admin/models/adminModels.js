@@ -18,5 +18,6 @@ const adminSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    role:Number
 });
 module.exports = mongoose.model('Admins',adminSchema);

@@ -187,8 +187,14 @@ const Pages = () => {
       <Route path="/Register" element={isLogin ? <NotFound /> : <Register />} />
 
       {/* admin page */}
-      <Route path="/admin" element={<LoginAdmin />} />
-      <Route path="/dashboard" element={<HomeAdmin />} />
+      <Route
+        path="/admin"
+        element={isLoginAdmin ? <NotFound /> : <LoginAdmin />}
+      />
+      <Route
+        path="/dashboard"
+        element={isLoginAdmin ? <HomeAdmin /> : <NotFound />}
+      />
       <Route path="/update" element={<UpdateTopic />} />
 
       {/* admin page */}

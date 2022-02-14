@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const listeningSchema = new mongoose.Schema({
-  _id: mongoose.ObjectId,
   imageType: String,
   dateCreate: { type: Date, default: Date.now },
   contentType: String,
   type: String,
   slug: String,
+  idTopicCode:String,
   level: {
     nameLevel: String,
     slugLevel:String,

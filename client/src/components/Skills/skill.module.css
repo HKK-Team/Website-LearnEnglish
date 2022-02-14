@@ -71,7 +71,7 @@
 }
 
 .contain {
-    width: 1300px;
+    width: 100%;
     height: auto;
     margin-left: 20px;
     display: flex;

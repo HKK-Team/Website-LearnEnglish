@@ -3,7 +3,6 @@ import { Fragment, React, useContext, useState } from 'react';
 import { GlobalState } from '../../GlobalState';
 import Footer from '../Footer/Footer';
 import Header from '../Headers/Header';
-// import { grey } from "@material-ui/core/colors";
 import styles from "./Dictionnary.module.css";
 import HeaderDic from './DictionnaryHeader/HeaderDic';
 

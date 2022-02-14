@@ -75,6 +75,10 @@
     color: white;
 }
 
+.blockUpdate form .typeInput textarea {
+    height: 150px;
+}
+
 .blockUpdate form .typeInput .typeInputValues:focus {
     outline: none;
     color: white;
@@ -129,4 +133,15 @@
 
 .blockUpdate form .typeInputDouple .typeInputValuesDp2:focus {
     outline: none;
+}
+
+.addProductButton {
+    margin-left: 680px;
+    padding: 7px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #383c4c;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
 }
