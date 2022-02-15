@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./LessonCard.module.css";
 export default function LessonCard(props) {
-  console.log(props);
   return (
     <div
       className={styles.viewRow}

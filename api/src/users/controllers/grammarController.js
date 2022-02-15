@@ -1,4 +1,4 @@
-const Grammars = require("../models/grammarController");
+const Grammars = require("../models/grammarModels");
 
 const grammarCtrl = {
     getData: async(req, res) =>{

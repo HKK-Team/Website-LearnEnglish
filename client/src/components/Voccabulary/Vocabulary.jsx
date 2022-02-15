@@ -33,7 +33,7 @@ const Vocabulary = (props) => {
             <div className={styles.listItem}>
               <h1>Choose your level to practise your vocabulary</h1>
               <div className={styles.contain}>
-                {data[0].map((item, index) => (
+                {data[0].slice(0,2).map((item, index) => (
                   <LessonCard {...item} key={index} />
                 ))}
               </div>

@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const grammarSchema = new mongoose.Schema({
-  _id: mongoose.ObjectId,
   dateCreate: { type: Date, default: Date.now },
   level: {
     nameLevel: String,
@@ -11,7 +10,7 @@ const grammarSchema = new mongoose.Schema({
     topic: {
       topicCode: String,
       nameTopic: String,
-      slugTopic: String,
+      slug: String,
       imageTopic: String,
       contentTopic: String,
       grammarExplanation: {

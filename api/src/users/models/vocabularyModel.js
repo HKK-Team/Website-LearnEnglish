@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const vocabularySchema = new mongoose.Schema({
-  _id: mongoose.ObjectId,
+  type:String,
   dateCreate: { type: Date, default: Date.now },
   level: {
     nameLevel: String,
@@ -11,7 +11,7 @@ const vocabularySchema = new mongoose.Schema({
     topic: {
       topicCode: String,
       nameTopic: String,
-      slugTopic: String,
+      slug: String,
       imageTopic: String,
       contentTopic: String,
       task: {

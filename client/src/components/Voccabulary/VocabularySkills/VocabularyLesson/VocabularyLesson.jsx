@@ -8,13 +8,19 @@ import TaskLesson from "../../../TaskLesson/TaskLesson";
 
 import styles from "./../VocabularySkills.module.css";
 import style from "./VocabularyLesson.module.css";
+
 export default function VocabularyLesson(props) {
   const [data, setData] = useState([]);
-  useEffect(() => {
-    setData(props?.level?.topic?.task);
-  }, [props?.level?.topic?.task]);
+  const [dataTable, setdataTable] = useState([]);
 
-  if (!data) return <div>loading...</div>;
+  useEffect(() => {
+    if (props.data.length) {
+      setdataTable(props.data[0].level.topic.task[0].data);
+      setData(props.data[0].level.topic.task);
+    }
+  }, [props.data]);
+
+  if (!data) return <div></div>;
   return (
     <div className="grid wide">
       <div className="row">
@@ -23,29 +29,29 @@ export default function VocabularyLesson(props) {
             <p className={styles.depthLink}>
               <Link to="/voccabulary">Vocabulary</Link>
               <span> {">"} </span>
-              <span>{props?.level?.nameLevel}</span>
+              <span>{props.data[0]?.level?.nameLevel}</span>
               <span> {">"} </span>
-              <span>{props?.level?.topic?.slug}</span>
+              <span>{props.data[0]?.level?.topic?.slug}</span>
             </p>
             <div className={styles.line}></div>
             <h1
               style={{ color: "#23085A", margin: "30px 0 0 0", fontSize: 36 }}
             >
-              {props?.level?.topic?.nameTopic}
+              {props.data[0]?.level?.topic?.nameTopic}
             </h1>
           </div>
           <div className={styles.contactBox}>
-            <p>{props?.level?.topic?.contentTopic}</p>
+            <p>{props.data[0]?.level?.topic?.contentTopic}</p>
           </div>
           <div className={style.taskContainer}>
             <div
-              dangerouslySetInnerHTML={{ __html: data[0]?.data }}
+              dangerouslySetInnerHTML={{ __html: dataTable }}
               name="firstTask"
             ></div>
             <div name="task" style={{ marginTop: 10 }}>
               <Accordion allowZeroExpanded>
                 {data.map((item, index) =>
-                  index > 0 ? <TaskLesson {...item} /> : ""
+                  index > 0 ? <TaskLesson {...item} key={index} /> : ""
                 )}
               </Accordion>
             </div>

@@ -158,11 +158,16 @@ const Pages = () => {
       {/* detail level grammar */}
 
       {/* detail level voccabulary */}
+      <Route path="/voccabulary/:id" element={<VocBTPI />} />
       <Route
-        path="/voccabulary/beginner-to-pre-intermediate/"
-        element={<VocBTPI />}
+        path="/voccabulary/beginner-to-pre-intermediate/:id"
+        element={<VoccabularyLesson />}
       />
       <Route
+        path="/voccabulary/Intermediate-to-upper-intermediate/:id"
+        element={<VoccabularyLesson />}
+      />
+      {/* <Route
         path="/voccabulary/beginner-to-pre-intermediate/Accessories"
         element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][0]} />}
       />
@@ -170,7 +175,11 @@ const Pages = () => {
         path="/voccabulary/Intermediate-to-upper-intermediate/"
         element={<VocITUI />}
       />
-      <Route
+       <Route
+        path="/voccabulary/Intermediate-to-upper-intermediate/:id"
+        element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][1]} />}
+      /> */}
+      {/* <Route
         path="/voccabulary/Intermediate-to-upper-intermediate/AirTravel"
         element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][1]} />}
       />
@@ -178,7 +187,7 @@ const Pages = () => {
       <Route
         path="/voccabulary/Vocabulary-games/Sushi-Spell"
         element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][2]} />}
-      />
+      /> */}
       {/* detail level voccabulary */}
 
       <Route path="/meeting/:id" element={<CallPage />} />

@@ -6,14 +6,20 @@ import RightItem from "../../RightItem/RightItem";
 import styles from "./VocabularySkills.module.css";
 
 export default function VocabularySkills(props) {
-  const [data, setData] = useState(props.level?.topic);
-
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    setData(props.level?.topic);
-  }, [props.level?.topic]);
- 
-  if (!data) return <div>loading</div>;
+    let array = [];
+    if (props.data.length) {
+      for (let i = 0; i < props.data.length; i++) {
+        array.push(props.data[i].level.topic);
+      }
+    }
+    setData(array);
+  }, [props.data]);
+
+
+  if (!data) return <div></div>;
   return (
     <div className="grid wide">
       <div className="row">
@@ -22,20 +28,28 @@ export default function VocabularySkills(props) {
             <p className={styles.depthLink}>
               <Link to="/voccabulary">Vocabulary</Link>
               <span> {">"} </span>
-              <span>{props?.level?.slugLevel}</span>
+              <span>{props.data[0]?.level?.nameLevel}</span>
             </p>
             <div className={styles.line}></div>
             <h1
               style={{ color: "#23085A", margin: "30px 0 0 0", fontSize: 36 }}
             >
-              {props?.level?.nameLevel}
+              {props.data[0]?.level?.nameLevel}
             </h1>
           </div>
-          <img src={props?.level?.images} alt="s" style={{ width: "100%" }} />
+          <img
+            src={props.data[0]?.level?.images}
+            alt="s"
+            style={{ width: "100%" }}
+          />
           <div className={styles.contactBox}>
-            {props?.level?.contentLevel.split('\n\n').map((item,index) =>(
-              <p key={index} style={{fontSize:18}}>{item}</p>
-            ))}
+            {props.data[0]?.level?.contentLevel
+              .split("\n\n")
+              .map((item, index) => (
+                <p key={index} style={{ fontSize: 18 }}>
+                  {item}
+                </p>
+              ))}
           </div>
 
           <h2 style={{ color: "#23085A", margin: "30px 0 0 0", fontSize: 36 }}>
@@ -43,11 +57,10 @@ export default function VocabularySkills(props) {
           </h2>
 
           <div className={styles.containerLesson}>
-            {[data].map((item,index) => (
-              <LessonCard _id={index} {...item} />
+            {data.map((item, index) => (
+              <LessonCard key={index} {...item} />
             ))}
           </div>
-
         </div>
         <div className="col l-3 m-12 c-12" style={{ marginTop: 193 }}>
           <LevelRightItem
