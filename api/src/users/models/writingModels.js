@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const writingSchema = new mongoose.Schema({
-  _id: mongoose.ObjectId,
   imageType: String,
   dateCreate: { type: Date, default: Date.now },
   contentType: String,
@@ -18,6 +17,7 @@ const writingSchema = new mongoose.Schema({
       slugTopic:String,
       imageTopic: String,
       contentTopic: String,
+      readingText:String,
       tips:String,
       task: {
         type: Array,

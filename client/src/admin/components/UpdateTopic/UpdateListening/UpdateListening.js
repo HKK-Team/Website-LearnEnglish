@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+  import React, { useContext, useState } from "react";
 import styles from "../UpdateTopic.module.css";
 import axios from "axios";
 import { GlobalState } from "../../../../GlobalState";
@@ -26,7 +26,7 @@ const UpdateListening = () => {
     }
   };
 
-  // New Product
+
   const [listeningTopic, setlisteningTopic] = useState({
     contentType: dataListening[0].contentType,
     imageType: "",

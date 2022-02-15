@@ -1,24 +1,23 @@
 import { Container } from "@material-ui/core";
-import { Fragment, React, useContext, useState } from 'react';
-import { GlobalState } from '../../GlobalState';
-import Footer from '../Footer/Footer';
-import Header from '../Headers/Header';
+import { Fragment, React, useContext, useState } from "react";
+import { GlobalState } from "../../GlobalState";
+import Footer from "../Footer/Footer";
+import Header from "../Headers/Header";
 import styles from "./Dictionnary.module.css";
-import HeaderDic from './DictionnaryHeader/HeaderDic';
+import HeaderDic from "./DictionnaryHeader/HeaderDic";
 
 const Dictionnary = () => {
+  const [LightTheme] = useState(true);
 
-    const [LightTheme] = useState(true);
+  const state = useContext(GlobalState);
+  const [word, setWord] = state.dictionnaryApi.word;
+  const [meanings, setMeanings] = state.dictionnaryApi.meanings;
+  const [category, setCategory] = state.dictionnaryApi.category;
 
-    const state = useContext(GlobalState);
-    const [word, setWord] = state.dictionnaryApi.word
-    const [meanings, setMeanings] = state.dictionnaryApi.meanings
-    const [category, setCategory] = state.dictionnaryApi.category
-
-    return (
-      <Fragment>
-        <Header/>
-        <Container
+  return (
+    <Fragment>
+      <Header />
+      <Container
         maxWidth="md"
         style={{
           display: "flex",
@@ -27,7 +26,7 @@ const Dictionnary = () => {
           justifyContent: "space-evenly",
         }}
       >
-      <HeaderDic
+        <HeaderDic
           setWord={setWord}
           category={category}
           setCategory={setCategory}
@@ -38,18 +37,23 @@ const Dictionnary = () => {
         <div className={styles.meanings}>
           {/* audio---------------------------- */}
           {meanings[0] && word && category === "en" && (
-            <audio
-              style={{ backgroundColor: "#fff", borderRadius: 10 }}
-              src={meanings[0].phonetics[0] && meanings[0].phonetics[0].audio}
-              controls
-            >
-              Your browser does not support the audio element.
-            </audio>
+            <div>
+              <audio
+                style={{ backgroundColor: "#fff", borderRadius: 10 }}
+                src={meanings[0].phonetics[0] && meanings[0].phonetics[0].audio}
+                controls
+              >
+                Your browser does not support the audio element.
+              </audio>
+              <p style={{marginLeft:15}}>{meanings[0].phonetics[0] && meanings[0].phonetics[0].text}</p>
+            </div>
           )}
           {/* audio---------------------------- */}
-    
+
           {word === "" ? (
-            <span className={styles.subTitle}>Start by typing a word in search</span>
+            <span className={styles.subTitle}>
+              Start by typing a word in search
+            </span>
           ) : (
             meanings.map((mean) =>
               mean.meanings.map((item) =>
@@ -80,9 +84,9 @@ const Dictionnary = () => {
           )}
         </div>
       </Container>
-      <Footer/>
-        </Fragment>
-      );
-}
+      <Footer />
+    </Fragment>
+  );
+};
 
-export default Dictionnary
+export default Dictionnary;

@@ -29,7 +29,6 @@ export default function AccordionWriting(props) {
     let array = [];
     let temp = document.getSelection().toString();
     temp.trim();
-    console.log(temp)
     array.push(temp);
 
     if (temp !== "") {
@@ -52,7 +51,7 @@ export default function AccordionWriting(props) {
 
   return (
     <Accordion allowZeroExpanded className={styles.accordion}>
-      <AccordionItem className={styles.item} style={{ marginLeft: -10 }}>
+      <AccordionItem className={styles.item} style={{ marginLeft: -15 }}>
         <AccordionItemHeading className={styles.headerTranscript}>
           <AccordionItemButton className={styles.transcript}>
             Reading Text
@@ -76,7 +75,7 @@ export default function AccordionWriting(props) {
           </p>
         ))}
       </div>
-      <div style={{ marginLeft: -10 }}>
+      <div style={{ marginLeft: -15 }}>
         {[dataTask].map((item, index) => (
           <Task1 {...item} key={index} />
         ))}

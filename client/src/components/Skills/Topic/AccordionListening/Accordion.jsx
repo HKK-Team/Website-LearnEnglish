@@ -57,7 +57,7 @@ export default function Accordions(props) {
 
   return (
     <Accordion allowZeroExpanded className={styles.accordion}>
-      <AccordionItem className={styles.item}>
+      <AccordionItem className={styles.item} style={{ marginLeft: -15 }}>
         <AccordionItemHeading className={styles.headerTranscript}>
           <AccordionItemButton className={styles.transcript}>
             Transcript
@@ -73,16 +73,17 @@ export default function Accordions(props) {
           ))}
         </AccordionItemPanel>
       </AccordionItem>
+      <div style={{ marginLeft: -15 }}>
+        {[dataTask1].length
+          ? [dataTask1].map((item, index) => <Task1 {...item} key={index} />)
+          : ""}
 
-      {[dataTask1].length
-        ? [dataTask1].map((item, index) => <Task1 {...item} key={index} />)
-        : ""}
+        {dataTask2[0] === "" ? "" : <Task2 data={props} />}
 
-      {dataTask2[0] === '' ? "" : <Task2 data={props} />}
-
-      {![dataTask3].length
-        ? [dataTask3].map((item, index) => <Task1 {...item} key={index} />)
-        : ""}
+        {![dataTask3].length
+          ? [dataTask3].map((item, index) => <Task1 {...item} key={index} />)
+          : ""}
+      </div>
     </Accordion>
   );
 }

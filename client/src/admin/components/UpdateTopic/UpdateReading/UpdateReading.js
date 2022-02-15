@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../UpdateTopic.module.css";
+import { GlobalState } from "../../../../GlobalState";
+import axios from "axios";
+
 
 const UpdateReading = () => {
+  const state = useContext(GlobalState);
+  const [dataReading] = state.readingApi.dataReading;
+
   const [stateTask1, setstateTask1] = useState(false);
   const [stateTask2, setstateTask2] = useState(false);
   const [stateTask3, setstateTask3] = useState(false);
@@ -20,13 +26,142 @@ const UpdateReading = () => {
       setstateTask3(false);
     }
   };
+  const [readingTopic, setreadingTopic] = useState({
+    contentType: dataReading[0].contentType,
+    imageType: "",
+    type: dataReading[0].type,
+    slug: dataReading[0].slug,
+    dateCreate: new Date(),
+    nameLevel: dataReading[0].level.nameLevel,
+    slugLevel: dataReading[0].level.slugLevel,
+    contentLevel: dataReading[0].level.contentLevel,
+    images: "",
+    topicCode: "",
+    nameTopic: "",
+    slugTopic: "",
+    contentTopic: "",
+    imageTopic: "",
+    readingText: "",
+    dataTask1: "",
+    taskName1: "",
+    text1: "",
+    text2: "",
+    text3: "",
+    text4: "",
+    text5: "",
+    text6: "",
+    dataTask3: "",
+    taskName3: "",
+  });
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    try {
+      const file = e.target.files[0];
+
+      if (!file) alert("File not exist.");
+
+      if (file.size > 1024 * 1024)
+        // 1mb
+        alert("Size too large!");
+
+      if (file.type !== "image/jpeg" && file.type !== "image/png")
+        // 1mb
+        alert("File format is incorrect.");
+
+      let formData = new FormData();
+      formData.append("file", file);
+
+      const res = await axios.post("/admin/upload", formData, {
+        headers: { "content-type": "multipart/form-data" },
+      });
+      setreadingTopic({ ...readingTopic, imageType: res.data.image });
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
+  };
+  const handleUpload1 = async (e) => {
+    e.preventDefault();
+    try {
+      const file = e.target.files[0];
+
+      if (!file) alert("File not exist.");
+
+      if (file.size > 1024 * 1024)
+        // 1mb
+        alert("Size too large!");
+
+      if (file.type !== "image/jpeg" && file.type !== "image/png")
+        // 1mb
+        alert("File format is incorrect.");
+
+      let formData = new FormData();
+      formData.append("file", file);
+
+      const res = await axios.post("/admin/upload", formData, {
+        headers: { "content-type": "multipart/form-data" },
+      });
+      setreadingTopic({ ...readingTopic, images: res.data.image });
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
+  };
+  const handleUpload2 = async (e) => {
+    e.preventDefault();
+    try {
+      const file = e.target.files[0];
+
+      if (!file) alert("File not exist.");
+
+      if (file.size > 1024 * 1024)
+        // 1mb
+        alert("Size too large!");
+
+      if (file.type !== "image/jpeg" && file.type !== "image/png")
+        // 1mb
+        alert("File format is incorrect.");
+
+      let formData = new FormData();
+      formData.append("file", file);
+
+      const res = await axios.post("/admin/upload", formData, {
+        headers: { "content-type": "multipart/form-data" },
+      });
+      setreadingTopic({ ...readingTopic, imageTopic: res.data.image });
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
+  };
+
+  const onChangeInput = (e) => {
+    const { name, value } = e.target;
+    setreadingTopic({ ...readingTopic, [name]: value });
+  };
+  const NewTopicSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5000/admin/createTopicReading", {
+        ...readingTopic,
+      });
+      alert("Update Successfully!");
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 2000);
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
+  };
   return (
     <div>
-      <form>
+            <form onSubmit={NewTopicSubmit}>
         {/* section skill */}
         <div className={styles.typeInput}>
           <label>Content Skills</label>
           <textarea
+            style={{ height: 150 }}
+            value={readingTopic.contentType}
+            name="contentType"
+            onChange={onChangeInput}
             spellCheck="false"
             className={styles.typeInputValues}
             placeholder="Please type content..."
@@ -37,6 +172,9 @@ const UpdateReading = () => {
           <input
             type="file"
             id="file"
+            // name="images"
+            // value={readingTopic.images}
+            onChange={handleUpload}
             spellCheck="false"
             className={styles.typeInputValues}
             placeholder="Please type content..."
@@ -47,6 +185,9 @@ const UpdateReading = () => {
           <div className={styles.left}>
             <label>Type Skills</label>
             <input
+              value={readingTopic.type}
+              name="type"
+              onChange={onChangeInput}
               className={styles.typeInputValuesDp1}
               placeholder="Please type content..."
             />
@@ -55,6 +196,9 @@ const UpdateReading = () => {
           <div className={styles.right}>
             <label>Slug Skills</label>
             <input
+              value={readingTopic.slug}
+              onChange={onChangeInput}
+              name="slug"
               className={styles.typeInputValuesDp2}
               placeholder="Please type content..."
             />
@@ -66,6 +210,9 @@ const UpdateReading = () => {
         <div className={styles.typeInput}>
           <label>Content Level Skills</label>
           <textarea
+            value={readingTopic.contentLevel}
+            name="contentLevel"
+            onChange={onChangeInput}
             spellCheck="false"
             className={styles.typeInputValues}
             placeholder="Please type content..."
@@ -74,9 +221,9 @@ const UpdateReading = () => {
         <div className={styles.typeInput}>
           <label>Images Level Skills</label>
           <input
+            onChange={handleUpload1}
             type="file"
             id="file"
-            spellCheck="false"
             className={styles.typeInputValues}
             placeholder="Please type content..."
           />
@@ -86,6 +233,9 @@ const UpdateReading = () => {
           <div className={styles.left}>
             <label>Level Type Skills</label>
             <input
+              value={readingTopic.nameLevel}
+              name="nameLevel"
+              onChange={onChangeInput}
               className={styles.typeInputValuesDp1}
               placeholder="Please type content..."
             />
@@ -94,6 +244,9 @@ const UpdateReading = () => {
           <div className={styles.right}>
             <label>Level Slug Skills</label>
             <input
+              value={readingTopic.slugLevel}
+              name="slugLevel"
+              onChange={onChangeInput}
               className={styles.typeInputValuesDp2}
               placeholder="Please type content..."
             />
@@ -105,6 +258,8 @@ const UpdateReading = () => {
         <div className={styles.typeInput}>
           <label>Content Topic</label>
           <textarea
+            onChange={onChangeInput}
+            name="contentTopic"
             spellCheck="false"
             className={styles.typeInputValues}
             placeholder="Please type content..."
@@ -113,18 +268,42 @@ const UpdateReading = () => {
         <div className={styles.typeInput}>
           <label>Images Topic</label>
           <input
+            onChange={handleUpload2}
             type="file"
             id="file"
+            className={styles.typeInputValues}
+            placeholder="Please type content..."
+          />
+        </div>
+
+        {/* <div className={styles.typeInput}>
+          <label>Radio Topic</label>
+          <input
+            onChange={onChangeInput}
             spellCheck="false"
+            name="radio"
+            className={styles.typeInputValues}
+            placeholder="Please type content..."
+          />
+        </div> */}
+
+        <div className={styles.typeInput}>
+          <label>Reading Text</label>
+          <textarea
+            onChange={onChangeInput}
+            spellCheck="false"
+            name="readingText"
             className={styles.typeInputValues}
             placeholder="Please type content..."
           />
         </div>
 
         <div className={styles.typeInput}>
-          <label>Text Reading</label>
-          <textarea
+          <label>Topic Code</label>
+          <input
+            onChange={onChangeInput}
             spellCheck="false"
+            name="topicCode"
             className={styles.typeInputValues}
             placeholder="Please type content..."
           />
@@ -134,6 +313,10 @@ const UpdateReading = () => {
           <div className={styles.left}>
             <label>Name Topic</label>
             <input
+              onChange={onChangeInput}
+              name="nameTopic"
+              spellCheck="false"
+              value={readingTopic.nameTopic}
               className={styles.typeInputValuesDp1}
               placeholder="Please type content..."
             />
@@ -142,11 +325,16 @@ const UpdateReading = () => {
           <div className={styles.right}>
             <label>Slug Topic</label>
             <input
+              onChange={onChangeInput}
+              name="slugTopic"
+              spellCheck="false"
+              value={readingTopic.slugTopic}
               className={styles.typeInputValuesDp2}
               placeholder="Please type content..."
             />
           </div>
         </div>
+
         {/* section topic skill */}
 
         {/* task in topic */}
@@ -170,6 +358,9 @@ const UpdateReading = () => {
               <label>Data Task1</label>
               <input
                 spellCheck="false"
+                name="dataTask1"
+                onChange={onChangeInput}
+                value={readingTopic.dataTask1}
                 className={styles.typeInputValues}
                 placeholder="Please type content..."
               />
@@ -178,6 +369,9 @@ const UpdateReading = () => {
               <label>Task Name</label>
               <input
                 spellCheck="false"
+                name="taskName1"
+                onChange={onChangeInput}
+                value={readingTopic.taskName1}
                 className={styles.typeInputValues}
                 placeholder="Please type content..."
               />
@@ -196,6 +390,9 @@ const UpdateReading = () => {
               <label>Data Text1 Task2</label>
               <input
                 spellCheck="false"
+                name="text1"
+                value={readingTopic.text1}
+                onChange={onChangeInput}
                 className={styles.typeInputValues}
                 placeholder="Please type content..."
               />
@@ -204,6 +401,9 @@ const UpdateReading = () => {
               <label>Data Text2 Task2</label>
               <input
                 spellCheck="false"
+                name="text2"
+                value={readingTopic.text2}
+                onChange={onChangeInput}
                 className={styles.typeInputValues}
                 placeholder="Please type content..."
               />
@@ -212,6 +412,9 @@ const UpdateReading = () => {
               <label>Data Text3 Task2</label>
               <input
                 spellCheck="false"
+                name="text3"
+                value={readingTopic.text3}
+                onChange={onChangeInput}
                 className={styles.typeInputValues}
                 placeholder="Please type content..."
               />
@@ -220,6 +423,9 @@ const UpdateReading = () => {
               <label>Data Text4 Task2</label>
               <input
                 spellCheck="false"
+                name="text4"
+                value={readingTopic.text4}
+                onChange={onChangeInput}
                 className={styles.typeInputValues}
                 placeholder="Please type content..."
               />
@@ -228,6 +434,9 @@ const UpdateReading = () => {
               <label>Data Text5 Task2</label>
               <input
                 spellCheck="false"
+                name="text5"
+                value={readingTopic.text5}
+                onChange={onChangeInput}
                 className={styles.typeInputValues}
                 placeholder="Please type content..."
               />
@@ -236,6 +445,9 @@ const UpdateReading = () => {
               <label>Data Text6 Task2</label>
               <input
                 spellCheck="false"
+                name="text6"
+                value={readingTopic.text6}
+                onChange={onChangeInput}
                 className={styles.typeInputValues}
                 placeholder="Please type content..."
               />
@@ -254,6 +466,9 @@ const UpdateReading = () => {
               <label>Data Task3</label>
               <input
                 spellCheck="false"
+                name="dataTask3"
+                value={readingTopic.dataTask3}
+                onChange={onChangeInput}
                 className={styles.typeInputValues}
                 placeholder="Please type content..."
               />
@@ -262,6 +477,9 @@ const UpdateReading = () => {
               <label>Task Name</label>
               <input
                 spellCheck="false"
+                name="taskName3"
+                value={readingTopic.taskName3}
+                onChange={onChangeInput}
                 className={styles.typeInputValues}
                 placeholder="Please type content..."
               />
@@ -273,6 +491,7 @@ const UpdateReading = () => {
 
         {/* task3 in topic */}
         {/* task in topic */}
+        <button className={styles.addProductButton}>Create</button>
       </form>
     </div>
   );

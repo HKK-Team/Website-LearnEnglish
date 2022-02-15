@@ -17,7 +17,7 @@ const DetailSkills = (props) => {
   }, [props.data]);
 
   if (!data[0].length) {
-    return <div>loading</div>;
+    return <div></div>;
   }
 
   return (
@@ -90,23 +90,6 @@ const DetailSkills = (props) => {
                   </p>
                 </div>
               </div>
-              // <LessonCard {...item} key={index}/>
-              // <div className={styles.viewRow} key={item._id}>
-              //   <div className={styles.imageFile}>
-              //     <img src={item.level.images} alt="" />
-              //   </div>
-              //   <div className={styles.textView}>
-              //     <Link to={item.level.slugLevel}>
-              //       <h2>{item.level.nameLevel}</h2>
-              //     </Link>
-              //     <p>
-              //       {item.level.contentLevel.substring(
-              //         0,
-              //         item.level.contentLevel.indexOf(".") + 1
-              //       )}
-              //     </p>
-              //   </div>
-              // </div>
             ))}
           </div>
         </div>

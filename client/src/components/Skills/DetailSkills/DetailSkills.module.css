@@ -137,7 +137,6 @@
 }
 
 .textIntro p {
-    margin-left: 19px;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 18px;
     line-height: 1.42857;
@@ -145,7 +144,6 @@
 }
 
 .textIntro h2 {
-    margin-left: 19px;
     color: #23085A;
     text-decoration: none;
     display: block;

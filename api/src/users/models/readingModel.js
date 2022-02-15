@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const readingSchema = new mongoose.Schema({
-  _id: mongoose.ObjectId,
   imageType: String,
   dateCreate: { type: Date, default: Date.now },
   contentType: String,

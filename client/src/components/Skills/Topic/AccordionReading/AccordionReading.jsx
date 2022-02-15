@@ -48,7 +48,7 @@ export default function AccordionReading(props) {
 
   return (
     <Accordion allowZeroExpanded className={styles.accordion}>
-      <AccordionItem className={styles.item}>
+      <AccordionItem className={styles.item} style={{ marginLeft: -15 }}>
         <AccordionItemHeading className={styles.headerTranscript}>
           <AccordionItemButton className={styles.transcript}>
             Reading Text
@@ -63,10 +63,11 @@ export default function AccordionReading(props) {
           ))}
         </AccordionItemPanel>
       </AccordionItem>
-
-      {[dataTask].map((item, index) => (
-        <Task1 {...item} key={index} />
-      ))}
+      <div style={{ marginLeft: -15 }}>
+        {[dataTask].map((item, index) => (
+          <Task1 {...item} key={index} />
+        ))}
+      </div>
     </Accordion>
   );
 }
