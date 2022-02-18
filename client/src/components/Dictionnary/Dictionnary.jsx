@@ -40,12 +40,19 @@ const Dictionnary = () => {
             <div>
               <audio
                 style={{ backgroundColor: "#fff", borderRadius: 10 }}
-                src={meanings[0].phonetics[0] && meanings[0].phonetics[0].audio}
+                src={
+                  meanings[0].phonetics[0] &&
+                  meanings[0].phonetics[0].audio === ""
+                    ? meanings[0].phonetics[1] && meanings[0].phonetics[1].audio
+                    : meanings[0].phonetics[0] && meanings[0].phonetics[0].audio
+                }
                 controls
               >
                 Your browser does not support the audio element.
               </audio>
-              <p style={{marginLeft:15}}>{meanings[0].phonetics[0] && meanings[0].phonetics[0].text}</p>
+              <p style={{ marginLeft: 15 }}>
+                {meanings[0].phonetics[0] && meanings[0].phonetics[0].text}
+              </p>
             </div>
           )}
           {/* audio---------------------------- */}

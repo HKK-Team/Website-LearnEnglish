@@ -53,8 +53,6 @@ export default function Accordions(props) {
     }
   };
 
-  console.log(dataTask2[0]);
-
   return (
     <Accordion allowZeroExpanded className={styles.accordion}>
       <AccordionItem className={styles.item} style={{ marginLeft: -15 }}>

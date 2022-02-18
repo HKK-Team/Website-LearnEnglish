@@ -14,11 +14,11 @@ const Header = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
-  var str = '/';
-  for(let i = 1;i < url.length;i++){
-    if(url[i] === '/')break;
-    str += url[i]
+
+  var str = "/";
+  for (let i = 1; i < url.length; i++) {
+    if (url[i] === "/") break;
+    str += url[i];
   }
   const isHome = str === "/" ? true : false;
   const isSkill = str === "/skill" ? true : false;
@@ -27,8 +27,7 @@ const Header = () => {
   const isDictionnary = str === "/dictionnary" ? true : false;
   const isLogin = str === "/Login" ? true : false;
   const isRegister = str === "/Register" ? true : false;
-
-
+  const isSearch = str === "/search" ? true : false;
 
   return (
     <Fragment>
@@ -36,7 +35,7 @@ const Header = () => {
         <Navbar />
         <div className={styles.content}>
           {isHome ? <TwoItems /> : ""}
-          {isHome || isLogin || isRegister ? <IntroByHome /> : ""}
+          {isHome || isLogin || isRegister || isSearch ? <IntroByHome /> : ""}
           {isSkill ? <IntroBySkill /> : ""}
           {isGrammar ? <IntroByGrammar /> : ""}
           {isVoccabulary ? <IntroByVoc /> : ""}

@@ -8,13 +8,37 @@ import style from "../../LessonCard/LessonCard.module.css";
 const DetailSkills = (props) => {
   const [data, setdata] = useState(props.data);
   const [dataContentType, setdataContentType] = useState([]);
+  const [dataLevel, setdataLevel] = useState([]);
+
+  const formatData = (str) => {
+    let strTemp = str;
+    let data = strTemp[str.length - 1] + strTemp[str.length - 2];
+    return data.split("").reverse().join("");
+  };
+
+  function compare(a, b) {
+    if (formatData(a.level.nameLevel) < formatData(b.level.nameLevel)) {
+      return -1;
+    }
+    if (formatData(a.level.nameLevel) > formatData(b.level.nameLevel)) {
+      return 1;
+    }
+    return 0;
+  }
 
   useEffect(() => {
     setdata(props.data);
     if (props.data[0].length !== 0) {
       setdataContentType(props.data[0][0].contentType.split("\n\n"));
+      const arrayUniqueByKey = [
+        ...new Map(
+          data[0].map((item) => [item.level.nameLevel, item])
+        ).values(),
+      ];
+      arrayUniqueByKey.sort(compare);
+      setdataLevel(arrayUniqueByKey);
     }
-  }, [props.data]);
+  }, [props.data, data]);
 
   if (!data[0].length) {
     return <div></div>;
@@ -69,7 +93,7 @@ const DetailSkills = (props) => {
           </div>
 
           <div className={styles.contain}>
-            {data[0].slice(0, 5).map((item, index) => (
+            {dataLevel.map((item, index) => (
               <div
                 className={style.viewRow}
                 key={index}

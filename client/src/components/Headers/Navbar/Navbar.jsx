@@ -53,7 +53,7 @@ const Navbar = () => {
           name=""
           placeholder="Type to text..."
         />
-        <Link to={"#"}>
+        <Link to={"/search"}>
           <button className={styles.btn}>Search</button>
         </Link>
       </div>

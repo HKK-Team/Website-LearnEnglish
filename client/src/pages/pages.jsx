@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
-
-import LoginAdmin from "../admin/components/LoginAdmin/LoginAdmin";
 import HomeAdmin from "../admin/components/HomeAdmin/HomeAdmin";
+import LoginAdmin from "../admin/components/LoginAdmin/LoginAdmin";
 import UpdateTopic from "../admin/components/UpdateTopic/UpdateTopic";
-
 import { GlobalState } from "../GlobalState";
 import CallPage from "../pages/CallPage/CallPageGGMeet";
 import Dictionnary from "../pages/Dictionnary/Dictionnary";
@@ -32,8 +30,9 @@ import TopicWriting from "./Skills/Topic/TopicWriting";
 import Voccabulary from "./Voccabulary/voc";
 import VocBTPI from "./Voccabulary/VocBTPI";
 import VoccabularyLesson from "./Voccabulary/VoccabularyLesson/VoccabularyLesson";
-import VocGames from "./Voccabulary/VocGames";
-import VocITUI from "./Voccabulary/VocITUI";
+import SearchTopic from '../components/SearchTopic/SearchTopic'
+
+
 
 const Pages = () => {
   const state = useContext(GlobalState);
@@ -47,6 +46,7 @@ const Pages = () => {
       <Route path="/grammar" element={<Grammars />} />
       <Route path="/voccabulary" element={<Voccabulary />} />
       <Route path="/skill" element={<Skill />} />
+      <Route path="/search" element={<SearchTopic />} />
 
       {/* detail level skill */}
       <Route path="/skill/listening" element={<DetailSkillListening />} />
@@ -167,28 +167,6 @@ const Pages = () => {
         path="/voccabulary/Intermediate-to-upper-intermediate/:id"
         element={<VoccabularyLesson />}
       />
-      {/* <Route
-        path="/voccabulary/beginner-to-pre-intermediate/Accessories"
-        element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][0]} />}
-      />
-      <Route
-        path="/voccabulary/Intermediate-to-upper-intermediate/"
-        element={<VocITUI />}
-      />
-       <Route
-        path="/voccabulary/Intermediate-to-upper-intermediate/:id"
-        element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][1]} />}
-      /> */}
-      {/* <Route
-        path="/voccabulary/Intermediate-to-upper-intermediate/AirTravel"
-        element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][1]} />}
-      />
-      <Route path="/voccabulary/Vocabulary-games/" element={<VocGames />} />
-      <Route
-        path="/voccabulary/Vocabulary-games/Sushi-Spell"
-        element={<VoccabularyLesson data={state.vocabularyApi.vocData[0][2]} />}
-      /> */}
-      {/* detail level voccabulary */}
 
       <Route path="/meeting/:id" element={<CallPage />} />
       <Route path="/meeting" element={<HomeGGMeet />} />
