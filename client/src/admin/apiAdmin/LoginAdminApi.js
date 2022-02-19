@@ -9,7 +9,7 @@ function LoginAdminApi(token) {
         if (token) {
             const getAdmin = async() => {
                 try {
-                    const res = await axios.get('/admin/infor', {
+                    const res = await axios.get('http://localhost:5000/admin/inforadmin', {
                         headers: { Authorization: token }
                     })
                     setadmin(res.data)

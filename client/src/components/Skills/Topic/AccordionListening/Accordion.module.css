@@ -199,3 +199,23 @@
     float: right;
     color: #555555;
 }
+
+
+/* task3 */
+
+.blockMutipleChoise {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    padding: 30px 20px;
+}
+
+.blockMutipleChoise .ItemChoise {
+    display: inline-block;
+}
+
+.ItemChoise .boolItem {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 5px;
+}

@@ -89,7 +89,6 @@ const Task2 = (props) => {
       <AccordionItem className={styles.item}>
         <AccordionItemHeading className={styles.headerTranscript}>
           <AccordionItemButton className={styles.transcript}>
-            {/* {props.data.data.topic.task[1].task2.taskName} */}
             Task2
           </AccordionItemButton>
         </AccordionItemHeading>
@@ -144,7 +143,6 @@ const Task2 = (props) => {
                             : colorAnswertask2.includes(index)
                             ? "#b8ecbc"
                             : "#dedae6",
-                          //   :"#ffccc4"
                         }}
                       >
                         <div

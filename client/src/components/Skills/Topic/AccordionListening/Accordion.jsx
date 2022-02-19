@@ -10,6 +10,7 @@ import "react-accessible-accordion/dist/fancy-example.css";
 import styles from "./Accordion.module.css";
 import Task1 from "./Task/Task1";
 import Task2 from "./Task/Task2";
+import Task3 from "./Task/Task3";
 import Translates from "../Translates/Translates";
 
 export default function Accordions(props) {
@@ -78,9 +79,11 @@ export default function Accordions(props) {
 
         {dataTask2[0] === "" ? "" : <Task2 data={props} />}
 
-        {![dataTask3].length
-          ? [dataTask3].map((item, index) => <Task1 {...item} key={index} />)
-          : ""}
+        {dataTask3?.text1 === ""
+          ? ""
+          : [dataTask3].map((item, index) => (
+              <Task3 data={props.data} key={index} />
+            ))}
       </div>
     </Accordion>
   );

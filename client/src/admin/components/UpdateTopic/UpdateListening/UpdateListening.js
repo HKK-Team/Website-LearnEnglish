@@ -1,4 +1,4 @@
-  import React, { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../UpdateTopic.module.css";
 import axios from "axios";
 import { GlobalState } from "../../../../GlobalState";
@@ -26,7 +26,6 @@ const UpdateListening = () => {
     }
   };
 
-
   const [listeningTopic, setlisteningTopic] = useState({
     contentType: dataListening[0].contentType,
     imageType: "",
@@ -52,8 +51,12 @@ const UpdateListening = () => {
     text4: "",
     text5: "",
     text6: "",
-    dataTask3: "",
-    taskName3: "",
+    task3text1: "",
+    task3text2: "",
+    task3text3: "",
+    task3text4: "",
+    task3text5: "",
+    task3text6: ""
   });
 
   const handleUpload = async (e) => {
@@ -469,22 +472,66 @@ const UpdateListening = () => {
         {stateTask3 ? (
           <div>
             <div className={styles.typeInput}>
-              <label>Data Task3</label>
+              <label>Data Text1 Task3</label>
               <input
                 spellCheck="false"
-                name="dataTask3"
-                value={listeningTopic.dataTask3}
+                name="task3text1"
+                value={listeningTopic.task3text1}
                 onChange={onChangeInput}
                 className={styles.typeInputValues}
                 placeholder="Please type content..."
               />
             </div>
             <div className={styles.typeInput}>
-              <label>Task Name</label>
+              <label>Data Text2 Task3</label>
               <input
                 spellCheck="false"
-                name="taskName3"
-                value={listeningTopic.taskName3}
+                name="task3text2"
+                value={listeningTopic.task3text2}
+                onChange={onChangeInput}
+                className={styles.typeInputValues}
+                placeholder="Please type content..."
+              />
+            </div>
+            <div className={styles.typeInput}>
+              <label>Data Text3 Task3</label>
+              <input
+                spellCheck="false"
+                name="task3text3"
+                value={listeningTopic.task3text3}
+                onChange={onChangeInput}
+                className={styles.typeInputValues}
+                placeholder="Please type content..."
+              />
+            </div>
+            <div className={styles.typeInput}>
+              <label>Data Text4 Task3</label>
+              <input
+                spellCheck="false"
+                name="task3text4"
+                value={listeningTopic.task3text4}
+                onChange={onChangeInput}
+                className={styles.typeInputValues}
+                placeholder="Please type content..."
+              />
+            </div>
+            <div className={styles.typeInput}>
+              <label>Data Text5 Task3</label>
+              <input
+                spellCheck="false"
+                name="task3text5"
+                value={listeningTopic.task3text5}
+                onChange={onChangeInput}
+                className={styles.typeInputValues}
+                placeholder="Please type content..."
+              />
+            </div>
+            <div className={styles.typeInput}>
+              <label>Data Text6 Task3</label>
+              <input
+                spellCheck="false"
+                name="task3text6"
+                value={listeningTopic.task3text6}
                 onChange={onChangeInput}
                 className={styles.typeInputValues}
                 placeholder="Please type content..."
@@ -492,6 +539,30 @@ const UpdateListening = () => {
             </div>
           </div>
         ) : (
+          // <div>
+          //   <div className={styles.typeInput}>
+          //     <label>Data Task3</label>
+          //     <input
+          //       spellCheck="false"
+          //       name="dataTask3"
+          //       value={listeningTopic.dataTask3}
+          //       onChange={onChangeInput}
+          //       className={styles.typeInputValues}
+          //       placeholder="Please type content..."
+          //     />
+          //   </div>
+          //   <div className={styles.typeInput}>
+          //     <label>Task Name</label>
+          //     <input
+          //       spellCheck="false"
+          //       name="taskName3"
+          //       value={listeningTopic.taskName3}
+          //       onChange={onChangeInput}
+          //       className={styles.typeInputValues}
+          //       placeholder="Please type content..."
+          //     />
+          //   </div>
+          // </div>
           ""
         )}
 

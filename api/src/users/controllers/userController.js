@@ -88,6 +88,7 @@ const userCtrl = {
     try {
       // refresh token when login or gegister
       const rf_token = req.cookies.refreshtoken;
+      // console.log(rf_token)
       if (!rf_token)
         return res.status(400).json({ msg: "Please Login or Register" });
       // verify token
@@ -107,6 +108,7 @@ const userCtrl = {
   getUser: async (req, res) => {
     try {
       const user = await Users.findById(req.user.id).select("-password");
+      // console.log(user)
       if (!user) return res.status(400).json({ msg: "User does not exist." });
 
       res.json(user);

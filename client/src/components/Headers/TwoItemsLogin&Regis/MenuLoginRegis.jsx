@@ -1,9 +1,9 @@
-import { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import styles from "./MenuLoginRegis.module.css";
-import { GlobalState } from "../../../GlobalState";
-import { GoogleLogout } from "react-google-login";
 import axios from "axios";
+import { useContext, useEffect } from "react";
+import { GoogleLogout } from "react-google-login";
+import { Link } from "react-router-dom";
+import { GlobalState } from "../../../GlobalState";
+import styles from "./MenuLoginRegis.module.css";
 
 const MenuLoginRegis = () => {
   const state = useContext(GlobalState);

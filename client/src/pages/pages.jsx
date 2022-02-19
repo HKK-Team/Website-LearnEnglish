@@ -38,6 +38,7 @@ const Pages = () => {
   const state = useContext(GlobalState);
   const [isLogin] = state.userApi.isLogged;
   const [isLoginAdmin] = state.adminApi.isLoginAdmin;
+  // console.log(isLoginAdmin)
 
   return (
     <Routes>
@@ -180,7 +181,8 @@ const Pages = () => {
       />
       <Route
         path="/dashboard"
-        element={isLoginAdmin ? <HomeAdmin /> : <NotFound />}
+        // element={isLoginAdmin ? <HomeAdmin /> : <NotFound />}
+        element={ <HomeAdmin />}
       />
       <Route path="/update" element={<UpdateTopic />} />
 

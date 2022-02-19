@@ -33,8 +33,16 @@ const createTopicCtrl = {
         text4,
         text5,
         text6,
-        dataTask3,
-        taskName3,
+        task3text1,
+        task3text2,
+        task3text3,
+        task3text4,
+        task3text5,
+        task3text6,
+        task3text7,
+        task3text8,
+        task3text9,
+        task3text10,
       } = req.body;
       if (!imageType) return res.status(400).json({ msg: "No image upload" });
       const topic = await Listenings.findOne({
@@ -87,8 +95,12 @@ const createTopicCtrl = {
               },
               {
                 task3: {
-                  data: dataTask3,
-                  taskName: taskName3,
+                  text1:task3text1,
+                  text2:task3text2,
+                  text3:task3text3,
+                  text4:task3text4,
+                  text5:task3text5,
+                  text6:task3text6
                 },
               },
             ],
