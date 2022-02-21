@@ -3,6 +3,7 @@ from flask import Flask, request, Response,jsonify
 from flask_cors import CORS
 from gramformers import correct
 from translate import translatesText
+from textToSpeech import textToSpeech
 
 app = Flask(__name__)
 CORS(app)
@@ -24,6 +25,7 @@ def trans():
     dataTranslate = request.get_json()
     if request.method == 'POST': 
          translates[0] = str(dataTranslate)
+         textToSpeech(str(translates[0]))
          return 'data received'
     else:
         dataTranslate = translatesText(str(translates[0]))
