@@ -9,6 +9,7 @@ import { FaRegTrashAlt, FaEllipsisV } from "react-icons/fa";
 import { AiFillQuestionCircle } from "react-icons/ai";
 
 const AssistantGrammar = (props) => {
+  console.log(props)
   const [data, setdata] = useState([]);
   const [check, setcheck] = useState(!props.data);
 

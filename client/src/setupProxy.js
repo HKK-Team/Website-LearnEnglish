@@ -14,15 +14,22 @@ module.exports = function (app) {
     })
   );
   // app.use(
-  //   createProxyMiddleware('/api2', {
-  //     target: 'http://localhost:5000', // API endpoint 2
+  //   '/api2',
+  //   createProxyMiddleware({
+  //     target: 'http://localhost:5000',
   //     changeOrigin: true,
-  //     pathRewrite: {
-  //       "^/api2": "",
-  //     },
-  //     headers: {
-  //       Connection: "keep-alive"
-  //     }
   //   })
   // );
+  app.use(
+    createProxyMiddleware('/api2', {
+      target: 'http://localhost:5000', // API endpoint 2
+      changeOrigin: true,
+      pathRewrite: {
+        "^/api2": "",
+      },
+      headers: {
+        Connection: "keep-alive"
+      }
+    })
+  );
 }

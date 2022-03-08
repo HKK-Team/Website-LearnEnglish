@@ -31,9 +31,7 @@ const MenuLoginRegis = () => {
   //event logout by system
   const eventLogOutStm = async () => {
     await axios.get("http://localhost:5000/user/logout");
-
     localStorage.removeItem("firstLogin");
-
     window.location.href = "/";
   };
 
@@ -49,12 +47,15 @@ const MenuLoginRegis = () => {
       <ul className={styles.items}>
         <li className={styles.item}>
           {dataLoginMedia.isLogin ? (
-            <Link className={styles.twoItems} to={""}>
-              Hi {dataLoginMedia.objectLogin.givenName}!
-            </Link>
+            <div>
+              <img src={dataLoginMedia?.objectLogin?.image} alt="" style={{width:30,height:30,borderRadius:50}}/>
+              <Link className={styles.twoItems} to={""} style={{marginLeft:1,marginBottom:10}}>
+                Hi {dataLoginMedia?.objectLogin?.givenName}!
+              </Link>
+            </div>
           ) : isLogged ? (
             <Link className={styles.twoItems} to={""}>
-              Hi {user.lastname}!
+              Hi {user?.lastname}!
             </Link>
           ) : (
             <Link className={styles.twoItems} to={"/Login"} onClick={eventMove}>

@@ -1,12 +1,11 @@
-import { React, useState, useContext } from "react";
-import styles from "./Login.module.css";
+import axios from "axios";
+import { React, useContext, useState } from "react";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import GoogleLogin from "react-google-login";
 import { MdMarkEmailUnread, MdPassword } from "react-icons/md";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import GoogleLogin from "react-google-login";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GlobalState } from "../../GlobalState";
-
+import styles from "./Login.module.css";
 
 const Login = () => {
   const state = useContext(GlobalState);
@@ -48,19 +47,32 @@ const Login = () => {
     }, 2000);
   };
 
-  const [user, setUser] = useState({
+  const [users, setUsers] = useState({
     email: "",
     password: "",
   });
   const onChangeInput = (e) => {
     const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+    setUsers({ ...users, [name]: value });
   };
   const loginSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/user/login", { ...user });
-      localStorage.setItem("firstLogin", true);
+    const res = await axios.post("http://localhost:5000/user/login", {
+        ...users,
+      });
+      const setting = {
+        givenName: res.data.user.lastname,
+        image: res.data.user.avatar
+      };
+      sessionStorage.setItem(
+        "isLoginMedia",
+        JSON.stringify({
+          isLogin: true,
+          objectLogin: setting,
+        }));
+      // console.log(res.data.user)
+      // localStorage.setItem("firstLogin", true);
       alert("Login Successfully!");
       setTimeout(() => {
         window.location.href = "/";
@@ -96,7 +108,7 @@ const Login = () => {
                     required
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                     autoComplete="on"
-                    value={user.email}
+                    value={users.email}
                     onChange={onChangeInput}
                   />
                 </div>
@@ -114,7 +126,7 @@ const Login = () => {
                     required
                     pattern="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]){6,20})"
                     autoComplete="on"
-                    value={user.password}
+                    value={users.password}
                     onChange={onChangeInput}
                   />
                   {/* Mật khẩu phải chứa ít nhất một chữ số [0-9].

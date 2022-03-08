@@ -1,9 +1,6 @@
 const router = require("express").Router();
 const cloudinary = require("cloudinary");
 const fs = require("fs");
-const auth = require("../middleware/auth");
-const authAdmin = require("../middleware/authAdmin");
-
 // we will upload image on cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,

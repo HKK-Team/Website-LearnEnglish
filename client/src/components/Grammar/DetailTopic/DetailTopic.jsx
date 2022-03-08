@@ -110,7 +110,7 @@ const DetailTopic = (props) => {
             <div className={styles.accordion}>
               <Accordion allowZeroExpanded style={{ marginLeft: 1 }}>
                 {dataTask.map((items, index) =>
-                  index === 0 ? <TaskLession {...items} /> : ""
+                  index === 0 ? <TaskLession {...items} key={index}/> : ""
                 )}
               </Accordion>
               <p className={styles.text}>Read the explanation to learn more.</p>
@@ -155,7 +155,7 @@ const DetailTopic = (props) => {
               <div>
                 <Accordion allowZeroExpanded style={{ marginLeft: 1 }}>
                   {dataTask.map((items, index) =>
-                    index === 1 ? <TaskLession {...items} /> : ""
+                    index === 1 ? <TaskLession {...items} key={index}/> : ""
                   )}
                 </Accordion>
               </div>

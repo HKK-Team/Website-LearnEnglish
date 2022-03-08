@@ -1,11 +1,14 @@
-import { React, useState } from "react";
-import styles from "./Register.module.css";
-import { MdDriveFileRenameOutline } from "react-icons/md";
 import axios from "axios";
+import { React, useState } from "react";
+import { MdDriveFileRenameOutline } from "react-icons/md";
+import {
+  showErrMsg,
+  showSuccessMsg
+} from "../../utils/notification/notification";
+import { isEmail, isEmpty, isLength, isMatch } from "../../utils/Validation";
+import styles from "./Register.module.css";
 
 const Register = () => {
-  // create error message
-  const errMessage = document.getElementById("messErr");
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -15,30 +18,45 @@ const Register = () => {
     address: "",
     nationality: "",
     phonenumber: "",
+    avatar:
+      "https://res.cloudinary.com/djkdp3bew/image/upload/v1646378355/Website_Learning/143086968_2856368904622192_1959732218791162458_n_wbaxvf.png",
+    err: "",
+    success: "",
   });
+  const { email, confirm_password, password, err, success } = user;
+
   const onChangeInput = (e) => {
     const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+    setUser({ ...user, [name]: value, err: "", success: "" });
   };
   const registerSubmit = async (e) => {
-    const errorMessage = document.getElementById("Register_messErr__FlEYT");
     e.preventDefault();
-    let regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-    if (!regex.test(user.password))
-      return (errorMessage.innerText = `Mật khẩu phải chứa ít nhất một chữ số [0-9].
-        Mật khẩu phải chứa ít nhất một ký tự Latinh viết thường [a-z].
-        Mật khẩu phải chứa ít nhất một ký tự Latinh viết hoa [A-Z].
-        Mật khẩu phải có độ dài ít nhất 6 ký tự và tối đa 20 ký tự.`);
-    else if (user.password !== user.confirm_password) {
-      return (errorMessage.innerText = `Xác nhận mật khẩu không chính xác. Vui lòng kiểm tra lại`);
-    } else {
-      try {
-        await axios.post("/user/register", { ...user });
-        alert("Created User Succesfully!");
-        window.location.href = "/Login";
-      } catch (err) {
-        alert(err.response.data.msg);
-      }
+    if (isEmpty(email) || isEmpty(password))
+      return setUser({
+        ...user,
+        err: "Please fill in all fields.",
+        success: "",
+      });
+
+    if (!isEmail(email))
+      return setUser({ ...user, err: "Invalid emails.", success: "" });
+
+    if (isLength(password))
+      return setUser({
+        ...user,
+        err: "Password must be at least 6 characters.",
+        success: "",
+      });
+
+    if (!isMatch(password, confirm_password))
+      return setUser({ ...user, err: "Password did not match.", success: "" });
+    try {
+      const res = await axios.post("http://localhost:5000/user/register", {
+        ...user,
+      });
+      setUser({ ...user, err: "", success: res.data.msg });
+    } catch (err) {
+      alert(err.response.data.msg);
     }
   };
   return (
@@ -49,7 +67,10 @@ const Register = () => {
             <div className={styles.registerWrapper}>
               <div id="login" className={styles.userBox}>
                 <h1 className={styles.accountTitle}>Register</h1>
-                <span id={styles.messErr}></span>
+                <div style={{ marginBottom: 10 }}>
+                  {err && showErrMsg(err)}
+                  {success && showSuccessMsg(success)}
+                </div>
                 <form
                   action="/Register"
                   id={styles.customerRegister}
@@ -67,7 +88,6 @@ const Register = () => {
                       name="firstname"
                       placeholder="First Name..."
                       size="32"
-                      required
                       value={user.firstname}
                       onChange={onChangeInput}
                     />
@@ -83,7 +103,6 @@ const Register = () => {
                       name="lastname"
                       placeholder="Last Name..."
                       size="32"
-                      required
                       value={user.lastname}
                       onChange={onChangeInput}
                     />
@@ -99,8 +118,6 @@ const Register = () => {
                       name="email"
                       placeholder="Email..."
                       size="32"
-                      required
-                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                       value={user.email}
                       onChange={onChangeInput}
                     />
@@ -116,7 +133,6 @@ const Register = () => {
                       name="password"
                       placeholder="PassWord..."
                       size="32"
-                      required
                       autoComplete="on"
                       value={user.password}
                       onChange={onChangeInput}
@@ -133,17 +149,10 @@ const Register = () => {
                       name="confirm_password"
                       placeholder="Confirm PassWord ..."
                       size="32"
-                      required
-                      pattern="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]){6,20})"
                       autoComplete="on"
                       value={user.confirm_password}
                       onChange={onChangeInput}
                     />
-                    {/* Mật khẩu phải chứa ít nhất một chữ số [0-9].
-                    Mật khẩu phải chứa ít nhất một ký tự Latinh viết thường [a-z].
-                    Mật khẩu phải chứa ít nhất một ký tự Latinh viết hoa [A-Z].
-                    Mật khẩu phải chứa ít nhất một ký tự đặc biệt như! @ # & ().
-                    Mật khẩu phải có độ dài ít nhất 6 ký tự và tối đa 20 ký tự. */}
                   </div>
                   <input
                     type="submit"

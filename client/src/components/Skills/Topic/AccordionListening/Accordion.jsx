@@ -53,6 +53,7 @@ export default function Accordions(props) {
       setdataTranslates(array);
     }
   };
+  // console.log(dataTask1?.taskName);
 
   return (
     <Accordion allowZeroExpanded className={styles.accordion}>
@@ -73,9 +74,12 @@ export default function Accordions(props) {
         </AccordionItemPanel>
       </AccordionItem>
       <div style={{ marginLeft: -15 }}>
-        {[dataTask1].length
-          ? [dataTask1].map((item, index) => <Task1 {...item} key={index} />)
-          : ""}
+        {dataTask1?.taskName === ""
+          ? ""
+          : [dataTask1].map((item, index) => <Task1 {...item} key={index} />)}
+        {/* {[dataTask1].length
+          ? )
+          : ""} */}
 
         {dataTask2[0] === "" ? "" : <Task2 data={props} />}
 

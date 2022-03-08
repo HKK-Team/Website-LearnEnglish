@@ -39,12 +39,25 @@ const CheckGrammarByText = () => {
       .then((datas) => {
         setData(datas);
         let str1 = valueInput.trim().replace(/\s+/g, " ");
-        let str2 = datas.data
+        let str2 = datas.data;
 
-        for (let i = 0; i < str1.split(" ").length; i++) {
-          if (str1.split(" ")[i] !== str2.split(" ")[i]) {
+        console.log(str1);
+        console.log(str2);
+
+        if (
+          str1.split(" ").length < str2.split(" ").length ||
+          str1.split(" ").length > str2.split(" ").length
+        ) {
+          for (let i = 0; i < str1.split(" ").length; i++) {
             setarray1((prev) => [...prev, str1.split(" ")[i]]);
             setarray2((prev) => [...prev, str2.split(" ")[i]]);
+          }
+        } else {
+          for (let i = 0; i < str1.split(" ").length; i++) {
+            if (str1.split(" ")[i] !== str2.split(" ")[i]) {
+              setarray1((prev) => [...prev, str1.split(" ")[i]]);
+              setarray2((prev) => [...prev, str2.split(" ")[i]]);
+            }
           }
         }
       });

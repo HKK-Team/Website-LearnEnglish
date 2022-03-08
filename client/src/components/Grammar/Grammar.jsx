@@ -37,8 +37,8 @@ const Grammar = (props) => {
             </p>
             <h1 style={{color:"#23085a"}}>Choose a grammar section</h1>
             <div className={styles.contain}>
-              {data[0].slice(0, 2).map((item) => (
-                <LessonCard {...item} />
+              {data[0].slice(0, 2).map((item,index) => (
+                <LessonCard {...item} key={index}/>
               ))}
             </div>
           </div>

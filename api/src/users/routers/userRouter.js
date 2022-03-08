@@ -4,9 +4,13 @@ const auth = require("../middlewares/auth");
 
 router.route("/login").post(userCtrl.login);
 router.route("/register").post(userCtrl.register);
-router.get("/refresh_token", userCtrl.refreshToken);
-router.route("/logout").get(userCtrl.logout);
-router.route("/infor").get(auth, userCtrl.getUser);
-// router.route("/editUser").post(userCtrl.editUser);
-// router.route("/editPassword").post(userCtrl.editPassword);
+router.post("/activation", userCtrl.activateEmail);
+router.post("/refresh_token", userCtrl.getAccessToken);
+router.route("/infor").get(auth, userCtrl.getUserInfor);
+router.get('/logout', userCtrl.logout)
+
+// Social Login
+router.post('/google_login', userCtrl.googleLogin)
+
+router.post('/facebook_login', userCtrl.facebookLogin)
 module.exports = router;

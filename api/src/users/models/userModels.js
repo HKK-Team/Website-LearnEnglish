@@ -1,43 +1,46 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
-    email : {
-        type :String,
-        unique : true,
-        required : true
+    email: {
+        type: String,
+        required: [true, "Please enter your email!"],
+        trim: true,
+        unique: true
     },
-    firstname : {
-        type : String,
-        required : true
+    firstname: {
+        type: String,
+        trim: true,
+        default: ""
     },
-    lastname : {
-        type : String,
-        required : true
+    lastname: {
+        type: String,
+        required: [true, "Please enter your lastname!"],
+        trim: true
     },
-    username : {
-        type : String,
-    },
-    phonenumber : {
-        type : String,
-    },
-    address : {
-        type : String,
-    },
-    nationality : {
-        type :String,
-    },
-    bornday : { 
-        type: Date, 
-        default: Date.now 
-    },
-    password : {
-        type :String,
-        required : true
+    password: {
+        type: String,
+        required: [true, "Please enter your password!"]
     },
     role: {
         type: Number,
+        default: 0 // 0 = user, 1 = admin
+    },
+    phonenumber : {
+        type : Number,
         default: 0
     },
+    address : {
+        type : String,
+        default: ""
+    },
+    nationality : {
+        type :String,
+        default: ""
+    },
+    avatar: {
+        type: String,
+        default: "https://res.cloudinary.com/djkdp3bew/image/upload/v1646378355/Website_Learning/143086968_2856368904622192_1959732218791162458_n_wbaxvf.png"
+    }
 },
 {
     timestamps: true

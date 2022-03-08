@@ -30,9 +30,8 @@ import TopicWriting from "./Skills/Topic/TopicWriting";
 import Voccabulary from "./Voccabulary/voc";
 import VocBTPI from "./Voccabulary/VocBTPI";
 import VoccabularyLesson from "./Voccabulary/VoccabularyLesson/VoccabularyLesson";
-import SearchTopic from '../components/SearchTopic/SearchTopic'
-
-
+import SearchTopic from "../components/SearchTopic/SearchTopic";
+import Verification from "../components/Verification/ActivationEmail";
 
 const Pages = () => {
   const state = useContext(GlobalState);
@@ -48,6 +47,10 @@ const Pages = () => {
       <Route path="/voccabulary" element={<Voccabulary />} />
       <Route path="/skill" element={<Skill />} />
       <Route path="/search" element={<SearchTopic />} />
+      <Route
+        path="/user/activate/:activation_token"
+        element={<Verification />}
+      />
 
       {/* detail level skill */}
       <Route path="/skill/listening" element={<DetailSkillListening />} />
@@ -182,7 +185,7 @@ const Pages = () => {
       <Route
         path="/dashboard"
         // element={isLoginAdmin ? <HomeAdmin /> : <NotFound />}
-        element={ <HomeAdmin />}
+        element={<HomeAdmin />}
       />
       <Route path="/update" element={<UpdateTopic />} />
 
