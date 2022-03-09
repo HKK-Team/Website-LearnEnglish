@@ -1,15 +1,15 @@
 import axios from "axios";
 import { useContext, useEffect } from "react";
-import { GoogleLogout } from "react-google-login";
 import { Link } from "react-router-dom";
 import { GlobalState } from "../../../GlobalState";
 import styles from "./MenuLoginRegis.module.css";
+import { GoogleLogout } from "react-google-login";
 
 const MenuLoginRegis = () => {
   const state = useContext(GlobalState);
-  const [dataLoginMedia, setdataLoginMedia] = state.userApi.dataLoginMedia;
   const [isLogged, setIsLogged] = state.userApi.isLogged;
-  const [user, setuser] = state.userApi.user;
+  const [dataLoginMedia, setdataLoginMedia] = state.userApi.dataLoginMedia;
+  const [user] = state.userApi.user;
 
   // login using google api
   useEffect(() => {
@@ -28,11 +28,15 @@ const MenuLoginRegis = () => {
       isLogin: false,
     });
   };
-  //event logout by system
+
   const eventLogOutStm = async () => {
-    await axios.get("http://localhost:5000/user/logout");
-    localStorage.removeItem("firstLogin");
-    window.location.href = "/";
+    try {
+      await axios.get("/user/logout");
+      localStorage.removeItem("firstLogin");
+      window.location.href = "/";
+    } catch (err) {
+      window.location.href = "/";
+    }
   };
 
   const eventMove = () => {
@@ -47,12 +51,13 @@ const MenuLoginRegis = () => {
       <ul className={styles.items}>
         <li className={styles.item}>
           {dataLoginMedia.isLogin ? (
-            <div>
-              <img src={dataLoginMedia?.objectLogin?.image} alt="" style={{width:30,height:30,borderRadius:50}}/>
-              <Link className={styles.twoItems} to={""} style={{marginLeft:1,marginBottom:10}}>
-                Hi {dataLoginMedia?.objectLogin?.givenName}!
-              </Link>
-            </div>
+            <Link
+              className={styles.twoItems}
+              to={""}
+              style={{ marginLeft: 1, marginBottom: 10 }}
+            >
+              Hi {dataLoginMedia?.objectLogin?.givenName}!
+            </Link>
           ) : isLogged ? (
             <Link className={styles.twoItems} to={""}>
               Hi {user?.lastname}!

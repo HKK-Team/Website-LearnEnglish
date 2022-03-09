@@ -22,21 +22,16 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     // token login user
-    const firstLogin = localStorage.getItem("firstLogin");
-    if (firstLogin) {
-      const refreshTokens = async () => {
-        await axios
-          .post("http://localhost:5000/user/refresh_token", {
-            withCredentials: true,
-          })
-          .then((res) => {
-            setToken(res.data.accesstoken);
-          });
-        setTimeout(() => {
-          refreshTokens();
-        }, 10 * 60 * 1000);
-      };
-      refreshTokens();
+    const firstLogin = localStorage.getItem('firstLogin')
+    if(firstLogin){
+        const refreshToken = async () =>{
+            const res = await axios.post('/user/refresh_token')
+            setToken(res.data.access_token)
+            setTimeout(() => {
+                refreshToken()
+            }, 10 * 60 * 1000)
+        }
+        refreshToken()
     }
     // token login admin
     const adminlogin = localStorage.getItem("AdminLogin");

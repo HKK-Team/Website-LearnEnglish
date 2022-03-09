@@ -6,12 +6,28 @@ import { MdMarkEmailUnread, MdPassword } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { GlobalState } from "../../GlobalState";
 import styles from "./Login.module.css";
+import {
+  showErrMsg,
+  showSuccessMsg,
+} from "../../utils/notification/notification";
 
 const Login = () => {
   const state = useContext(GlobalState);
+  const [isLogged, setIsLogged] = state.userApi.isLogged;
   const [dataLoginMedia, setdataLoginMedia] = state.userApi.dataLoginMedia;
 
-  //login with google
+  const [users, setUsers] = useState({
+    email: "",
+    password: "",
+    err: "",
+    success: "",
+  });
+  const { email, password, err, success } = users;
+
+  const onChangeInput = (e) => {
+    const { name, value } = e.target;
+    setUsers({ ...users, [name]: value, err: "", success: "" });
+  };
   const responseGoogle = (response) => {
     sessionStorage.setItem(
       "isLoginMedia",
@@ -47,38 +63,60 @@ const Login = () => {
     }, 2000);
   };
 
-  const [users, setUsers] = useState({
-    email: "",
-    password: "",
-  });
-  const onChangeInput = (e) => {
-    const { name, value } = e.target;
-    setUsers({ ...users, [name]: value });
-  };
+  // //login with google
+  // const responseGoogle = async (response) => {
+  //   try {
+  //     const res = await axios.post("/user/google_login", {
+  //       tokenId: response.tokenId,
+  //     });
+  //     setUsers({ ...users, error: "", success: res.data.msg });
+  //     localStorage.setItem("firstLogin", true);
+  //     setIsLogged(true);
+  //     setTimeout(() => {
+  //       window.location.href = "/";
+  //     }, 2000);
+  //   } catch (err) {
+  //     err.response.data.msg &&
+  //       setUsers({ ...users, err: err.response.data.msg, success: "" });
+  //   }
+  // };
+
+  // //login with facebook
+  // const responseFacebook = async (response) => {
+  //   try {
+  //     const { accessToken, userID } = response;
+  //     const res = await axios.post("/user/facebook_login", {
+  //       accessToken,
+  //       userID,
+  //     });
+
+  //     setUsers({ ...users, error: "", success: res.data.msg });
+  //     localStorage.setItem("firstLogin", true);
+  //     setIsLogged(true);
+  //     setTimeout(() => {
+  //       window.location.href = "/";
+  //     }, 2000);
+  //   } catch (err) {
+  //     err.response.data.msg &&
+  //       setUsers({ ...users, err: err.response.data.msg, success: "" });
+  //   }
+  // };
+
   const loginSubmit = async (e) => {
     e.preventDefault();
     try {
-    const res = await axios.post("http://localhost:5000/user/login", {
+      const res = await axios.post("/user/login", {
         ...users,
+        withCredentials: true,
       });
-      const setting = {
-        givenName: res.data.user.lastname,
-        image: res.data.user.avatar
-      };
-      sessionStorage.setItem(
-        "isLoginMedia",
-        JSON.stringify({
-          isLogin: true,
-          objectLogin: setting,
-        }));
-      // console.log(res.data.user)
-      // localStorage.setItem("firstLogin", true);
-      alert("Login Successfully!");
+      setUsers({ ...users, error: "", success: res.data.msg });
+      localStorage.setItem("firstLogin", true);
       setTimeout(() => {
         window.location.href = "/";
       }, 2000);
     } catch (err) {
-      alert(err.response.data.msg);
+      err.response.data.msg &&
+        setUsers({ ...users, err: err.response.data.msg, success: "" });
     }
   };
 
@@ -89,6 +127,8 @@ const Login = () => {
           <div className={styles.registerWrapper}>
             <div id="login" className={styles.userBox}>
               <h1 className={styles.accountTitle}>Log In</h1>
+              {err && showErrMsg(err)}
+              {success && showSuccessMsg(success)}
               <form
                 action="/Login"
                 id={styles.customerRegister}
@@ -151,6 +191,7 @@ const Login = () => {
                 <div className={styles.buttonFaceLogin}>
                   <FacebookLogin
                     appId="443208307507410"
+                    autoLoad={false}
                     fields="name,email,picture"
                     callback={responseFacebook}
                     render={(renderProps) => (
@@ -163,28 +204,15 @@ const Login = () => {
                     )}
                   />
                 </div>
-                {/* <div className={styles.buttonLogoutFace}>
-                    <button
-                      className={styles.btnOutFb}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.FB.logout();
-                      }}
-                    >
-                      Logout
-                    </button>
-                  </div> */}
               </div>
 
               <div className={styles.blockBtngg}>
                 <div className={styles.btnLoginGoogle}>
                   <GoogleLogin
-                    clientId="850036939989-k16t0uqdlltb5irem720kbmnq0s1desm.apps.googleusercontent.com"
+                    clientId="1075154152235-2396lbcus8vqbge4ib6jl44k6bdqljpi.apps.googleusercontent.com"
                     buttonText="Login Using Google"
                     onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
                     cookiePolicy={"single_host_origin"}
-                    isSignedIn={true}
                     render={(renderProps) => (
                       <button
                         className={styles.btnLogGG}
@@ -196,27 +224,10 @@ const Login = () => {
                     )}
                   />
                 </div>
-                {/* <div className={styles.btnLogoutGoogle}>
-                    <GoogleLogout
-                      clientId="850036939989-k16t0uqdlltb5irem720kbmnq0s1desm.apps.googleusercontent.com"
-                      buttonText="Logout"
-                      onLogoutSuccess={logout}
-                      render={(renderProps) => (
-                        <button
-                          className={styles.btnOutGG}
-                          onClick={renderProps.onClick}
-                          disabled={renderProps.disabled}
-                        >
-                          Logout
-                        </button>
-                      )}
-                    ></GoogleLogout>
-                  </div> */}
               </div>
             </div>
           </div>
         </div>
-        {/* </div> */}
       </section>
     </div>
   );

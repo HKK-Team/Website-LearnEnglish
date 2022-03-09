@@ -12,12 +12,12 @@ const server = http.createServer(app);
 
 
 app.use(express.json());
-app.use(cors())
+// app.use(cors())
 app.use(cookieParser());
-// app.use(cors({
-//   origin:"http://localhost:3000",
-//   credentials:true
-// }));
+app.use(cors({
+  origin:"http://localhost:3000",
+  credentials:true
+}));
 app.use(
   fileUpload({
     useTempFiles: true,
@@ -66,6 +66,9 @@ if(process.env.NODE_ENV === 'production'){
   app.use(express.static('client/build'))
   app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+      res.setHeader('Access-Control-Allow-Credentials', true);
+      res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   })
 }
 
