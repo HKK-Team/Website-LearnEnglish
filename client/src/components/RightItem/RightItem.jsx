@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const RightItem = () => {
   return (
     <div style={{width:'100%'}}>
+      
       <div className={styles.containImage}>
         <img src={Image3} alt="" />
         <div className={styles.BoxText}>

@@ -3,10 +3,13 @@ import { React, useState } from "react";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import {
   showErrMsg,
-  showSuccessMsg
+  showSuccessMsg,
 } from "../../utils/notification/notification";
 import { isEmail, isEmpty, isLength, isMatch } from "../../utils/Validation";
 import styles from "./Register.module.css";
+import ReCAPTCHA from "react-google-recaptcha";
+
+const key = "6Lc2DOkeAAAAAJ5LcFNtCyk6RicIZh4HYUQxPYrS";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -18,12 +21,13 @@ const Register = () => {
     address: "",
     nationality: "",
     phonenumber: "",
+    position: "",
     avatar:
       "https://res.cloudinary.com/djkdp3bew/image/upload/v1646378355/Website_Learning/143086968_2856368904622192_1959732218791162458_n_wbaxvf.png",
     err: "",
     success: "",
   });
-  const { email, confirm_password, password, err, success } = user;
+  const { email, confirm_password, password, position, err, success } = user;
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
@@ -31,7 +35,7 @@ const Register = () => {
   };
   const registerSubmit = async (e) => {
     e.preventDefault();
-    if (isEmpty(email) || isEmpty(password))
+    if (isEmpty(email) || isEmpty(password) || isEmpty(position))
       return setUser({
         ...user,
         err: "Please fill in all fields.",
@@ -154,6 +158,23 @@ const Register = () => {
                       onChange={onChangeInput}
                     />
                   </div>
+                  <div className={`${styles.input}`}>
+                    <label htmlFor="" className={styles.iconField}>
+                      <MdDriveFileRenameOutline />
+                    </label>
+                    <select
+                      style={{ width: 240 }}
+                      name="position"
+                      className={styles.text}
+                      value={user.position}
+                      onChange={onChangeInput}
+                    >
+                      <option value="">Options: </option>
+                      <option value="lecturers">Lecturers</option>
+                      <option value="student">Student</option>
+                    </select>
+                  </div>
+
                   <input
                     type="submit"
                     value="Register"

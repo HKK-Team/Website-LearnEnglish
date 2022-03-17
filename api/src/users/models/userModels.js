@@ -37,6 +37,11 @@ const userSchema = new Schema({
         type :String,
         default: ""
     },
+    position: {
+        type: String,
+        required: [true, "Please enter your position!"],
+        trim: true
+    },
     avatar: {
         type: String,
         default: "https://res.cloudinary.com/djkdp3bew/image/upload/v1646378355/Website_Learning/143086968_2856368904622192_1959732218791162458_n_wbaxvf.png"

@@ -32,6 +32,8 @@ app.use("/api", require("./src/users/routers/skillRouter"));
 app.use("/api", require("./src/users/routers/grammarRouter"));
 app.use("/api", require("./src/users/routers/vocabularyRouter"));
 app.use("/api", require("./src/users/routers/ggMeetRouters"));
+app.use("/api", require("./src/users/routers/bookmeeting"));
+// app.use("/api", require("./src/users/routers/payment"));
 app.use("/user", require("./src/users/routers/userRouter"));
 app.use("/admin", require("./src/admin/routers/adminRouter"));
 app.use("/admin", require("./src/admin/routers/analysis"));

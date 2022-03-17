@@ -28,6 +28,8 @@ const Header = () => {
   const isLogin = str === "/Login" ? true : false;
   const isRegister = str === "/Register" ? true : false;
   const isSearch = str === "/search" ? true : false;
+  const isBooking = str === "/booking" ? true : false;
+
 
   return (
     <Fragment>
@@ -35,7 +37,7 @@ const Header = () => {
         <Navbar />
         <div className={styles.content}>
           {isHome ? <TwoItems /> : ""}
-          {isHome || isLogin || isRegister || isSearch ? <IntroByHome /> : ""}
+          {isHome || isLogin || isRegister || isSearch ||isBooking ? <IntroByHome /> : ""}
           {isSkill ? <IntroBySkill /> : ""}
           {isGrammar ? <IntroByGrammar /> : ""}
           {isVoccabulary ? <IntroByVoc /> : ""}

@@ -21,6 +21,7 @@ import DetailTopic from "./Grammar/DetailTopic/DetailTopic";
 import Grammars from "./Grammar/Grammars";
 import TopicGrammar from "./Grammar/Topic/Topic";
 import Login from "./Login/Login";
+import BookMeetingPage from "./BookMeetingPage/BookMeetingPage";
 import Register from "./Register/Register";
 import Skill from "./Skills/skill";
 import TopicListening from "./Skills/Topic/TopicListening";
@@ -47,6 +48,7 @@ const Pages = () => {
       <Route path="/voccabulary" element={<Voccabulary />} />
       <Route path="/skill" element={<Skill />} />
       <Route path="/search" element={<SearchTopic />} />
+      <Route path="/booking" element={<BookMeetingPage />} />
       <Route
         path="/user/activate/:activation_token"
         element={<Verification />}

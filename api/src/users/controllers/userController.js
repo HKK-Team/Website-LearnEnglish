@@ -23,9 +23,10 @@ const userCtrl = {
         nationality,
         phonenumber,
         avatar,
+        position
       } = req.body;
 
-      if (!lastname || !email || !password)
+      if (!lastname || !email || !password || !position)
         return res.status(400).json({ msg: "Please fill in all fields." });
 
       if (!validateEmail(email))
@@ -52,7 +53,9 @@ const userCtrl = {
         nationality,
         phonenumber,
         avatar,
+        position
       };
+
 
       const activation_token = createActivationToken(newUser);
 
@@ -83,6 +86,7 @@ const userCtrl = {
         nationality,
         phonenumber,
         avatar,
+        position
       } = user;
 
       const check = await Users.findOne({ email });
@@ -98,6 +102,7 @@ const userCtrl = {
         nationality,
         phonenumber,
         avatar,
+        position
       });
 
       await newUser.save();

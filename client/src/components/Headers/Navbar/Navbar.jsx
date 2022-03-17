@@ -44,6 +44,11 @@ const Navbar = () => {
               Meeting
             </Link>
           </li>
+          <li className={styles.items}>
+            <Link className={styles.linkPage} to={"/booking"}>
+              BookMeeting
+            </Link>
+          </li>
         </ul>
       </div>
       <div className={styles.search}>
