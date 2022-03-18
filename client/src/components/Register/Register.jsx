@@ -1,5 +1,5 @@
 import axios from "axios";
-import { React, useState } from "react";
+import { React, useRef, useState } from "react";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import {
   showErrMsg,
@@ -7,11 +7,9 @@ import {
 } from "../../utils/notification/notification";
 import { isEmail, isEmpty, isLength, isMatch } from "../../utils/Validation";
 import styles from "./Register.module.css";
-import ReCAPTCHA from "react-google-recaptcha";
-
-const key = "6Lc2DOkeAAAAAJ5LcFNtCyk6RicIZh4HYUQxPYrS";
 
 const Register = () => {
+  const capchaRef = useRef();
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -174,7 +172,6 @@ const Register = () => {
                       <option value="student">Student</option>
                     </select>
                   </div>
-
                   <input
                     type="submit"
                     value="Register"

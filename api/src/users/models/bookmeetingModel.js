@@ -10,6 +10,8 @@ const bookmeetingsSchema = new mongoose.Schema({
   hourCreate: String,
   message: String,
   costTopic: String,
+  emailStudent:String,
+  linkMeeting:String
 });
 
 module.exports = mongoose.model("Bookmeetings", bookmeetingsSchema);

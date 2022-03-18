@@ -1,24 +1,21 @@
-import {
-  Fragment,
-  React,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from "react";
-import RightItem from "../RightItem/RightItem";
-import styles from "./BookingMeeting.module.css";
-import Image from "../../images/1.jpg";
-import { AiOutlineClockCircle } from "react-icons/ai";
+import axios from "axios";
+import { Fragment, React, useContext, useEffect, useState } from "react";
+import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GlobalState } from "../../GlobalState";
-import axios from "axios";
+import Image from "../../images/1.jpg";
+import styles from "./BookingMeeting.module.css";
 import PaypalButton from "./PaypalButton";
+
+const colors = {
+  orange: "#FFBA5A",
+  grey: "#a9a9a9",
+};
 
 const BookingMeeting = () => {
   const state = useContext(GlobalState);
   const [user] = state.userApi.user;
+  const [dataUser] = state.userTotalApi.dataUser;
   const [grammar] = state.grammarApi.dataGrammar;
   const [vocabulary] = state.vocabularyApi.vocData;
   const [dataListening] = state.listeningApi.dataListening;
@@ -26,11 +23,15 @@ const BookingMeeting = () => {
   const [dataSpeaking] = state.speakingApi.dataSpeaking;
   const [dataWriting] = state.writingApi.dataWriting;
 
+  const [currentValue, setCurrentValue] = useState(0);
+  const [hoverValue, setHoverValue] = useState(undefined);
+  const stars = Array(5).fill(0);
   const [changeState, setchangeState] = useState(true);
   const [dataBooking, setdataBooking] = useState([]);
-  const [score, setsocre] = useState(1);
   const [dataBookRoom, setdataBookRoom] = useState({});
-  const [dataTotal, setdataTotal] = useState(1);
+  const [dataTotal, setdataTotal] = useState([]);
+  const [scoreMeeting, setscoreMeeting] = useState(0);
+  const [totalRateting, settotalRateting] = useState([]);
   const [createmeeting, setcreatemeeting] = useState({
     email: user.email,
     nameLectures: user?.firstname + " " + user?.lastname,
@@ -41,6 +42,8 @@ const BookingMeeting = () => {
     hourCreate: "",
     message: "Have a good study session !",
     costTopic: "",
+    emailStudent: "",
+    linkMeeting: "",
   });
   useEffect(() => {
     let array = [];
@@ -59,7 +62,6 @@ const BookingMeeting = () => {
     grammar,
     vocabulary,
   ]);
-  // console.log(dataTotal);
 
   useEffect(() => {
     const databookApi = async () => {
@@ -67,6 +69,11 @@ const BookingMeeting = () => {
       setdataBooking(data.data);
     };
     databookApi();
+    const dataScoreApi = async () => {
+      const data = await axios.get("http://localhost:5000/api/getpayment");
+      settotalRateting(data.data.filter((it) => it.email === user.email));
+    };
+    dataScoreApi();
   }, []);
 
   useEffect(() => {
@@ -84,6 +91,7 @@ const BookingMeeting = () => {
         dayCreate: product.dayCreate,
         hourCreate: product.hourCreate,
         costTopic: product.costTopic,
+        id: product._id,
       });
       return obj;
     }, {});
@@ -91,16 +99,7 @@ const BookingMeeting = () => {
     var groups = Object.keys(grouped).map(function (key) {
       return { product: key, nameLectures: grouped[key] };
     });
-    console.log(groups);
     setdataBookRoom(groups);
-    // const result = Array.from(new Set(dataBooking.map(s => s.nameLectures)))
-    // .map(lab => {
-    //   return {
-    //     nameLectures: lab,
-    //     data: dataBooking.filter(s => s.nameLectures === lab).map(edition => edition.data)
-    //   }
-    // })
-    //   console.log(result);
   }, [dataBooking]);
 
   const eventChange = () => {
@@ -113,33 +112,69 @@ const BookingMeeting = () => {
   const NewTopicSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(createmeeting);
       await axios.post("http://localhost:5000/api/bookingmeeting", {
         ...createmeeting,
       });
+      let nameTemp = dataUser.filter(
+        (it) => it.email === createmeeting.emailStudent
+      );
+      const objSendMail = {
+        nameLecture: createmeeting.nameLectures,
+        nameStudent: `${nameTemp[0].firstname} ${nameTemp[0].lastname}`,
+        email: createmeeting.emailStudent,
+        skill: createmeeting.nameSkills,
+        nameSkill: createmeeting.levelSkill,
+        nameTopic: createmeeting.nameTopic,
+        dayCreate: createmeeting.dayCreate,
+        hourCreate: createmeeting.hourCreate,
+        message: createmeeting.message,
+        Cost: createmeeting.costTopic,
+        linkMeeting: createmeeting.linkMeeting,
+      };
+      await axios.put("http://localhost:5000/mail/sendmail", {
+        ...objSendMail,
+      });
+
       alert("Create Successfully!");
     } catch (err) {
       alert(err.response.data.msg);
     }
   };
   const tranSuccess = async (payment) => {
-    console.log(payment);
-    const { paymentID } = payment;
-    await axios.post("http://localhost:5000/api/payment", {
-      paymentID,
-      // email,
-      // nameLectures,
-      // nameSkills,
-      // levelSkill,
-      // nameTopic,
-      // dayCreate,
-      // hourCreate,
-      // costTopic,
-      score,
+    const detail = dataBookRoom[0].nameLectures.filter((item) => {
+      return item.id === "62341cec690f75106b3c57b4";
     });
+    console.log(detail);
+    // console.log(payment);
+    // const { paymentID } = payment;
+    // await axios.post("http://localhost:5000/api/payment", {
+    //   paymentID,
+    //   // email,
+    //   // nameLectures,
+    //   // nameSkills,
+    //   // levelSkill,
+    //   // nameTopic,
+    //   // dayCreate,
+    //   // hourCreate,
+    //   // costTopic,
+    //   // scoreMeeting:scoreMeeting
+    // });
   };
-  const onchangInput = (e) => {
-    setsocre(e.target.value);
+
+  const handleClick = (value) => {
+    setCurrentValue(value);
+    setscoreMeeting(value);
   };
+
+  const handleMouseOver = (newHoverValue) => {
+    setHoverValue(newHoverValue);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverValue(undefined);
+  };
+
   return (
     <Fragment>
       <div className="grid wide" style={{ marginTop: 60 }}>
@@ -200,6 +235,26 @@ const BookingMeeting = () => {
                           spellCheck="false"
                           className={styles.typeInputValues}
                           placeholder="Please type name content..."
+                        />
+                      </div>
+                      <div className={styles.typeInput}>
+                        <input
+                          name="emailStudent"
+                          value={createmeeting.emailStudent}
+                          onChange={onChangeInput}
+                          spellCheck="false"
+                          className={styles.typeInputValues}
+                          placeholder="Please type name email student..."
+                        />
+                      </div>
+                      <div className={styles.typeInput}>
+                        <input
+                          name="linkMeeting"
+                          value={createmeeting.linkMeeting}
+                          onChange={onChangeInput}
+                          spellCheck="false"
+                          className={styles.typeInputValues}
+                          placeholder="Please type link meeting..."
                         />
                       </div>
                       <div className={styles.typeInput}>
@@ -272,8 +327,46 @@ const BookingMeeting = () => {
                       <p>
                         Name: {user?.firstname} {user?.lastname}
                       </p>
-                      <p>Score:</p>
-                      <p>Total:</p>
+                      <p>
+                        Total:{" "}
+                        {totalRateting.reduce(function (
+                          accumulator,
+                          currentValue
+                        ) {
+                          return accumulator + parseInt(currentValue.costTopic);
+                        },
+                        0)}
+                        $
+                      </p>
+                      <div style={styles.stars}>
+                        <span>Vote:</span>{" "}
+                        {[0, 0, 0, 0, 0].map((_, index) => (
+                          <FaStar
+                            key={index}
+                            size={24}
+                            color={
+                              Math.ceil(
+                                totalRateting.reduce(function (
+                                  accumulator,
+                                  currentValue
+                                ) {
+                                  return (
+                                    accumulator +
+                                    parseInt(currentValue.scoreMeeting)
+                                  );
+                                },
+                                0) / 5
+                              ) > index
+                                ? colors.orange
+                                : colors.grey
+                            }
+                            style={{
+                              marginRight: 10,
+                              cursor: "pointer",
+                            }}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -283,7 +376,15 @@ const BookingMeeting = () => {
                     <h3>{item?.product}</h3>
                     {item.nameLectures.map((items, indexs) => (
                       <div className={styles.containImage} key={indexs}>
-                        <img src={Image} alt="" />
+                        <img
+                          src={
+                            dataTotal.filter(
+                              (it) =>
+                                it?.level.topic.nameTopic === items?.nameTopic
+                            )[0]?.level.topic.imageTopic
+                          }
+                          alt=""
+                        />
                         <div className={styles.BoxText}>
                           <div>
                             <Link to={""} className={styles.text}>
@@ -301,15 +402,25 @@ const BookingMeeting = () => {
                           {user?.position === "lecturers" ? (
                             ""
                           ) : (
-                            <div>
-                              <label>Score:</label>
-                              <input
-                                onChange={onchangInput}
-                                style={{ marginLeft: 10 }}
-                                type="number"
-                                min="1"
-                                max="10"
-                              />
+                            <div style={styles.stars}>
+                              {stars.map((_, index) => (
+                                <FaStar
+                                  key={index}
+                                  size={24}
+                                  onClick={() => handleClick(index + 1)}
+                                  onMouseOver={() => handleMouseOver(index + 1)}
+                                  onMouseLeave={handleMouseLeave}
+                                  color={
+                                    (hoverValue || currentValue) > index
+                                      ? colors.orange
+                                      : colors.grey
+                                  }
+                                  style={{
+                                    marginRight: 10,
+                                    cursor: "pointer",
+                                  }}
+                                />
+                              ))}
                             </div>
                           )}
                         </div>

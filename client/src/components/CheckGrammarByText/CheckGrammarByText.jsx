@@ -41,9 +41,6 @@ const CheckGrammarByText = () => {
         let str1 = valueInput.trim().replace(/\s+/g, " ");
         let str2 = datas.data;
 
-        console.log(str1);
-        console.log(str2);
-
         if (
           str1.split(" ").length < str2.split(" ").length ||
           str1.split(" ").length > str2.split(" ").length

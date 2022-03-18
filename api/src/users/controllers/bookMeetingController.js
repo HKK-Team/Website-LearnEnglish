@@ -13,6 +13,8 @@ const bookCtrl = {
         hourCreate,
         message,
         costTopic,
+        emailStudent,
+        linkMeeting,
       } = req.body;
 
       if (
@@ -22,7 +24,9 @@ const bookCtrl = {
         !nameTopic ||
         !levelSkill ||
         !dayCreate ||
-        !hourCreate
+        !hourCreate ||
+        !emailStudent ||
+        !linkMeeting
       )
         return res.status(400).json({ msg: "Please fill in all fields." });
 
@@ -36,6 +40,8 @@ const bookCtrl = {
         hourCreate,
         message,
         costTopic,
+        emailStudent,
+        linkMeeting,
       });
       // save mongodb
       await newTopic.save();
