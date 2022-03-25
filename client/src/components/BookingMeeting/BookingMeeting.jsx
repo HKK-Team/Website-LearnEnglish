@@ -3,7 +3,6 @@ import { Fragment, React, useContext, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GlobalState } from "../../GlobalState";
-import Image from "../../images/1.jpg";
 import styles from "./BookingMeeting.module.css";
 import PaypalButton from "./PaypalButton";
 
@@ -92,6 +91,7 @@ const BookingMeeting = () => {
         hourCreate: product.hourCreate,
         costTopic: product.costTopic,
         id: product._id,
+        email:product.email
       });
       return obj;
     }, {});
@@ -112,7 +112,6 @@ const BookingMeeting = () => {
   const NewTopicSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(createmeeting);
       await axios.post("http://localhost:5000/api/bookingmeeting", {
         ...createmeeting,
       });
@@ -142,24 +141,34 @@ const BookingMeeting = () => {
     }
   };
   const tranSuccess = async (payment) => {
-    const detail = dataBookRoom[0].nameLectures.filter((item) => {
-      return item.id === "62341cec690f75106b3c57b4";
+    const { paymentID } = payment;
+    const temp = dataBookRoom[0]?.nameLectures.filter(
+      (tp) => tp.dayCreate >= new Date().toISOString().split("T")[0]
+    );
+    const obj = {
+      email: temp[0]?.email,
+      nameLectures: dataBookRoom[0]?.product,
+      nameSkills: temp[0]?.nameSkills,
+      levelSkill: temp[0]?.levelSkill,
+      nameTopic: temp[0]?.nameTopic,
+      dayCreate: temp[0]?.dayCreate,
+      hourCreate: temp[0]?.hourCreate,
+      costTopic: temp[0]?.costTopic,
+    };
+    await axios.post("http://localhost:5000/api/payment", {
+      paymentID,
+      email: obj.email,
+      nameLectures: obj.nameLectures,
+      nameSkills: obj.nameSkills,
+      levelSkill: obj.levelSkill,
+      nameTopic: obj.nameTopic,
+      dayCreate: obj.dayCreate,
+      hourCreate: obj.hourCreate,
+      costTopic: obj.costTopic,
+      scoreMeeting: scoreMeeting,
     });
-    console.log(detail);
-    // console.log(payment);
-    // const { paymentID } = payment;
-    // await axios.post("http://localhost:5000/api/payment", {
-    //   paymentID,
-    //   // email,
-    //   // nameLectures,
-    //   // nameSkills,
-    //   // levelSkill,
-    //   // nameTopic,
-    //   // dayCreate,
-    //   // hourCreate,
-    //   // costTopic,
-    //   // scoreMeeting:scoreMeeting
-    // });
+    setdataBookRoom([]);
+    alert("Successfully!");
   };
 
   const handleClick = (value) => {
@@ -374,71 +383,79 @@ const BookingMeeting = () => {
                 dataBookRoom.map((item, index) => (
                   <div className={styles.schedule} key={index}>
                     <h3>{item?.product}</h3>
-                    {item.nameLectures.map((items, indexs) => (
-                      <div className={styles.containImage} key={indexs}>
-                        <img
-                          src={
-                            dataTotal.filter(
-                              (it) =>
-                                it?.level.topic.nameTopic === items?.nameTopic
-                            )[0]?.level.topic.imageTopic
-                          }
-                          alt=""
-                        />
-                        <div className={styles.BoxText}>
-                          <div>
-                            <Link to={""} className={styles.text}>
-                              {items?.nameTopic}
-                            </Link>
+                    {item.nameLectures
+                      .filter(
+                        (tp) =>
+                          tp.dayCreate >=
+                          new Date().toISOString().split("T")[0]
+                      )
+                      .map((items, indexs) => (
+                        <div className={styles.containImage} key={indexs}>
+                          <img
+                            src={
+                              dataTotal.filter(
+                                (it) =>
+                                  it?.level.topic.nameTopic === items?.nameTopic
+                              )[0]?.level.topic.imageTopic
+                            }
+                            alt=""
+                          />
+                          <div className={styles.BoxText}>
+                            <div>
+                              <Link to={""} className={styles.text}>
+                                {items?.nameTopic}
+                              </Link>
+                            </div>
+                            <p>
+                              {items?.nameSkills?.substring(0, 1).toUpperCase()}
+                              {items?.nameSkills?.substring(1)}
+                            </p>
+                            <p>{items?.levelSkill}</p>
+                            <p>Date: {items?.dayCreate}</p>
+                            <p>Hour: {items?.hourCreate}</p>
+                            <p>Cost: {items?.costTopic}$</p>
+                            {user?.position === "lecturers" ? (
+                              ""
+                            ) : (
+                              <div style={styles.stars}>
+                                {stars.map((_, index) => (
+                                  <FaStar
+                                    key={index}
+                                    size={24}
+                                    onClick={() => handleClick(index + 1)}
+                                    onMouseOver={() =>
+                                      handleMouseOver(index + 1)
+                                    }
+                                    onMouseLeave={handleMouseLeave}
+                                    color={
+                                      (hoverValue || currentValue) > index
+                                        ? colors.orange
+                                        : colors.grey
+                                    }
+                                    style={{
+                                      marginRight: 10,
+                                      cursor: "pointer",
+                                    }}
+                                  />
+                                ))}
+                              </div>
+                            )}
                           </div>
-                          <p>
-                            {items?.nameSkills?.substring(0, 1).toUpperCase()}
-                            {items?.nameSkills?.substring(1)}
-                          </p>
-                          <p>{items?.levelSkill}</p>
-                          <p>Date: {items?.dayCreate}</p>
-                          <p>Hour: {items?.hourCreate}</p>
-                          <p>Cost: {items?.costTopic}$</p>
+
                           {user?.position === "lecturers" ? (
                             ""
                           ) : (
-                            <div style={styles.stars}>
-                              {stars.map((_, index) => (
-                                <FaStar
-                                  key={index}
-                                  size={24}
-                                  onClick={() => handleClick(index + 1)}
-                                  onMouseOver={() => handleMouseOver(index + 1)}
-                                  onMouseLeave={handleMouseLeave}
-                                  color={
-                                    (hoverValue || currentValue) > index
-                                      ? colors.orange
-                                      : colors.grey
-                                  }
-                                  style={{
-                                    marginRight: 10,
-                                    cursor: "pointer",
-                                  }}
+                            <div>
+                              <div className={styles.payment}>
+                                <PaypalButton
+                                  total={parseInt(items?.costTopic)}
+                                  tranSuccess={tranSuccess}
                                 />
-                              ))}
+                              </div>
                             </div>
                           )}
                         </div>
-
-                        {user?.position === "lecturers" ? (
-                          ""
-                        ) : (
-                          <div>
-                            <div className={styles.payment}>
-                              <PaypalButton
-                                total={parseInt(items?.costTopic)}
-                                tranSuccess={tranSuccess}
-                              />
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 ))
               )}
